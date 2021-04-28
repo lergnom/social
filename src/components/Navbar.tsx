@@ -1,25 +1,27 @@
 import React from "react";
+import s from './Navbar.module.css';
+
 
 export function Navbar() {
     return (
-        <nav className='nav'>
-            <div>
-                <a href="#">Profile</a>
+        <nav className={s.nav}>
+            <div className={s.blockMenu}>
+                <a className={s.item} href="#">Profile</a>
             </div>
-            <div>
-                <a href="#">Messages</a>
+            <div className={s.blockMenu}>
+                <a className={`${s.item} ${s.active}`}href="#">Messages</a>
 
             </div>
-            <div>
-                <a href="#">News</a>
+            <div className={s.blockMenu}>
+                <a  className={s.item} href="#">News</a>
 
             </div>
-            <div>
-                <a href="#">Music</a>
+            <div className={s.blockMenu}>
+                <a className={s.item} href="#">Music</a>
 
             </div>
-            <div>
-                <a href="#">Settings</a>
+            <div className={s.blockMenu}>
+                <a className={s.item} href="#">Settings</a>
 
             </div>
         </nav>
