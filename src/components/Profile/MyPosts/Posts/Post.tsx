@@ -2,11 +2,16 @@ import React from "react";
 import s from './Post.module.css';
 
 
-export const Post = () => {
+type MessageType = {
+    message: string
+}
+
+
+export function Post (props:MessageType) {
     return (
         <div>
             <img src="#" alt=""/>
-            post 1
+            {props.message}
             <div>
                 <span>like</span>
             </div>
