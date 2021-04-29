@@ -9,9 +9,9 @@ export function MyPosts() {
             My posts
             <div>New post</div>
             <div>
-                <Post message="Hi " />
-                <Post message="How are you" />
-                <Post message="I'm fine" />
+                <Post message="Hi " likeCounts={10} />
+                <Post message="How are you" likeCounts={20} />
+                <Post message="I'm fine" likeCounts={5} />
             </div>
 
 

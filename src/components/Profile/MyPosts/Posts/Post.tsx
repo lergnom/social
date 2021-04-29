@@ -4,6 +4,7 @@ import s from './Post.module.css';
 
 type MessageType = {
     message: string
+    likeCounts: number
 }
 
 
@@ -13,7 +14,7 @@ export function Post (props:MessageType) {
             <img src="#" alt=""/>
             {props.message}
             <div>
-                <span>like</span>
+                <span>like</span> {props.likeCounts}
             </div>
         </div>
     )
