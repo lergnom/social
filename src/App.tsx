@@ -17,7 +17,7 @@ function App() {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                {/*<Navbar/>*/}
                 <div className='app-wrapper-content'>
                     <Route path={"/dialogs"} render={() => <Dialogs/>}/>
                     <Route path={"/profile"} render={() => <Profile/>}/>

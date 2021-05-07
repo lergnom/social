@@ -22,7 +22,7 @@ export function Navbar() {
 
             </div>
             <div className={s.blockMenu}>
-                <NavLink className={s.item} to="/settings" activeClassName={s.active} vide>Settings</NavLink>
+                <NavLink className={s.item} to="/settings" activeClassName={s.active}>Settings</NavLink>
 
             </div>
         </nav>

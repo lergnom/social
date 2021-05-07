@@ -1,7 +1,56 @@
 .header {
     grid-area: h;
-
+    background-color: #fff;
 }
 .header img {
     width: 120px;
+}
+
+.headerWrapper {
+    display: flex;
+    align-items: center;
+
+}
+
+.siteMenu {
+    display: flex;
+    margin-left: 50px;
+}
+ a{
+    text-decoration: none;
+    color: lightgreen;
+}
+.menuBlock {
+    margin-left: 100px;
+    color: lightgreen  ;
+    cursor: pointer;
+}
+.menuBlockActive  {
+    color: green;
+    text-decoration: none;
+}
+
+.menuBlock a:hover{
+    color: green;
+}
+.menuBlock:first-child{
+    margin-left: 0px;
+}
+
+
+.logButton {
+    margin-left: 120px;
+    color: white;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    background-color: green;
+    cursor: pointer;
+    font-weight: bold;
+}
+.logButton:hover{
+    opacity: 0.9;
+    color: whitesmoke;
 }
