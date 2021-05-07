@@ -11,19 +11,19 @@ export function Header() {
                     alt="logo"/>
                 <div className={s.siteMenu}>
                     <div className={s.menuBlock}>
-                        <NavLink to={'./profile'} activeClassName={s.menuBlockActive}>Profile</NavLink>
+                        <NavLink to={'/profile'} activeClassName={s.menuBlockActive}>Profile</NavLink>
                     </div>
                     <div className={s.menuBlock}>
-                        <NavLink to={'./dialogs'} activeClassName={s.menuBlockActive}>Messages</NavLink>
+                        <NavLink to={'/dialogs'} activeClassName={s.menuBlockActive}>Messages</NavLink>
                     </div>
                     <div className={s.menuBlock}>
-                        <NavLink to={'./news'} activeClassName={s.menuBlockActive}>News</NavLink>
+                        <NavLink to={'/news'} activeClassName={s.menuBlockActive}>News</NavLink>
                     </div>
                     <div className={s.menuBlock}>
-                        <NavLink to={"./music"} activeClassName={s.menuBlockActive}>Music</NavLink>
+                        <NavLink to={"/music"} activeClassName={s.menuBlockActive}>Music</NavLink>
                     </div>
                     <div className={s.menuBlock}>
-                        <NavLink to={"./settings"} activeClassName={s.menuBlockActive}>Settings</NavLink>
+                        <NavLink to={"/settings"} activeClassName={s.menuBlockActive}>Settings</NavLink>
                     </div>
                 </div>
                 <div className={s.logButton}>LOGIN</div>
