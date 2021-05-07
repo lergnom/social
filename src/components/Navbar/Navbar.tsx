@@ -6,14 +6,14 @@ export function Navbar() {
     return (
         <nav className={s.nav}>
             <div className={s.blockMenu}>
-                <a className={s.item} href="#">Profile</a>
+                <a className={s.item} href="/profile">Profile</a>
             </div>
             <div className={s.blockMenu}>
-                <a className={`${s.item} ${s.active}`}href="#">Messages</a>
+                <a className={`${s.item} ${s.active}`} href="/dialogs">Messages</a>
 
             </div>
             <div className={s.blockMenu}>
-                <a  className={s.item} href="#">News</a>
+                <a className={s.item} href="#">News</a>
 
             </div>
             <div className={s.blockMenu}>
