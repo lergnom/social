@@ -13,15 +13,15 @@ export function Navbar() {
 
             </div>
             <div className={s.blockMenu}>
-                <a className={s.item} href="#">News</a>
+                <a className={s.item} href="/news">News</a>
 
             </div>
             <div className={s.blockMenu}>
-                <a className={s.item} href="#">Music</a>
+                <a className={s.item} href="/music">Music</a>
 
             </div>
             <div className={s.blockMenu}>
-                <a className={s.item} href="#">Settings</a>
+                <a className={s.item} href="/settings">Settings</a>
 
             </div>
         </nav>
