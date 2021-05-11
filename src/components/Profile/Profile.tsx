@@ -2,26 +2,16 @@ import React from "react";
 import s from './Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {PropsDataPostType} from "../../index";
 
-export type PostDataType = {
-    id: number
-    message: string
-    likeCount: number
-}
 
-let postData: Array<PostDataType> = [
-    {id: 1, message: 'How much is fish', likeCount: 10},
-    {id: 2, message: 'The New York bands', likeCount: 10},
-    {id: 2, message: 'All my time ', likeCount: 10}
-]
-
-export const Profile = () => {
+export const Profile = (props: PropsDataPostType) => {
 
 
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPosts postData={postData}/>
+            <MyPosts postData={props.postData}/>
         </div>
     )
 
