@@ -25,15 +25,30 @@ const Message = (props: MessageType) => {
 }
 
 export const Dialogs = () => {
+
+    type dialogsDataType = {
+        id: number
+        name: string
+    }
+
+    let dialogsData: Array<dialogsDataType> = [
+        {id: 1, name: "Anton"},
+        {id: 2, name: "Masha"},
+        {id: 3, name: "Kira"},
+        {id: 4, name: "Alisa"},
+        {id: 5, name: "Kirill"},
+        {id: 6, name: "Yan"},
+    ]
+
+    let dialogItem = dialogsData.map((dialog) => {
+
+        return <DialogItem id={dialog.id} name={dialog.name}/>
+    })
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItem}>
-                <DialogItem id={1} name={'Anton'}/>
-                <DialogItem id={2} name={'Masha'}/>
-                <DialogItem id={3} name={'Kira'}/>
-                <DialogItem id={4} name={'Alisa'}/>
-                <DialogItem id={5} name={'Kirill'}/>
-                <DialogItem id={6} name={'Yan'}/>
+                {dialogItem}
             </div>
             <div className={s.messages}>
                 <Message message={'Hi'}/>
