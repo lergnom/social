@@ -17,7 +17,7 @@ export function MyPosts() {
         {id: 2, message: 'All my time ', likeCount: 10}
     ]
 
-    const postMessage = postData.map(post => {
+    const postsElements = postData.map(post => {
         return <Post message={post.message} likeCounts={post.likeCount}/>
     })
 
@@ -26,7 +26,7 @@ export function MyPosts() {
             My posts
             <div>New post</div>
             <div>
-                {postMessage}
+                {postsElements}
                 {/*<Post message="Hi " likeCounts={10}/>*/}
                 {/*<Post message="How are you" likeCounts={20}/>*/}
                 {/*<Post message="I'm fine" likeCounts={5}/>*/}
