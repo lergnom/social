@@ -1,7 +1,9 @@
 .header {
     grid-area: h;
     background-color: #fff;
+    margin-bottom: 10px;
 }
+
 .header img {
     width: 120px;
 }
@@ -16,24 +18,28 @@
     display: flex;
     margin-left: 50px;
 }
- a{
+
+a {
     text-decoration: none;
     color: lightgreen;
 }
+
 .menuBlock {
     margin-left: 100px;
-    color: lightgreen  ;
+    color: lightgreen;
     cursor: pointer;
 }
-.menuBlockActive  {
+
+.menuBlockActive {
     color: green;
     text-decoration: none;
 }
 
-.menuBlock a:hover{
+.menuBlock a:hover {
     color: green;
 }
-.menuBlock:first-child{
+
+.menuBlock:first-child {
     margin-left: 0px;
 }
 
@@ -50,7 +56,8 @@
     cursor: pointer;
     font-weight: bold;
 }
-.logButton:hover{
+
+.logButton:hover {
     opacity: 0.9;
     color: whitesmoke;
 }

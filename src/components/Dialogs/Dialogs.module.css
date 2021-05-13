@@ -4,7 +4,7 @@
 }
 
 .dialogItem {
-    margin-top: 15px;
+    /*margin-top: 15px;*/
     margin-left: 25px;
     padding-left: 10px;
     padding-top: 10px;
@@ -33,7 +33,7 @@
 
 .messages {
     margin-left: 20px;
-    margin-top: 15px;
+    /*margin-top: 15px;*/
     padding-left: 10px;
     padding-top: 10px;
     width: 800px;

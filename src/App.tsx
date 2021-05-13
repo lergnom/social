@@ -10,6 +10,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
+
 // import {AppPropsType, DialogsPropsType} from "./index";
 
 
@@ -21,7 +22,9 @@ function App(props: RootStateType) {
                 {/*<Navbar/>*/}
                 <div className='app-wrapper-content'>
                     <Route path={"/dialogs"}
-                           render={() => <Dialogs dialogs={props.dialogsPage.dialogs} messages={props.dialogsPage.messages}/>}/>
+                           render={() => <Dialogs dialogs={props.dialogsPage.dialogs}
+                                                  messages={props.dialogsPage.messages}
+                                                  contacts={props.dialogsPage.contacts}/>}/>
                     <Route path={"/profile"} render={() => <Profile posts={props.profilePage.posts}/>}/>
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>

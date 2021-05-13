@@ -3,6 +3,7 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/state";
+import BestFriends from "./BestFriends/BestFriends";
 
 
 export const Dialogs = (props: DialogsPageType) => {
@@ -12,16 +13,29 @@ export const Dialogs = (props: DialogsPageType) => {
 
     let messagesElements = props.messages.map(message => <Message message={message.message}/>)
 
+    let bestFriends = () => {
+        if (props.contacts.length > 0) {
+            console.log(props.contacts.length)
+            return (
+                <BestFriends arr={props.contacts}/>
+
+            )
+        } else return
+    }
+
+
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogItem}>
-                {dialogsElements}
+        <>
+            {bestFriends()}
+            <div className={s.dialogs}>
+                <div className={s.dialogItem}>
+                    {dialogsElements}
+                </div>
+                <div className={s.messages}>
+                    {messagesElements}
+                </div>
             </div>
-            <div className={s.messages}>
-                {messagesElements}
-                {/*<Message message={'Fine!'}/>*/}
-            </div>
-        </div>
+        </>
     )
 
 }

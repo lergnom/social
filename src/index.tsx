@@ -64,7 +64,7 @@ import state from './redux/state'
 
 ReactDOM.render(
     <React.StrictMode>
-        <App dialogsPage={state.dialogsPage} profilePage={state.profilePage} sideBar={state.sideBar}/>
+        <App dialogsPage={state.dialogsPage} profilePage={state.profilePage} />
     </React.StrictMode>,
     document.getElementById('root')
 );

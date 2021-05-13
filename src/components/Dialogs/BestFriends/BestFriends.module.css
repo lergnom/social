@@ -1,0 +1,111 @@
+.friendsWrapper {
+    margin-bottom: 10px;
+}
+
+.friendsBlock {
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 900px;
+    margin: 0 auto;
+    background-color: beige;
+
+}
+
+.friendsBlock ul {
+    display: flex;
+}
+
+.friendsBlock li {
+    list-style-type: none;
+}
+
+.friendsBlock li img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+
+}
+
+
+.friendsBlock span {
+    color: darkolivegreen;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.friendsBlock h4 {
+    margin: 0 auto;
+    padding-left: 40px;
+}
+
+
+.friendElement {
+    display: flex;
+    margin-right: 15px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.friendElement:hover {
+    opacity: 0.9;
+}
+
+
+.friendAvatar {
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+
+/*.dialogs {*/
+/*    display: grid;*/
+/*    grid-template-columns: 10fr 60fr;*/
+/*}*/
+
+/*.dialogItem {*/
+/*    margin-top: 15px;*/
+/*    margin-left: 25px;*/
+/*    padding-left: 10px;*/
+/*    padding-top: 10px;*/
+/*    width: 300px;*/
+/*    background-color: white;*/
+/*    border-radius: 10px;*/
+
+/*}*/
+
+/*.dialog {*/
+/*    margin-bottom: 5px;*/
+/*    padding-top: 5px;*/
+/*    padding-bottom: 5px;*/
+/*    width: 100px;*/
+/*    border-radius: 10px;*/
+/*    text-align: center;*/
+
+/*}*/
+/*.active {*/
+/*    padding: 5px 10px 5px 10px;*/
+/*    border-radius: 8px;*/
+/*    background-color: lightgreen;*/
+/*    color: white;*/
+
+/*}*/
+
+/*.messages {*/
+/*    margin-left: 20px;*/
+/*    margin-top: 15px;*/
+/*    padding-left: 10px;*/
+/*    padding-top: 10px;*/
+/*    width: 800px;*/
+/*    background-color: white;*/
+/*    border-radius: 10px;*/
+
+/*}*/
+
+/*.message {*/
+
+/*}*/
