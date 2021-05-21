@@ -3,7 +3,7 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/state";
-import BestFriends from "./BestFriends/BestFriends";
+import {BestFriends} from "./BestFriends/BestFriends";
 
 
 export const Dialogs = (props: DialogsPageType) => {
@@ -17,7 +17,7 @@ export const Dialogs = (props: DialogsPageType) => {
         if (props.contacts.length > 0) {
             console.log(props.contacts.length)
             return (
-                <BestFriends arr={props.contacts}/>
+                <BestFriends contacts={props.contacts}/>
 
             )
         } else return
