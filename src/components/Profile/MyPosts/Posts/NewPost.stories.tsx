@@ -1,14 +1,14 @@
 import React from 'react';
 import {Story, Meta} from '@storybook/react';
-import {PostProfile} from "./PostProfile";
+import {NewPost, NewPostProps} from "./NewPost";
 
 export default {
     title: 'Post Profile-Message',
-    component: PostProfile,
+    component: NewPost,
     argTypes: {},
 } as Meta;
 
-const Template: Story = (args) => <PostProfile{...args} />;
+const Template: Story<NewPostProps> = (args) => <NewPost{...args} />;
 
 export const BestFriendsComponent = Template.bind({});
 BestFriendsComponent.args = {}

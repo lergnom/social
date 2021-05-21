@@ -22,6 +22,7 @@ export type DialogsPageType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
+
 }
 export type ContactsType = {
     id: number
@@ -86,6 +87,16 @@ let state: RootStateType = {
     }
 
 
+}
+
+export const addPost = (postText: string) => {
+    const newPost: PostsType = {
+        id: new Date().getTime(),
+        message: postText,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+    console.log(state.profilePage.posts)
 }
 
 export default state;

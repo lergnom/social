@@ -10,6 +10,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
+import {addPost} from "./redux/state";
 
 // import {AppPropsType, DialogsPropsType} from "./index";
 
@@ -25,7 +26,8 @@ function App(props: RootStateType) {
                            render={() => <Dialogs dialogs={props.dialogsPage.dialogs}
                                                   messages={props.dialogsPage.messages}
                                                   contacts={props.dialogsPage.contacts}/>}/>
-                    <Route path={"/profile"} render={() => <Profile posts={props.profilePage.posts}/>}/>
+                    <Route path={"/profile"}
+                           render={() => <Profile posts={props.profilePage.posts} addPost={addPost}/>}/>
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>
                     <Route path={"/settings"} render={() => <Settings/>}/>
