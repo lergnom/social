@@ -1,3 +1,5 @@
+import {renderTree} from "../renderTree";
+
 type DialogsType = {
     id: number
     name: string
@@ -96,7 +98,8 @@ export const addPost = (postText: string) => {
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
-    console.log(state.profilePage.posts)
+    // console.log(state.profilePage.posts)
+    renderTree(state)
 }
 
 export default state;

@@ -11,8 +11,6 @@ export type NewPostProps = {
 
 export const NewPost = (props: NewPostProps) => {
     const addNewMessage = () => {
-        alert('yo')
-
         if (newPostElement.current) {
             props.addPost(newPostElement.current.value)
         }
