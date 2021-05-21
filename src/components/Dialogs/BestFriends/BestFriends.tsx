@@ -9,7 +9,7 @@ export type BestFriendsPropsType = {
 export const BestFriends = (props: BestFriendsPropsType) => {
     let friendsEl = props.contacts.map(friend => {
         return (
-            <li>
+            <li key={friend.id}>
                 <div className={s.friendElement}>
                     <img className={s.friendAvatar} src={friend.avatar} alt={friend.name}/>
                     <span>{friend.name}</span>

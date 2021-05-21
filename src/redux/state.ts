@@ -23,6 +23,7 @@ export type DialogsPageType = {
 }
 
 export type ProfilePageType = {
+    messageForNewPost: string
     posts: Array<PostsType>
 
 }
@@ -40,6 +41,7 @@ export type RootStateType = {
 
 let state: RootStateType = {
     profilePage: {
+        messageForNewPost: "kukaracha",
         posts: [
             {id: 1, message: 'Hi', likesCount: 12},
             {id: 2, message: 'It\'s my first post', likesCount: 5},

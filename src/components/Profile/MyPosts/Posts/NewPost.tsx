@@ -7,20 +7,21 @@ import React from "react";
 
 export type NewPostProps = {
     addPost: (name: string) => void
+    messageForNewPost: string
 }
 
 export const NewPost = (props: NewPostProps) => {
     const addNewMessage = () => {
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-        }
+        // if (newPostElement.current) {
+        //     props.addPost(newPostElement.current.value)
+        // }
         // props.addPost(newPostElement.current ? newPostElement.current.value : '')
     }
 
-    const newPostElement = React.createRef<HTMLTextAreaElement>()
+    // const newPostElement = React.createRef<HTMLTextAreaElement>()
     return (
         <>
-            <textarea ref={newPostElement}/>
+            <textarea value={props.messageForNewPost}/>
             {/*<textarea name="" id="" cols="30" rows="10"></textarea>*/}
             <div>
                 <button onClick={addNewMessage}>add

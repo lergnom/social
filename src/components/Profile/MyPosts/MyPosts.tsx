@@ -8,18 +8,19 @@ import {NewPost} from "./Posts/NewPost";
 type MyPostsPorps = {
     posts: Array<PostsType>
     addPost: (name: string) => void
+    messageForNewPost:string
 }
 
 export function MyPosts(props: MyPostsPorps) {
 
     const postsElements = props.posts.map(post => {
-        return <Post message={post.message} likeCounts={post.likesCount}/>
+        return <Post key={post.id} message={post.message} likeCounts={post.likesCount}/>
     })
 
     return (
         <div>
             <div>
-                <NewPost addPost={props.addPost}/>
+                <NewPost addPost={props.addPost} messageForNewPost={props.messageForNewPost}/>
             </div>
             <div>
                 {postsElements}

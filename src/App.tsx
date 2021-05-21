@@ -27,7 +27,7 @@ function App(props: RootStateType) {
                                                   messages={props.dialogsPage.messages}
                                                   contacts={props.dialogsPage.contacts}/>}/>
                     <Route path={"/profile"}
-                           render={() => <Profile posts={props.profilePage.posts} addPost={addPost}/>}/>
+                           render={() => <Profile posts={props.profilePage.posts} addPost={addPost} messageForNewPost={props.profilePage.messageForNewPost}/>}/>
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>
                     <Route path={"/settings"} render={() => <Settings/>}/>
