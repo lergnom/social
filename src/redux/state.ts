@@ -14,6 +14,7 @@ export type PostsType = {
     id: number
     message: string
     likesCount: number
+    img: string
 }
 
 export type DialogsPageType = {
@@ -41,12 +42,17 @@ export type RootStateType = {
 
 let state: RootStateType = {
     profilePage: {
-        messageForNewPost: "kukaracha",
+        messageForNewPost: "",
         posts: [
-            {id: 1, message: 'Hi', likesCount: 12},
-            {id: 2, message: 'It\'s my first post', likesCount: 5},
-            {id: 3, message: 'Ok I\'m fine', likesCount: 8},
-            {id: 4, message: 'Oki doki', likesCount: 8},
+            {id: 1, message: 'Hi', likesCount: 12, img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'},
+            {
+                id: 2,
+                message: 'It\'s my first post',
+                likesCount: 5,
+                img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
+            },
+            {id: 3, message: 'Ok I\'m fine', likesCount: 8, img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'},
+            {id: 4, message: 'Oki doki', likesCount: 8, img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'},
         ]
     },
     dialogsPage: {
@@ -97,11 +103,20 @@ export const addPost = (postText: string) => {
     const newPost: PostsType = {
         id: new Date().getTime(),
         message: postText,
-        likesCount: 0
+        likesCount: 0,
+        img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.messageForNewPost = ""
     // console.log(state.profilePage.posts)
     renderTree(state)
 }
+
+export const changeNewText =
+    (s: string) => {
+        state.profilePage.messageForNewPost = s
+        renderTree(state)
+    }
+
 
 export default state;

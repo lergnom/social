@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent, KeyboardEvent} from "react";
 
 /**
  * PostProfileComponent - add new message {} into state
@@ -8,21 +8,27 @@ import React from "react";
 export type NewPostProps = {
     addPost: (name: string) => void
     messageForNewPost: string
+    changeNewText: (s: string) => void
 }
 
 export const NewPost = (props: NewPostProps) => {
     const addNewMessage = () => {
-        // if (newPostElement.current) {
-        //     props.addPost(newPostElement.current.value)
-        // }
-        // props.addPost(newPostElement.current ? newPostElement.current.value : '')
+        props.addPost(props.messageForNewPost)
+    }
+    const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeNewText(e.currentTarget.value)
     }
 
-    // const newPostElement = React.createRef<HTMLTextAreaElement>()
+    const onKeyPressMessage = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.ctrlKey && e.key === "Enter") {
+            addNewMessage()
+        }
+    }
+
     return (
+
         <>
-            <textarea value={props.messageForNewPost}/>
-            {/*<textarea name="" id="" cols="30" rows="10"></textarea>*/}
+            <textarea onKeyPress={onKeyPressMessage} onChange={onChangeMessage} value={props.messageForNewPost}/>
             <div>
                 <button onClick={addNewMessage}>add
                 </button>
