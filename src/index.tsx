@@ -6,7 +6,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 
-const renderTree = (state: RootStateType) => {
+const renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <App dialogsPage={state.dialogsPage} profilePage={state.profilePage}/>
@@ -15,7 +15,7 @@ const renderTree = (state: RootStateType) => {
     );
 }
 
-renderTree(state);
+renderTree();
 subscriber(renderTree)
 
 // If you want to start measuring performance in your app, pass a function

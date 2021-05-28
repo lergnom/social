@@ -1,7 +1,11 @@
 // import {renderTree} from "../renderTree";
 
-let renderTree = (state: RootStateType) => {
+let renderTree = () => {
 
+}
+
+export const subscriber = (observer: () => void) => {
+    renderTree = observer //наблюдатель pattern
 }
 
 type DialogsType = {
@@ -113,17 +117,14 @@ export const addPost = (postText: string) => {
     state.profilePage.posts.push(newPost)
     state.profilePage.messageForNewPost = ""
     // console.log(state.profilePage.posts)
-    renderTree(state)
+    renderTree()
 }
 
 export const changeNewText =
     (s: string) => {
         state.profilePage.messageForNewPost = s
-        renderTree(state)
+        renderTree()
     }
-export const subscriber = (observer: any) => {
-    renderTree = observer //наблюдатель pattern
-}
 
 
 export default state;
