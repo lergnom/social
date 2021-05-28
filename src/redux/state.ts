@@ -1,4 +1,8 @@
-import {renderTree} from "../renderTree";
+// import {renderTree} from "../renderTree";
+
+let renderTree = (state: RootStateType) => {
+
+}
 
 type DialogsType = {
     id: number
@@ -117,6 +121,11 @@ export const changeNewText =
         state.profilePage.messageForNewPost = s
         renderTree(state)
     }
+export const subscriber = (observer: any) => {
+    renderTree = observer //наблюдатель pattern
+}
 
 
 export default state;
+
+// store
