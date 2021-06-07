@@ -4,18 +4,21 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
-import state, {changeNewText, RootStateType} from "./redux/state";
+import state, {StoreType} from "./redux/state";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {addPost} from "./redux/state";
 
-// import {AppPropsType, DialogsPropsType} from "./index";
+type PropsType = {
+    store: StoreType
+}
 
 
-function App(props: RootStateType) {
+function App(props: PropsType) {
+    const state = props.store.getState()
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -23,13 +26,14 @@ function App(props: RootStateType) {
                 {/*<Navbar/>*/}
                 <div className='app-wrapper-content'>
                     <Route path={"/dialogs"}
-                           render={() => <Dialogs dialogs={props.dialogsPage.dialogs}
-                                                  messages={props.dialogsPage.messages}
-                                                  contacts={props.dialogsPage.contacts}/>}/>
+                           render={() => <Dialogs dialogs={state.dialogsPage.dialogs}
+                                                  messages={state.dialogsPage.messages}
+                                                  contacts={state.dialogsPage.contacts}/>}/>
                     <Route path={"/profile"}
-                           render={() => <Profile posts={props.profilePage.posts} addPost={addPost}
-                                                  changeNewText={changeNewText}
-                                                  messageForNewPost={props.profilePage.messageForNewPost}/>}/>
+                           render={() => <Profile posts={state.profilePage.posts}
+                                                  addPost={props.store.addPost.bind(props.store)}
+                                                  changeNewText={props.store.changeNewText.bind(props.store)}
+                                                  messageForNewPost={state.profilePage.messageForNewPost}/>}/>
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>
                     <Route path={"/settings"} render={() => <Settings/>}/>
