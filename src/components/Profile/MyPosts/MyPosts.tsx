@@ -2,14 +2,15 @@ import React from "react";
 import s from './MyPosts.module.css';
 import {Post} from "./Posts/Post";
 import {type} from "os";
-import {PostsType, ProfilePageType} from "../../../redux/state";
+import {DispatchProps, PostsType, ProfilePageType} from "../../../redux/state";
 import {NewPost} from "./Posts/NewPost";
 
 type MyPostsPorps = {
     posts: Array<PostsType>
-    addPost: (name: string) => void
+    dispatch: (props: DispatchProps) => void
+    // addPost: (name: string) => void
     messageForNewPost: string
-    changeNewText: (s: string) => void
+    // changeNewText: (s: string) => void
 }
 
 export function MyPosts(props: MyPostsPorps) {
@@ -21,8 +22,11 @@ export function MyPosts(props: MyPostsPorps) {
     return (
         <div>
             <div>
-                <NewPost addPost={props.addPost} messageForNewPost={props.messageForNewPost}
-                         changeNewText={props.changeNewText}/>
+                <NewPost
+                    // addPost={props.addPost}
+                    messageForNewPost={props.messageForNewPost}
+                    // changeNewText={props.changeNewText}/>
+                    dispatch={props.dispatch}/>
             </div>
             <div>
                 {postsElements}

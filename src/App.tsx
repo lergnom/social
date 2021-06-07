@@ -31,8 +31,9 @@ function App(props: PropsType) {
                                                   contacts={state.dialogsPage.contacts}/>}/>
                     <Route path={"/profile"}
                            render={() => <Profile posts={state.profilePage.posts}
-                                                  addPost={props.store.addPost.bind(props.store)}
-                                                  changeNewText={props.store.changeNewText.bind(props.store)}
+                                                  // addPost={props.store.addPost.bind(props.store)}
+                                                  dispatch={props.store.dispatch.bind(props.store)}
+                                                  // changeNewText={props.store.changeNewText.bind(props.store)}
                                                   messageForNewPost={state.profilePage.messageForNewPost}/>}/>
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>

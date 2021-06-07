@@ -48,35 +48,19 @@ export type RootStateType = {
 
 }
 
-
-// export const addPost = (postText: string) => {
-//     const newPost: PostsType = {
-//         id: new Date().getTime(),
-//         message: postText,
-//         likesCount: 0,
-//         img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
-//     }
-//     state.profilePage.posts.push(newPost)
-//     state.profilePage.messageForNewPost = ""
-//     // console.log(state.profilePage.posts)
-//     renderTree()
-// }
-
-// export const changeNewText =
-//     (s: string) => {
-//         state.profilePage.messageForNewPost = s
-//         renderTree()
-//     }
+export type DispatchProps = {
+    type: string
+    newText: string
+}
 
 export type StoreType = {
     _state: RootStateType
-    changeNewText: (s: string) => void
-    addPost: (postText: string) => void
+    // changeNewText: (s: string) => void
+    // addPost: (postText: string) => void
     _renderTree: () => void
     subscriber: (callback: () => void) => void
     getState: () => RootStateType
-
-
+    dispatch: (type: DispatchProps) => void
 }
 
 
@@ -144,22 +128,7 @@ export const store: StoreType = {
 
 
     },
-    changeNewText(s: string) {
-        this._state.profilePage.messageForNewPost = s
-        this._renderTree()
-    },
-    addPost(postText: string) {
-        const newPost: PostsType = {
-            id: new Date().getTime(),
-            message: postText,
-            likesCount: 0,
-            img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.messageForNewPost = ""
-        // console.log(state.profilePage.posts)
-        this._renderTree()
-    },
+
     _renderTree() {
         console.log('state changed')
     },
@@ -168,8 +137,41 @@ export const store: StoreType = {
     },
     getState() {
         return this._state
-    }
+    },
 
+    // changeNewText(s: string) {
+    //     this._state.profilePage.messageForNewPost = s
+    //     this._renderTree()
+    // },
+    // addPost(postText: string) {
+    //     const newPost: PostsType = {
+    //         id: new Date().getTime(),
+    //         message: this._state.profilePage.messageForNewPost,
+    //         likesCount: 0,
+    //         img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
+    //     }
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.messageForNewPost = ""
+    //     // console.log(state.profilePage.posts)
+    //     this._renderTree()
+    // },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostsType = {
+                id: new Date().getTime(),
+                message: this._state.profilePage.messageForNewPost,
+                likesCount: 0,
+                img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.messageForNewPost = ""
+            // console.log(state.profilePage.posts)
+            this._renderTree()
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.messageForNewPost = action.newText
+            this._renderTree()
+        }
+    }
 
 }
 
