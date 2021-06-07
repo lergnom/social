@@ -197,7 +197,6 @@ export const updateNewPostTextActionCreator = (text:string):DispatchChangePostPr
     return {type: UPDATE_NEW_POST, newText: text} as const
 }
 
-
 export default store;
 
 
