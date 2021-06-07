@@ -2,12 +2,18 @@ import React from "react";
 import s from './Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {DispatchProps, PostsType, ProfilePageType} from "../../redux/state";
+import {
+    DispatchAddPostProps,
+    DispatchChangePostProps,
+    DispatchProps,
+    PostsType,
+    ProfilePageType
+} from "../../redux/state";
 
 type ProfilePropsTypes = {
     posts: Array<PostsType>
     // addPost: (name: string) => void
-    dispatch: (props: DispatchProps) => void
+    dispatch: (props: DispatchChangePostProps | DispatchAddPostProps) => void
     messageForNewPost: string
     // changeNewText: (s: string) => void
 }

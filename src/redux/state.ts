@@ -53,6 +53,15 @@ export type DispatchProps = {
     newText: string
 }
 
+export type DispatchAddPostProps = {
+    type: 'ADD-POST'
+}
+
+export type DispatchChangePostProps = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
 export type StoreType = {
     _state: RootStateType
     // changeNewText: (s: string) => void
@@ -60,7 +69,7 @@ export type StoreType = {
     _renderTree: () => void
     subscriber: (callback: () => void) => void
     getState: () => RootStateType
-    dispatch: (type: DispatchProps) => void
+    dispatch: (action: DispatchAddPostProps | DispatchChangePostProps) => void
 }
 
 
