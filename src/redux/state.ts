@@ -8,6 +8,8 @@
 //     renderTree = observer //наблюдатель pattern
 // }
 
+import {ChangeEvent} from "react";
+
 type DialogsType = {
     id: number
     name: string
@@ -72,6 +74,8 @@ export type StoreType = {
     dispatch: (action: DispatchAddPostProps | DispatchChangePostProps) => void
 }
 
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST = "UPDATE-NEW-POST-TEXT"
 
 export const store: StoreType = {
     _state: {
@@ -165,7 +169,7 @@ export const store: StoreType = {
     //     this._renderTree()
     // },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostsType = {
                 id: new Date().getTime(),
                 message: this._state.profilePage.messageForNewPost,
@@ -176,13 +180,23 @@ export const store: StoreType = {
             this._state.profilePage.messageForNewPost = ""
             // console.log(state.profilePage.posts)
             this._renderTree()
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        } else if (action.type === UPDATE_NEW_POST) {
             this._state.profilePage.messageForNewPost = action.newText
             this._renderTree()
         }
     }
 
 }
+
+
+export const addPostActionCreator = ():DispatchAddPostProps => {
+    return {type: ADD_POST} as const
+}
+
+export const updateNewPostTextActionCreator = (text:string):DispatchChangePostProps => {
+    return {type: UPDATE_NEW_POST, newText: text} as const
+}
+
 
 export default store;
 

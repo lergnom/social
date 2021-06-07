@@ -1,5 +1,10 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
-import {DispatchAddPostProps, DispatchChangePostProps, DispatchProps} from "../../../../redux/state";
+import {
+    addPostActionCreator,
+    DispatchAddPostProps,
+    DispatchChangePostProps,
+    DispatchProps, updateNewPostTextActionCreator
+} from "../../../../redux/state";
 
 /**
  * PostProfileComponent - add new message {} into state
@@ -11,18 +16,18 @@ export type NewPostProps = {
     messageForNewPost: string
     // changeNewText: (s: string) => void
     dispatch: (props: DispatchChangePostProps | DispatchAddPostProps) => void
-
-
 }
+
 
 export const NewPost = (props: NewPostProps) => {
     const addNewMessage = () => {
         // props.addPost(props.messageForNewPost)
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(addPostActionCreator())
     }
     const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.currentTarget.value
         // props.changeNewText(e.currentTarget.value)
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value})
+        props.dispatch(updateNewPostTextActionCreator(text))
     }
 
     const onKeyPressMessage = (e: KeyboardEvent<HTMLTextAreaElement>) => {
