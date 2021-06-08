@@ -10,12 +10,12 @@
 
 import {ChangeEvent} from "react";
 
-type DialogsType = {
+export type DialogsType = {
     id: number
     name: string
 }
 
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
@@ -50,14 +50,18 @@ export type RootStateType = {
 
 }
 
-export type DispatchProps = {
-    type: string
-    newText: string
-}
+export type DispatchProps = DispatchAddPostProps | DispatchAddMessageProps | DispatchChangePostProps
+
 
 export type DispatchAddPostProps = {
     type: 'ADD-POST'
 }
+
+export type DispatchAddMessageProps = {
+    type: 'ADD-MESSAGE'
+    text: string
+}
+
 
 export type DispatchChangePostProps = {
     type: 'UPDATE-NEW-POST-TEXT'
@@ -71,10 +75,11 @@ export type StoreType = {
     _renderTree: () => void
     subscriber: (callback: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: DispatchAddPostProps | DispatchChangePostProps) => void
+    dispatch: (action: DispatchProps) => void
 }
 
 const ADD_POST = 'ADD-POST'
+const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_NEW_POST = "UPDATE-NEW-POST-TEXT"
 
 export const store: StoreType = {
@@ -178,22 +183,28 @@ export const store: StoreType = {
             }
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.messageForNewPost = ""
-            // console.log(state.profilePage.posts)
             this._renderTree()
         } else if (action.type === UPDATE_NEW_POST) {
             this._state.profilePage.messageForNewPost = action.newText
             this._renderTree()
+        } else if (action.type === ADD_MESSAGE) {
+            const newMessage: MessageType = {
+                id: new Date().getTime(),
+                message: action.text
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._renderTree()
+
         }
     }
 
 }
 
-
-export const addPostActionCreator = ():DispatchAddPostProps => {
+export const addPostActionCreator = (): DispatchAddPostProps => {
     return {type: ADD_POST} as const
 }
 
-export const updateNewPostTextActionCreator = (text:string):DispatchChangePostProps => {
+export const updateNewPostTextActionCreator = (text: string): DispatchChangePostProps => {
     return {type: UPDATE_NEW_POST, newText: text} as const
 }
 

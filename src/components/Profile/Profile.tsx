@@ -13,7 +13,7 @@ import {
 type ProfilePropsTypes = {
     posts: Array<PostsType>
     // addPost: (name: string) => void
-    dispatch: (props: DispatchChangePostProps | DispatchAddPostProps) => void
+    dispatch: (props: DispatchProps) => void
     messageForNewPost: string
     // changeNewText: (s: string) => void
 }
