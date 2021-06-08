@@ -72,7 +72,7 @@ export type StoreType = {
     _state: RootStateType
     // changeNewText: (s: string) => void
     // addPost: (postText: string) => void
-    _renderTree: () => void
+    _renderTree: (state:RootStateType) => void
     subscriber: (callback: () => void) => void
     getState: () => RootStateType
     dispatch: (action: DispatchProps) => void
@@ -183,17 +183,17 @@ export const store: StoreType = {
             }
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.messageForNewPost = ""
-            this._renderTree()
+            this._renderTree(this._state)
         } else if (action.type === UPDATE_NEW_POST) {
             this._state.profilePage.messageForNewPost = action.newText
-            this._renderTree()
+            this._renderTree(this._state)
         } else if (action.type === ADD_MESSAGE) {
             const newMessage: MessageType = {
                 id: new Date().getTime(),
                 message: action.text
             }
             this._state.dialogsPage.messages.push(newMessage)
-            this._renderTree()
+            this._renderTree(this._state)
 
         }
     }
