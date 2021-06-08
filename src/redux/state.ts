@@ -1,14 +1,5 @@
-// import {renderTree} from "../renderTree";
-
-// let renderTree = () => {
-//
-// }
-
-// export const subscriber = (observer: () => void) => {
-//     renderTree = observer //наблюдатель pattern
-// }
-
-import {ChangeEvent} from "react";
+import {dialogsReducer} from "./dialogs-reducer";
+import {profileReducer} from "./profile-reducer";
 
 export type DialogsType = {
     id: number
@@ -72,15 +63,11 @@ export type StoreType = {
     _state: RootStateType
     // changeNewText: (s: string) => void
     // addPost: (postText: string) => void
-    _renderTree: (state:RootStateType) => void
+    _renderTree: (state: RootStateType) => void
     subscriber: (callback: () => void) => void
     getState: () => RootStateType
     dispatch: (action: DispatchProps) => void
 }
-
-const ADD_POST = 'ADD-POST'
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_POST = "UPDATE-NEW-POST-TEXT"
 
 export const store: StoreType = {
     _state: {
@@ -143,8 +130,6 @@ export const store: StoreType = {
                 },
             ]
         }
-
-
     },
 
     _renderTree() {
@@ -157,55 +142,11 @@ export const store: StoreType = {
         return this._state
     },
 
-    // changeNewText(s: string) {
-    //     this._state.profilePage.messageForNewPost = s
-    //     this._renderTree()
-    // },
-    // addPost(postText: string) {
-    //     const newPost: PostsType = {
-    //         id: new Date().getTime(),
-    //         message: this._state.profilePage.messageForNewPost,
-    //         likesCount: 0,
-    //         img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
-    //     }
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.messageForNewPost = ""
-    //     // console.log(state.profilePage.posts)
-    //     this._renderTree()
-    // },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost: PostsType = {
-                id: new Date().getTime(),
-                message: this._state.profilePage.messageForNewPost,
-                likesCount: 0,
-                img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.messageForNewPost = ""
-            this._renderTree(this._state)
-        } else if (action.type === UPDATE_NEW_POST) {
-            this._state.profilePage.messageForNewPost = action.newText
-            this._renderTree(this._state)
-        } else if (action.type === ADD_MESSAGE) {
-            const newMessage: MessageType = {
-                id: new Date().getTime(),
-                message: action.text
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._renderTree(this._state)
-
-        }
+        this._state = dialogsReducer(this._state, action)
+        this._state = profileReducer(this._state, action)
+        this._renderTree(this._state)
     }
-
-}
-
-export const addPostActionCreator = (): DispatchAddPostProps => {
-    return {type: ADD_POST} as const
-}
-
-export const updateNewPostTextActionCreator = (text: string): DispatchChangePostProps => {
-    return {type: UPDATE_NEW_POST, newText: text} as const
 }
 
 export default store;
