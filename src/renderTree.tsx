@@ -1,4 +1,4 @@
-import {RootStateType} from "./redux/state";
+import {RootStateType} from "./redux/store";
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";

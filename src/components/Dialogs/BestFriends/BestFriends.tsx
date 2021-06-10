@@ -1,6 +1,6 @@
 import React from "react";
 import s from './BestFriends.module.css'
-import {ContactsType} from "../../../redux/state";
+import {ContactsType} from "../../../redux/store";
 
 export type BestFriendsPropsType = {
     contacts: Array<ContactsType>

@@ -2,7 +2,7 @@ import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ContactsType, DialogsPageType, DialogsType, DispatchProps, MessageType, PostsType} from "../../redux/state";
+import {ContactsType, DialogsPageType, DialogsType, DispatchProps, MessageType, PostsType} from "../../redux/store";
 import {BestFriends} from "./BestFriends/BestFriends";
 
 

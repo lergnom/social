@@ -4,7 +4,7 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
-import state, {StoreType} from "./redux/state";
+import state, {StoreType} from "./redux/store";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";

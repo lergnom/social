@@ -1,4 +1,4 @@
-import {DispatchProps, MessageType, PostsType, RootStateType} from "./state";
+import {DispatchProps, MessageType, PostsType, RootStateType} from "./store";
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 

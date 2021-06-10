@@ -8,7 +8,7 @@ import {
     DispatchProps,
     PostsType,
     ProfilePageType
-} from "../../redux/state";
+} from "../../redux/store";
 
 type ProfilePropsTypes = {
     posts: Array<PostsType>

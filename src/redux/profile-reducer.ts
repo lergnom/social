@@ -1,4 +1,4 @@
-import {DispatchAddPostProps, DispatchChangePostProps, DispatchProps, PostsType, RootStateType} from "./state";
+import {DispatchAddPostProps, DispatchChangePostProps, DispatchProps, PostsType, RootStateType} from "./store";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST = "UPDATE-NEW-POST-TEXT"

@@ -1,10 +1,10 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, {RootStateType} from './redux/state'
+import state, {RootStateType} from './redux/store'
 import ReactDOM from "react-dom";
 import App from "./App";
-import store from "./redux/state";
+import store from "./redux/store";
 
 
 const renderTree = () => {

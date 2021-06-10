@@ -8,7 +8,7 @@ import {
     DispatchAddPostProps,
     DispatchChangePostProps,
     DispatchProps
-} from "../../../../redux/state";
+} from "../../../../redux/store";
 
 /**
  * PostProfileComponent - add new message {} into state
