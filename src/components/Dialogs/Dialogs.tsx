@@ -12,7 +12,6 @@ type DialogsPropsTypes = {
     onClickHandler: () => void
     onChangeHandler: (value: string) => void
     newMessage:string
-    // dispatch: (action: DispatchProps) => void
 }
 
 export const Dialogs = (props: DialogsPropsTypes) => {
@@ -27,16 +26,11 @@ export const Dialogs = (props: DialogsPropsTypes) => {
         } else return
     }
 
-    // const [message, setMessage] = useState('')
-
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.onChangeHandler(e.currentTarget.value)
-        // setMessage(e.currentTarget.value)
     }
 
     const onClickHandler = () => {
-        // props.dispatch({type: 'ADD-MESSAGE', text: message})
-        // setMessage("")
         props.onClickHandler()
     }
     return (
