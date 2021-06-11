@@ -9,6 +9,7 @@ import {
     PostsType,
     ProfilePageType
 } from "../../redux/store";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type ProfilePropsTypes = {
     posts: Array<PostsType>
@@ -24,12 +25,13 @@ export const Profile = (props: ProfilePropsTypes) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}
-                // addPost={props.addPost}
-                // changeNewText={props.changeNewText}/>
+            {/*<MyPosts posts={props.posts}*/}
+            {/*    // addPost={props.addPost}*/}
+            {/*    // changeNewText={props.changeNewText}/>*/}
 
-                     messageForNewPost={props.messageForNewPost}
-                     dispatch={props.dispatch} />
+            {/*         messageForNewPost={props.messageForNewPost}*/}
+            {/*         dispatch={props.dispatch} />*/}
+            <MyPostsContainer/>
         </div>
     )
 }

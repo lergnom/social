@@ -16,22 +16,22 @@ import {
  */
 
 export type NewPostProps = {
-    // addPost: (name: string) => void
+    addPost: (name: string) => void
     messageForNewPost: string
-    // changeNewText: (s: string) => void
-    dispatch: (props: DispatchChangePostProps | DispatchAddPostProps) => void
+    changeNewText: (s: string) => void
+    // dispatch: (props: DispatchChangePostProps | DispatchAddPostProps) => void
 }
 
 
 export const NewPost = (props: NewPostProps) => {
     const addNewMessage = () => {
-        // props.addPost(props.messageForNewPost)
-        props.dispatch(addPostActionCreator())
+        props.addPost(props.messageForNewPost)
+        // props.dispatch(addPostActionCreator())
     }
     const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        // props.changeNewText(e.currentTarget.value)
-        props.dispatch(updateNewPostTextActionCreator(text))
+        props.changeNewText(e.currentTarget.value)
+        // props.dispatch(updateNewPostTextActionCreator(text))
     }
 
     const onKeyPressMessage = (e: KeyboardEvent<HTMLTextAreaElement>) => {
