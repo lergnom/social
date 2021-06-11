@@ -10,16 +10,18 @@ import {
     ProfilePageType
 } from "../../redux/store";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import {AppStateType} from "../../redux/redux-store";
 
-type ProfilePropsTypes = {
-    posts: Array<PostsType>
+/*type ProfilePropsTypes = {
+    state:AppStateType
+    // posts: Array<PostsType>
     // addPost: (name: string) => void
-    dispatch: (props: DispatchProps) => void
-    messageForNewPost: string
+    // dispatch: (props: DispatchProps) => void
+    // messageForNewPost: string
     // changeNewText: (s: string) => void
-}
+}*/
 
-export const Profile = (props: ProfilePropsTypes) => {
+export const Profile = (/*props: ProfilePropsTypes)*/) => {
 
 
     return (
@@ -31,7 +33,7 @@ export const Profile = (props: ProfilePropsTypes) => {
 
             {/*         messageForNewPost={props.messageForNewPost}*/}
             {/*         dispatch={props.dispatch} />*/}
-            <MyPostsContainer/>
+            <MyPostsContainer />
         </div>
     )
 }

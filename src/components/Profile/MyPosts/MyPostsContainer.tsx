@@ -6,7 +6,6 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../red
 
 export function MyPostsContainer() {
     let state = store.getState();
-
     const addPost = () => {
         store.dispatch(addPostActionCreator())
     }
