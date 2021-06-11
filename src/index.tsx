@@ -4,21 +4,22 @@ import reportWebVitals from './reportWebVitals';
 import state, {RootStateType} from './redux/store'
 import ReactDOM from "react-dom";
 import App from "./App";
-import store from "./redux/store";
+import {store} from "./redux/redux-store";
 
 
 const renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             {/*<App dialogsPage={state.dialogsPage} profilePage={state.profilePage}/>*/}
-            <App store={store}/>
+            <App />
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
 renderTree();
-store.subscriber(renderTree)
+store.subscribe(renderTree)
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
