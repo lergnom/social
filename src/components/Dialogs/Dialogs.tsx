@@ -11,7 +11,7 @@ type DialogsPropsTypes = {
     contacts: Array<ContactsType>
     onClickHandler: () => void
     onChangeHandler: (value: string) => void
-    newMessage:string
+    newMessage: string
 }
 
 export const Dialogs = (props: DialogsPropsTypes) => {
