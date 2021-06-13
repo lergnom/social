@@ -5,17 +5,16 @@ import state, {RootStateType} from './redux/store'
 import ReactDOM from "react-dom";
 import App from "./App";
 import {store} from "./redux/redux-store";
-import StoreContext from './StoreContext';
+import {Provider} from './StoreContext';
 
 
 const renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             {/*<App dialogsPage={state.dialogsPage} profilePage={state.profilePage}/>*/}
-            <StoreContext.Provider value={store}>
-
+            <Provider store={store}>
                 <App/>
-            </StoreContext.Provider>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );

@@ -1,35 +1,10 @@
 import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
-import s from './Dialogs.module.css';
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import {ContactsType, DialogsPageType, DialogsType, DispatchProps, MessageType, PostsType} from "../../redux/store";
-import {BestFriends} from "./BestFriends/BestFriends";
 import {Dialogs} from "./Dialogs";
 import {store} from "../../redux/redux-store";
+import StoreContext from "../../StoreContext";
 
-// type DialogsPropsTypes = {
-//     dialogs: Array<DialogsType>
-//     messages: Array<MessageType>
-//     contacts: Array<ContactsType>
-//     dispatch: (action: DispatchProps) => void
-// }
-
-export const DialogsContainer = (/*props: DialogsPropsTypes*/) => {
-    let state = store.getState()
-
-
-    // let dialogsElements = state.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
-
-    // let messagesElements = props.messages.map(message => <Message message={message.message}/>)
-    // let bestFriends = () => {
-    //     if (props.contacts.length > 0) {
-    //         console.log(props.contacts.length)
-    //         return (
-    //             <BestFriends contacts={props.contacts}/>
-    //         )
-    //     } else return
-    // }
-
+export const DialogsContainer = () => {
+//не забыть убрать useState не использовать store напрямую - перенести все функции ниже в компонету StoreContext
     const [message, setMessage] = useState('')
 
     const onChangeHandler = (value: string) => {
@@ -41,13 +16,18 @@ export const DialogsContainer = (/*props: DialogsPropsTypes*/) => {
         setMessage("")
     }
 
-
     return (
-        <>
-            <Dialogs dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}
-                     contacts={state.dialogsPage.contacts} onClickHandler={onClickHandler}
-                     onChangeHandler={onChangeHandler} newMessage={message}/>
-        </>
-    )
+        <StoreContext.Consumer>
+            {store => {
 
+                return (
+                    <Dialogs dialogs={store.getState().dialogsPage.dialogs}
+                             messages={store.getState().dialogsPage.messages}
+                             contacts={store.getState().dialogsPage.contacts} onClickHandler={onClickHandler}
+                             onChangeHandler={onChangeHandler} newMessage={message}/>
+                )
+            }
+            }
+        </StoreContext.Consumer>
+    )
 }

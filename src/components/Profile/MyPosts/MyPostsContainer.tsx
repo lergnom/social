@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import {MyPosts} from "./MyPosts";
-import {AppStateType, store} from "../../../redux/redux-store";
+// import {AppStateType, store} from "../../../redux/redux-store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import StoreContext from "../../../StoreContext";
 
