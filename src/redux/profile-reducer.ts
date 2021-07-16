@@ -53,3 +53,4 @@ export const addPostActionCreator = (): DispatchAddPostProps => {
 export const updateNewPostTextActionCreator = (text: string): DispatchChangePostProps => {
     return {type: UPDATE_NEW_POST, newText: text} as const
 }
+

@@ -19,6 +19,7 @@ export type PostsType = {
 }
 
 export type DialogsPageType = {
+    newText: string
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     contacts: Array<ContactsType>
@@ -41,7 +42,11 @@ export type RootStateType = {
 
 }
 
-export type DispatchProps = DispatchAddPostProps | DispatchAddMessageProps | DispatchChangePostProps
+export type DispatchProps =
+    DispatchAddPostProps
+    | DispatchAddMessageProps
+    | DispatchChangePostProps
+    | DispatchCangeMessageProps
 
 
 export type DispatchAddPostProps = {
@@ -57,6 +62,11 @@ export type DispatchAddMessageProps = {
 export type DispatchChangePostProps = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
+}
+
+export type DispatchCangeMessageProps = {
+    type: 'UPDATE_NEW_MESSAGE_BODY'
+    text: string
 }
 
 export type StoreType = {
@@ -91,6 +101,7 @@ export const store: StoreType = {
             ]
         },
         dialogsPage: {
+            newText: '',
             dialogs: [
                 {id: 1, name: 'Andrey'},
                 {id: 2, name: 'Sveta'},

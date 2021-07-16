@@ -25,16 +25,10 @@ function App() {
                 {/*<Navbar/>*/}
                 <div className='app-wrapper-content'>
                     <Route path={"/dialogs"}
-                           render={() => <DialogsContainer   /*dialogs={state.dialogsPage.dialogs}
-                                                  messages={state.dialogsPage.messages}
-                                                  contacts={state.dialogsPage.contacts}
-                                                  dispatch={store.dispatch.bind(store)}*/
-                           />
+                           render={() => <DialogsContainer/>
                            }/>
                     <Route path={"/profile"}
-                           render={() => <Profile  /*posts={state.profilePage.posts}
-                                                  dispatch={store.dispatch.bind(store)}
-                                                  messageForNewPost={state.profilePage.messageForNewPost}*//>
+                           render={() => <Profile/>
                            }/>
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>
