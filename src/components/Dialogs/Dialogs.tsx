@@ -19,7 +19,6 @@ export const Dialogs = (props: DialogsPropsTypes) => {
     let messagesElements = props.messages.map(message => <Message message={message.message}/>)
     let bestFriends = () => {
         if (props.contacts.length > 0) {
-            console.log(props.contacts.length)
             return (
                 <BestFriends contacts={props.contacts}/>
             )

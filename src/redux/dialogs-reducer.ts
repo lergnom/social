@@ -63,14 +63,15 @@ export const dialogsReducer = (state = initialState, action: DispatchProps) => {
             }
             newState.messages = [...state.messages]
             newState.messages.push(newMessage)
-            newState.newText = " "
+            newState.newText = ""
             return newState
         case UPDATE_NEW_MESSAGE_BODY:
             newState.newText = action.text
             return newState
-
+        default:
+            return state
     }
-    return state
+    // return state
 }
 export const addMessageActionCreator = (): DispatchAddMessageProps => {
     return {type: 'ADD-MESSAGE'}

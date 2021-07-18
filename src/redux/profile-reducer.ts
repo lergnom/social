@@ -33,6 +33,7 @@ let initialState: ProfilePageType = {
 export const profileReducer = (state = initialState, action: DispatchProps) => {
     let newState = {...state}
     switch (action.type) {
+
         case ADD_POST:
             const newPost: PostsType = {
                 id: new Date().getTime(),
@@ -47,8 +48,10 @@ export const profileReducer = (state = initialState, action: DispatchProps) => {
         case UPDATE_NEW_POST:
             newState.messageForNewPost = action.newText
             return newState
+        default:
+            return state
     }
-    return state
+    // return state
 }
 
 export const addPostActionCreator = (): DispatchAddPostProps => {
