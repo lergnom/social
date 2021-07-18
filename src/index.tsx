@@ -21,7 +21,7 @@ const renderTree = () => {
 }
 
 renderTree();
-store.subscribe(renderTree)
+
 
 
 // If you want to start measuring performance in your app, pass a function
