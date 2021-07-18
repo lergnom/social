@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, {RootStateType} from './redux/store'
+// import state, {RootStateType} from './redux/store'
 import ReactDOM from "react-dom";
 import App from "./App";
 import {store} from "./redux/redux-store";
@@ -11,7 +11,6 @@ import {Provider} from "react-redux";
 const renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            {/*<App dialogsPage={state.dialogsPage} profilePage={state.profilePage}/>*/}
             <Provider store={store}>
                 <App/>
             </Provider>

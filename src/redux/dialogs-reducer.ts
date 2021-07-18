@@ -54,19 +54,26 @@ let initialState: DialogsPageType = {
 
 
 export const dialogsReducer = (state = initialState, action: DispatchProps) => {
-    if (action.type === ADD_MESSAGE) {
-        const newMessage: MessageType = {
-            id: new Date().getTime(),
-            message: action.text
-        }
-        state.messages.push(newMessage)
-    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-        state.newText = action.text
+    let newState = {...state}
+    switch (action.type) {
+        case ADD_MESSAGE:
+            const newMessage: MessageType = {
+                id: new Date().getTime(),
+                message: state.newText
+            }
+            newState.messages = [...state.messages]
+            newState.messages.push(newMessage)
+            newState.newText = " "
+            return newState
+        case UPDATE_NEW_MESSAGE_BODY:
+            newState.newText = action.text
+            return newState
+
     }
     return state
 }
-export const addMessageActionCreator = (text: string): DispatchAddMessageProps => {
-    return {type: 'ADD-MESSAGE', text}
+export const addMessageActionCreator = (): DispatchAddMessageProps => {
+    return {type: 'ADD-MESSAGE'}
 }
 
 export const updateNewMessageTextActionCreator = (text: string): DispatchCangeMessageProps => {

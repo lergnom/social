@@ -4,11 +4,12 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 export const Profile = () => {
+
+
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPostsContainer changeNewText={() => {
-            }}/>
+            <MyPostsContainer />
         </div>
     )
 }

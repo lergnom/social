@@ -41,7 +41,7 @@ export const mapDispatchToProps = (dispatch: any) => {
         addPost: () => {
             dispatch(addPostActionCreator())
         },
-        onChangeMessage: (text: string) => {
+        changeNewText: (text: string) => {
             dispatch(updateNewPostTextActionCreator(text))
         }
     }
