@@ -74,7 +74,7 @@ export const dialogsReducer = (state = initialState, action: DispatchProps) => {
     // return state
 }
 export const addMessageActionCreator = (): DispatchAddMessageProps => {
-    return {type: 'ADD-MESSAGE'}
+    return {type: ADD_MESSAGE}
 }
 
 export const updateNewMessageTextActionCreator = (text: string): DispatchCangeMessageProps => {
