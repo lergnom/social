@@ -6,14 +6,12 @@ import {connect} from "react-redux";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
 
 
-
 const mapStateToProps = (state: any) => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
         contacts: state.dialogsPage.contacts,
         newMessage: state.dialogsPage.message
-
     }
 }
 
@@ -22,7 +20,7 @@ const mapDispatchToProps = (dispatch: any) => {
         onClickHandler: () => {
             dispatch(addMessageActionCreator())
         },
-        onChangeHandler: (text:string) => {
+        onChangeHandler: (text: string) => {
             dispatch(updateNewMessageTextActionCreator(text))
         }
 

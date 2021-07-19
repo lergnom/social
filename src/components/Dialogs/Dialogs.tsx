@@ -15,8 +15,8 @@ type DialogsPropsTypes = {
 }
 
 export const Dialogs = (props: DialogsPropsTypes) => {
-    let dialogsElements = props.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
-    let messagesElements = props.messages.map(message => <Message message={message.message}/>)
+    let dialogsElements = props.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)
+    let messagesElements = props.messages.map(message => <Message key={message.id} message={message.message}/>)
     let bestFriends = () => {
         if (props.contacts.length > 0) {
             return (
