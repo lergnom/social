@@ -54,25 +54,19 @@ let initialState: DialogsPageType = {
 
 
 export const dialogsReducer = (state = initialState, action: DispatchProps) => {
-    let newState = {...state}
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageType = {
                 id: new Date().getTime(),
                 message: state.newText
             }
-            newState.messages = [...state.messages]
-            newState.messages.push(newMessage)
-            newState.newText = ""
+           return {...state, newText: "", messages: [...state.messages, newMessage]}
 
-            return newState
         case UPDATE_NEW_MESSAGE_BODY:
-            newState.newText = action.text
-            return newState
-        default:
+           return {...state, newText: action.text}
+            default:
             return state
     }
-    // return state
 }
 export const addMessageActionCreator = (): DispatchAddMessageProps => {
     return {type: ADD_MESSAGE}
