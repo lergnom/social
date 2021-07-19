@@ -11,7 +11,7 @@ const mapStateToProps = (state: any) => {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
         contacts: state.dialogsPage.contacts,
-        newMessage: state.dialogsPage.message
+        newMessage: state.dialogsPage.newText
     }
 }
 
