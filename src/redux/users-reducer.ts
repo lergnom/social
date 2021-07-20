@@ -89,7 +89,7 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
                 })
             }
         case SET_USERS:
-            return {...state, users: [...action.users]}
+            return {...state, users: [...state.users, ...action.users]}
 
         default:
             return state
