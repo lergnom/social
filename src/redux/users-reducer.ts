@@ -28,8 +28,9 @@ type LocationPropsType = {
     country: string
 }
 
-type UsersPropsType = {
+export type UsersPropsType = {
     id: string
+    ava: string
     fullName: string
     status: string
     followed: boolean
@@ -45,6 +46,7 @@ const initialState: UserProps = {
     users: [
         {
             id: '1',
+            ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
             followed: false,
             fullName: 'Dmitriy',
             status: 'I boss',
@@ -52,12 +54,17 @@ const initialState: UserProps = {
         },
         {
             id: '2',
+            ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
             followed: true,
             fullName: 'Zoe',
             status: 'dark princess',
             location: {city: 'Anapa', country: 'Russia'}
         },
-        {id: '3', followed: true, fullName: 'Ivan', status: 'wild doom', location: {city: 'Kiev', country: 'Ukraine'}},
+        {
+            id: '3',
+            ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
+            followed: true, fullName: 'Ivan', status: 'wild doom', location: {city: 'Kiev', country: 'Ukraine'}
+        },
     ]
 }
 
