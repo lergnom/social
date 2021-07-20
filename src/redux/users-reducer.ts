@@ -3,8 +3,9 @@ import {DispatchProps, ProfilePageType} from "./store";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
+const SET_USERS = 'SET_USERS'
 
-type UsersDispatchProps = DispatchFollowProps | DispatchUnFollowProps
+type UsersDispatchProps = DispatchFollowProps | DispatchUnFollowProps | DispatchSetUsers
 
 
 type DispatchFollowProps = {
@@ -14,6 +15,11 @@ type DispatchFollowProps = {
 type DispatchUnFollowProps = {
     type: 'UNFOLLOW'
     userId: string
+}
+
+type DispatchSetUsers = {
+    type: 'SET_USERS'
+    users: Array<UserProps>
 }
 
 
@@ -75,6 +81,8 @@ const usersReducer = (state = initialState, action: UsersDispatchProps) => {
                     return user
                 })
             }
+        case SET_USERS:
+            return {...state, users: [...state.users, ...action.users]}
 
         default:
             return state
@@ -87,5 +95,5 @@ export const followAC = (userId: string) => {
 
 export const unFollowAC = (userId: string) => ({type: UNFOLLOW, userId})
 
-
+export const setUsersAC = (users: Array<UserProps>) => ({type: SET_USERS, users})
 
