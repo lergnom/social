@@ -36,7 +36,7 @@ type UsersPropsType = {
     location: LocationPropsType
 }
 
-type UserProps = {
+export type UserProps = {
     users: Array<UsersPropsType>
 }
 
@@ -61,7 +61,7 @@ const initialState: UserProps = {
     ]
 }
 
-const usersReducer = (state = initialState, action: UsersDispatchProps) => {
+export const usersReducer = (state = initialState, action: UsersDispatchProps) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -95,5 +95,5 @@ export const followAC = (userId: string) => {
 
 export const unFollowAC = (userId: string) => ({type: UNFOLLOW, userId})
 
-export const setUsersAC = (users: Array<UserProps>) => ({type: SET_USERS, users})
+export const setUsersAC = (users: UserProps) => ({type: SET_USERS, users})
 
