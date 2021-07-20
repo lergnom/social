@@ -44,27 +44,27 @@ export type UserProps = {
 
 const initialState: UserProps = {
     users: [
-        {
-            id: '1',
-            ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
-            followed: false,
-            fullName: 'Dmitriy',
-            status: 'I boss',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: '2',
-            ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
-            followed: true,
-            fullName: 'Zoe',
-            status: 'dark princess',
-            location: {city: 'Anapa', country: 'Russia'}
-        },
-        {
-            id: '3',
-            ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
-            followed: true, fullName: 'Ivan', status: 'wild doom', location: {city: 'Kiev', country: 'Ukraine'}
-        },
+        // {
+        //     id: '1',
+        //     ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
+        //     followed: false,
+        //     fullName: 'Dmitriy',
+        //     status: 'I boss',
+        //     location: {city: 'Minsk', country: 'Belarus'}
+        // },
+        // {
+        //     id: '2',
+        //     ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
+        //     followed: true,
+        //     fullName: 'Zoe',
+        //     status: 'dark princess',
+        //     location: {city: 'Anapa', country: 'Russia'}
+        // },
+        // {
+        //     id: '3',
+        //     ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
+        //     followed: true, fullName: 'Ivan', status: 'wild doom', location: {city: 'Kiev', country: 'Ukraine'}
+        // },
     ]
 }
 
@@ -89,7 +89,7 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
                 })
             }
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [...action.users]}
 
         default:
             return state
@@ -102,5 +102,5 @@ export const followAC = (userId: string) => {
 
 export const unFollowAC = (userId: string) => ({type: UNFOLLOW, userId})
 
-export const setUsersAC = (users: UserProps) => ({type: SET_USERS, users})
+export const setUsersAC = (users: Array<UsersPropsType>) => ({type: SET_USERS, users})
 
