@@ -1,5 +1,6 @@
 import {stat} from "fs";
 import {DispatchProps, ProfilePageType} from "./store";
+import {ExampleUserType} from "../components/Users/Users";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -36,6 +37,7 @@ export type UsersPropsType = {
     followed: boolean
     location: LocationPropsType
 }
+
 
 export type UserProps = {
     users: Array<UsersPropsType>
@@ -96,11 +98,11 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
     }
 }
 
-export const followAC = (userId: string) => {
+export const followAC = (userId: number) => {
     return {type: FOLLOW, userId} as const
 }
 
-export const unFollowAC = (userId: string) => ({type: UNFOLLOW, userId})
+export const unFollowAC = (userId: number) => ({type: UNFOLLOW, userId})
 
-export const setUsersAC = (users: Array<UsersPropsType>) => ({type: SET_USERS, users})
+export const setUsersAC = (users: Array<ExampleUserType>) => ({type: SET_USERS, users})
 
