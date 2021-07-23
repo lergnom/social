@@ -6,7 +6,7 @@ import s from './Navbar.module.css';
 export function Navbar() {
     return (
         <nav className={s.nav}>
-            <div className={s.blockMenu}>
+                      <div className={s.blockMenu}>
                 <NavLink className={s.item} to="/profile" activeClassName={s.active}>Profile</NavLink>
             </div>
             <div className={s.blockMenu}>

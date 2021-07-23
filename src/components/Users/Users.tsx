@@ -15,7 +15,7 @@ export type ExampleUserType = {
     followed: boolean
 }
 
-type UserPropsTypes = {
+export type UserPropsTypes = {
     // users: Array<UsersPropsType>
     users: Array<ExampleUserType>
     follow: (id: number) => void

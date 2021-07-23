@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {ExampleUserType, Users} from "./Users";
 import {followAC, setUsersAC, unFollowAC, UserProps, UsersPropsType} from "../../redux/users-reducer";
+import {UsersClass} from "./UsersC";
 
 
 const mapStateToProps = (state: any) => {
@@ -26,4 +27,4 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass)
