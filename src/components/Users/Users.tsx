@@ -60,7 +60,7 @@ export const Users = (props: UserPropsTypes) => {
         {
 
             props.users.map(user => <div key={user.id}>
-                <span> <div> <img className={s.avatarWrapper} src={user.photos.small}/> </div><div> {user.followed ?
+                <span> <div> <img className={s.avatarWrapper} src={user.photos.small !== null ? user.photos.small :'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
                     <button onClick={() => {
                         props.unfollow(user.id)
 
