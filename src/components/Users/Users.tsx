@@ -27,7 +27,6 @@ export const Users = (props: UserPropsTypes) => {
     if (props.users.length === 0) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             props.setUsers(response.data.items)
-            console.log(response.data.items)
         })
         // props.setUsers([
         //     {
