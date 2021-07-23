@@ -24,42 +24,23 @@ type UserPropsTypes = {
 }
 
 export const Users = (props: UserPropsTypes) => {
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            props.setUsers(response.data.items)
-        })
-        // props.setUsers([
-        //     {
-        //         id: '1',
-        //         ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
-        //         followed: false,
-        //         fullName: 'Dmitriy',
-        //         status: 'I boss',
-        //         location: {city: 'Minsk', country: 'Belarus'}
-        //     },
-        //     {
-        {/*        id: '2',*/
+
+    const getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+            })
         }
-        {/*        ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',*/
-        }
-        //         followed: true,
-        //         fullName: 'Zoe',
-        //         status: 'dark princess',
-        //         location: {city: 'Anapa', country: 'Russia'}
-        //     },
-        //     {
-        //         id: '3',
-        //         ava: 'https://drasler.ru/wp-content/uploads/2019/05/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%BD%D0%B0-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D1%83-%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D0%B0-014.jpg',
-        //         followed: true, fullName: 'Ivan', status: 'wild doom', location: {city: 'Kiev', country: 'Ukraine'}
-        //     },
-        // ])
     }
 
+
     return <>
+        <button onClick={getUsers}>get users</button>
         {
 
             props.users.map(user => <div key={user.id}>
-                <span> <div> <img className={s.avatarWrapper} src={user.photos.small !== null ? user.photos.small :'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
+                <span> <div> <img className={s.avatarWrapper}
+                                  src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
                     <button onClick={() => {
                         props.unfollow(user.id)
 
