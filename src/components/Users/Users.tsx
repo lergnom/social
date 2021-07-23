@@ -1,6 +1,7 @@
 import React from "react";
 import {UserProps, UsersPropsType} from "../../redux/users-reducer";
 import s from './users.module.css'
+import axios from 'axios';
 
 type UserPropsTypes = {
     users: Array<UsersPropsType>
@@ -11,6 +12,7 @@ type UserPropsTypes = {
 
 export const Users = (props: UserPropsTypes) => {
     if (props.users.length === 0) {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
         props.setUsers([
             {
                 id: '1',
