@@ -5,8 +5,7 @@ import {UserPropsTypes} from "./Users";
 
 // Функциональная компонента
 export class UsersClass extends React.Component<UserPropsTypes> {
-    constructor(props: UserPropsTypes) {
-        super(props);
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.setUsers(response.data.items)
         })
