@@ -3,7 +3,7 @@ import s from './users.module.css'
 import axios from 'axios';
 import {UserPropsTypes} from "./Users";
 
-
+// Функциональная компонента
 export class UsersClass extends React.Component<UserPropsTypes> {
     constructor(props: UserPropsTypes) {
         super(props);
