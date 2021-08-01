@@ -6,7 +6,7 @@ import {UserPropsTypes} from "./Users";
 // Функциональная компонента
 export class UsersClass extends React.Component<UserPropsTypes> {
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items)
         })
     }
@@ -20,37 +20,40 @@ export class UsersClass extends React.Component<UserPropsTypes> {
     }
 
     render() {
-        let pageCount:number = this.props.totalUserCount
+        let pageCount: number = Math.ceil(this.props.totalUserCount / this.props.pageSize)
+        let pages = []
+        for (let i = 1; i <= pageCount; i++) {
+            pages.push(i)
+        }
         return <>
             <button onClick={this.getUsers}>get users</button>
-            <div>
-
-                <span>1</span>
-                <span>2</span>
-                <span className={s.selectedPage}>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
-            {
-                this.props.users.map(user => <div key={user.id}>
-                <span> <div> <img className={s.avatarWrapper}
-                                  src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
+            <div className={s.pagination}>
+                {pages.map(p => {
+                    return <span onClick={() => {
+                        this.props.setCurrentPage(p)
+                    } } className={this.props.currentPage === p ? s.selectedPage : ''}>{p}</span>
+                    })
+                }
+                    </div>
+                {
+                    this.props.users.map(user => <div key={user.id}>
+                    <span> <div> <img className={s.avatarWrapper}
+                    src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
                     <button onClick={() => {
-                        this.props.unfollow(user.id)
+                    this.props.unfollow(user.id)
 
-                    }}>UnFollow</button> :
+                }}>UnFollow</button> :
                     <button onClick={() => {
-                        this.props.follow(user.id)
-                    }}>Follow</button>} </div></span>
+                    this.props.follow(user.id)
+                }}>Follow</button>} </div></span>
                     <span>
-                        <div>{user.name}</div>
-                        <div>{user.status}</div>
+                    <div>{user.name}</div>
+                    <div>{user.status}</div>
                     </span>
                     <span>
-                </span>
-                </div>)
-            }
-        </>
-    }
-}
+                    </span>
+                    </div>)
+                }
+                    </>
+                }
+                }

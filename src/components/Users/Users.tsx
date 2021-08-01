@@ -18,9 +18,14 @@ export type ExampleUserType = {
 export type UserPropsTypes = {
     // users: Array<UsersPropsType>
     users: Array<ExampleUserType>
+    pageSize: number
+    totalUserCount: number
+    currentPage: number
     follow: (id: number) => void
     unfollow: (id: number) => void
     setUsers: (users: Array<ExampleUserType>) => void
+    setCurrentPage: (currentPage: number) => void
+
 }
 
 export const Users = (props: UserPropsTypes) => {

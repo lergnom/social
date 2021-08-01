@@ -5,8 +5,9 @@ import {ExampleUserType} from "../components/Users/Users";
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
-type UsersDispatchProps = DispatchFollowProps | DispatchUnFollowProps | DispatchSetUsers
+type UsersDispatchProps = DispatchFollowProps | DispatchUnFollowProps | DispatchSetUsers | DispatchSetCurrentPage
 
 
 type DispatchFollowProps = {
@@ -21,6 +22,11 @@ type DispatchUnFollowProps = {
 type DispatchSetUsers = {
     type: 'SET_USERS'
     users: Array<UserProps>
+}
+
+type DispatchSetCurrentPage = {
+    type: 'SET_CURRENT_PAGE'
+    currentPage: number
 }
 
 
@@ -43,13 +49,15 @@ export type UserProps = {
     users: Array<UsersPropsType>
     pageSize: number
     totalUserCount: number
+    currentPage: number
 }
 
 
 const initialState: UserProps = {
     users: [],
     pageSize: 5,
-    totalUserCount: 0,
+    totalUserCount: 20,
+    currentPage: 1,
 }
 
 export const usersReducer = (state = initialState, action: UsersDispatchProps) => {
@@ -74,6 +82,8 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
             }
         case SET_USERS:
             return {...state, users: [...state.users, ...action.users]}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
 
         default:
             return state
@@ -88,3 +98,4 @@ export const unFollowAC = (userId: number) => ({type: UNFOLLOW, userId})
 
 export const setUsersAC = (users: Array<ExampleUserType>) => ({type: SET_USERS, users})
 
+export const setCurrentPageAC = (currentPage: number): DispatchSetCurrentPage => ({type: SET_CURRENT_PAGE, currentPage})
