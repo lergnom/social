@@ -3,11 +3,23 @@ import s from './users.module.css'
 import axios from 'axios';
 import {UserPropsTypes} from "./Users";
 
-// Функциональная компонента
+// классовая компонента
 export class UsersClass extends React.Component<UserPropsTypes> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items)
+            this.props.setTotalUserCount(response.data.totalCount)
+
+        })
+    }
+
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items)
+            this.props.setTotalUserCount(response.data.totalCount)
+            console.log(response.data.totalCount)
+            console.log(response.data.items)
         })
     }
 
@@ -30,30 +42,31 @@ export class UsersClass extends React.Component<UserPropsTypes> {
             <div className={s.pagination}>
                 {pages.map(p => {
                     return <span onClick={() => {
-                        this.props.setCurrentPage(p)
-                    } } className={this.props.currentPage === p ? s.selectedPage : ''}>{p}</span>
-                    })
-                }
-                    </div>
-                {
-                    this.props.users.map(user => <div key={user.id}>
-                    <span> <div> <img className={s.avatarWrapper}
-                    src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
-                    <button onClick={() => {
-                    this.props.unfollow(user.id)
+                        this.onPageChanged(p)
 
-                }}>UnFollow</button> :
-                    <button onClick={() => {
-                    this.props.follow(user.id)
-                }}>Follow</button>} </div></span>
+                    }} className={this.props.currentPage === p ? s.selectedPage : ''}>{p}</span>
+                })
+                }
+            </div>
+            {
+                this.props.users.map(user => <div key={user.id}>
+                    <span> <div> <img className={s.avatarWrapper}
+                                      src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
+                        <button onClick={() => {
+                            this.props.unfollow(user.id)
+
+                        }}>UnFollow</button> :
+                        <button onClick={() => {
+                            this.props.follow(user.id)
+                        }}>Follow</button>} </div></span>
                     <span>
                     <div>{user.name}</div>
                     <div>{user.status}</div>
                     </span>
                     <span>
                     </span>
-                    </div>)
-                }
-                    </>
-                }
-                }
+                </div>)
+            }
+        </>
+    }
+}

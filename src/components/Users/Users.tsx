@@ -25,7 +25,7 @@ export type UserPropsTypes = {
     unfollow: (id: number) => void
     setUsers: (users: Array<ExampleUserType>) => void
     setCurrentPage: (currentPage: number) => void
-
+    setTotalUserCount: (totalCount: number) => void
 }
 
 export const Users = (props: UserPropsTypes) => {

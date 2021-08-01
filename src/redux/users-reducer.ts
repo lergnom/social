@@ -6,8 +6,14 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USER = 'SET_TOTAL_USER'
 
-type UsersDispatchProps = DispatchFollowProps | DispatchUnFollowProps | DispatchSetUsers | DispatchSetCurrentPage
+type UsersDispatchProps =
+    DispatchFollowProps
+    | DispatchUnFollowProps
+    | DispatchSetUsers
+    | DispatchSetCurrentPage
+    | DispatchSetTotalUser
 
 
 type DispatchFollowProps = {
@@ -27,6 +33,11 @@ type DispatchSetUsers = {
 type DispatchSetCurrentPage = {
     type: 'SET_CURRENT_PAGE'
     currentPage: number
+}
+
+type DispatchSetTotalUser = {
+    type: 'SET_TOTAL_USER'
+    totalCount: number
 }
 
 
@@ -56,7 +67,7 @@ export type UserProps = {
 const initialState: UserProps = {
     users: [],
     pageSize: 5,
-    totalUserCount: 20,
+    totalUserCount: 0,
     currentPage: 1,
 }
 
@@ -81,10 +92,11 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
                 })
             }
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage}
-
+        case SET_TOTAL_USER:
+            return {...state, totalUserCount: action.totalCount}
         default:
             return state
     }
@@ -99,3 +111,5 @@ export const unFollowAC = (userId: number) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users: Array<ExampleUserType>) => ({type: SET_USERS, users})
 
 export const setCurrentPageAC = (currentPage: number): DispatchSetCurrentPage => ({type: SET_CURRENT_PAGE, currentPage})
+
+export const setTotalUserCountAC = (totalCount: number): DispatchSetTotalUser => ({type: SET_TOTAL_USER, totalCount})
