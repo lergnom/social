@@ -35,9 +35,8 @@ export const Users = (props: UserPropsTypes) => {
 
 
     return <>
-        <button onClick={getUsers}>get users</button>
+        {/*<button onClick={getUsers}>get users</button>*/}
         {
-
             props.users.map(user => <div key={user.id}>
                 <span> <div> <img className={s.avatarWrapper}
                                   src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?

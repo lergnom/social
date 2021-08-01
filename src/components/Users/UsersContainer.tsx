@@ -5,9 +5,12 @@ import {followAC, setUsersAC, unFollowAC, UserProps, UsersPropsType} from "../..
 import {UsersClass} from "./UsersC";
 
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any): UserProps=> {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUserCount: state.usersPage.totalUserCount,
+
     }
 
 }

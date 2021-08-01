@@ -20,8 +20,18 @@ export class UsersClass extends React.Component<UserPropsTypes> {
     }
 
     render() {
+        let pageCount:number = this.props.totalUserCount
         return <>
             <button onClick={this.getUsers}>get users</button>
+            <div>
+
+                <span>1</span>
+                <span>2</span>
+                <span className={s.selectedPage}>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+
             {
                 this.props.users.map(user => <div key={user.id}>
                 <span> <div> <img className={s.avatarWrapper}
