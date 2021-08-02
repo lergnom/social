@@ -113,18 +113,18 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
     }
 }
 
-export const followAC = (userId: number) => {
+export const follow = (userId: number) => {
     return {type: FOLLOW, userId} as const
 }
 
-export const unFollowAC = (userId: number) => ({type: UNFOLLOW, userId})
+export const unFollow = (userId: number) => ({type: UNFOLLOW, userId})
 
-export const setUsersAC = (users: Array<ExampleUserType>) => ({type: SET_USERS, users})
+export const setUsers = (users: Array<ExampleUserType>) => ({type: SET_USERS, users})
 
-export const setCurrentPageAC = (currentPage: number): DispatchSetCurrentPage => ({type: SET_CURRENT_PAGE, currentPage})
+export const setCurrentPage = (currentPage: number): DispatchSetCurrentPage => ({type: SET_CURRENT_PAGE, currentPage})
 
-export const setTotalUserCountAC = (totalCount: number): DispatchSetTotalUser => ({type: SET_TOTAL_USER, totalCount})
-export const setPreloaderAC = (isFetching: boolean): DispatchSetPreloaderType => ({
+export const setTotalUserCount = (totalCount: number): DispatchSetTotalUser => ({type: SET_TOTAL_USER, totalCount})
+export const setPreloader = (isFetching: boolean): DispatchSetPreloaderType => ({
     type: SET_PRELOADER_ACTIVE,
     isFetching
 })
