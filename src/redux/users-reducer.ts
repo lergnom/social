@@ -7,6 +7,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USER = 'SET_TOTAL_USER'
+const SET_PRELOADER_ACTIVE = 'SET_PRELOADER_ACTIVE'
 
 type UsersDispatchProps =
     DispatchFollowProps
@@ -14,6 +15,7 @@ type UsersDispatchProps =
     | DispatchSetUsers
     | DispatchSetCurrentPage
     | DispatchSetTotalUser
+    | DispatchSetPreloaderType
 
 
 type DispatchFollowProps = {
@@ -40,6 +42,11 @@ type DispatchSetTotalUser = {
     totalCount: number
 }
 
+type DispatchSetPreloaderType = {
+    type: 'SET_PRELOADER_ACTIVE',
+    isFetching: boolean
+}
+
 
 type LocationPropsType = {
     city: string
@@ -57,10 +64,11 @@ export type UsersPropsType = {
 
 
 export type UserProps = {
-    users: Array<UsersPropsType>
-    pageSize: number
-    totalUserCount: number
-    currentPage: number
+    users: Array<UsersPropsType>,
+    pageSize: number,
+    totalUserCount: number,
+    currentPage: number,
+    isFetching: boolean,
 }
 
 
@@ -69,6 +77,7 @@ const initialState: UserProps = {
     pageSize: 5,
     totalUserCount: 0,
     currentPage: 1,
+    isFetching: false,
 }
 
 export const usersReducer = (state = initialState, action: UsersDispatchProps) => {
@@ -97,6 +106,8 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_USER:
             return {...state, totalUserCount: action.totalCount}
+        case SET_PRELOADER_ACTIVE:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -113,3 +124,7 @@ export const setUsersAC = (users: Array<ExampleUserType>) => ({type: SET_USERS, 
 export const setCurrentPageAC = (currentPage: number): DispatchSetCurrentPage => ({type: SET_CURRENT_PAGE, currentPage})
 
 export const setTotalUserCountAC = (totalCount: number): DispatchSetTotalUser => ({type: SET_TOTAL_USER, totalCount})
+export const setPreloaderAC = (isFetching: boolean): DispatchSetPreloaderType => ({
+    type: SET_PRELOADER_ACTIVE,
+    isFetching
+})
