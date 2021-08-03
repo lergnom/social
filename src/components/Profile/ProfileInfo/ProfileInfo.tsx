@@ -1,20 +1,23 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileContainerType} from '../ProfileContainer';
+import {Preloader} from "../../../common/Preloader/Preloader";
 
 
 export const ProfileInfo = ({profile}: ProfileContainerType) => {
+    if (!profile) {
+        return <Preloader/>
+    }
+
     const socialIcons = Object.keys(profile.contacts).map(el => {
-        console.log(el)
         if (profile.contacts[el] === null) {
             return <></>
         }
         return (
             <>
-                <a className={`${s.socialIcon} ${s[el]}`} href={el}> </a>
+                <a className={`${s.socialIcon} ${s[el]}`} href={profile.contacts[el]}> </a>
             </>
         )
-
     })
 
     return (
@@ -27,10 +30,14 @@ export const ProfileInfo = ({profile}: ProfileContainerType) => {
                     <em>{profile.aboutMe}</em>
                 </div>
                 <div className={s.information}>
-                    <div className={s.workDescription}>
+                    {profile.lookingForAJob && <div className={s.workDescription}>
                         <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
                         <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
-                    </div>
+                    </div>}
+                    {/*<div className={s.workDescription}>*/}
+                    {/*    <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>*/}
+                    {/*    <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>*/}
+                    {/*</div>*/}
                     <div>
                         <h4>Контакты</h4>
                         {socialIcons}

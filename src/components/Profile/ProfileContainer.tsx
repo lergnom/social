@@ -7,7 +7,7 @@ import {setUserProfile} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
 export type ProfileContainerType = {
-    setUserProfile: (id: number) => void
+    setUserProfile: (profile: ProfileType) => void
     profile: ProfileType
 }
 

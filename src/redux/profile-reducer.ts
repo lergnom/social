@@ -3,7 +3,7 @@ import {
     DispatchChangePostProps,
     DispatchProps,
     PostsType,
-    ProfilePageType,
+    ProfilePageType, ProfileType,
     RootStateType
 } from './store';
 
@@ -66,7 +66,8 @@ export const profileReducer = (state = initialState, action: DispatchProps) => {
         case UPDATE_NEW_POST:
             return {...state, messageForNewPost: action.newText}
         case SET_USER_PROFILE:
-            return state
+
+            return {...state, profile: action.profile}
         default:
             return state
     }
@@ -82,8 +83,8 @@ export const updateNewPostTextActionCreator = (text: string): DispatchChangePost
 
 export type DispatSetUserProfileType = {
     type: 'SET_USER_PROFILE'
-    id: number
+    profile: ProfileType
 }
 
 
-export const setUserProfile = (id: number): DispatSetUserProfileType => ({type: SET_USER_PROFILE, id})
+export const setUserProfile = (profile:ProfileType): DispatSetUserProfileType => ({type: SET_USER_PROFILE, profile})

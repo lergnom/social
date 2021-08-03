@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import s from './users.module.css'
 
 export type ExampleUserType = {
@@ -42,15 +43,19 @@ export const Users = (props: UserPropsTypes) => {
         </div>
         {
             props.users.map(user => <div key={user.id}>
-                    <span> <div> <img className={s.avatarWrapper}
-                                      src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/> </div><div> {user.followed ?
-                        <button onClick={() => {
-                            props.unfollow(user.id)
+                    <span>
+                        <NavLink to={'profile/' + user.id}>
+                        <img className={s.avatarWrapper}
+                             src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/>
+                        </NavLink>
+                        <div> {user.followed ?
+                            <button onClick={() => {
+                                props.unfollow(user.id)
 
-                        }}>UnFollow</button> :
-                        <button onClick={() => {
-                            props.follow(user.id)
-                        }}>Follow</button>} </div></span>
+                            }}>UnFollow</button> :
+                            <button onClick={() => {
+                                props.follow(user.id)
+                            }}>Follow</button>} </div></span>
                 <span>
                     <div>{user.name}</div>
                     <div>{user.status}</div>
