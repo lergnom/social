@@ -47,7 +47,7 @@ export type DialogsPageType = {
 // }
 // }
 
-type ProfileType = {
+export type ProfileType = {
     aboutMe: string,
     contacts: {
         facebook: string | null,

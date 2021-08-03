@@ -66,7 +66,7 @@ export const profileReducer = (state = initialState, action: DispatchProps) => {
         case UPDATE_NEW_POST:
             return {...state, messageForNewPost: action.newText}
         case SET_USER_PROFILE:
-            return {...state}
+            return state
         default:
             return state
     }
