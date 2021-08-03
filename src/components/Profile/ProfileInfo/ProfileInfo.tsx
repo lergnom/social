@@ -1,19 +1,20 @@
-import React from "react";
+import React from 'react';
 import s from './ProfileInfo.module.css';
-import {ProfileContainerType} from "../ProfileContainer";
+import {ProfileContainerType} from '../ProfileContainer';
 
 
 export const ProfileInfo = ({profile}: ProfileContainerType) => {
     const socialIcons = Object.keys(profile.contacts).map(el => {
         console.log(el)
-        if (profile.contacts[el] !== null) {
-            return (
-                <>
-                    {/*<div className={`${s.socialIcon}${el}`}> {profile.contacts[el]}    </div>*/}
-                    <a className={s.twitter} href={el}></a>
-                </>
-            )
+        if (profile.contacts[el] === null) {
+            return <></>
         }
+        return (
+            <>
+                <a className={`${s.socialIcon} ${s[el]}`} href={el}> </a>
+            </>
+        )
+
     })
 
     return (

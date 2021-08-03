@@ -23,7 +23,7 @@
 }
 
 .workDescription {
-
+    margin-right: 25px;
 }
 
 .socialIcon {
@@ -34,36 +34,41 @@
     display: inline-block;
     width: 25px;
     height: 25px;
+}
 
+.socialIcon:hover {
+    opacity: 0.7;
+}
+
+.github {
+    background-image: url("/src/common/social_icons/images/github_small.png");
+}
+
+
+.facebook {
+    background-image: url("/src/common/social_icons/images/facebook.png");
+}
+
+.instagram {
+    background-image: url("/src/common/social_icons/images/instagram_small.png");
+}
+
+.vk {
+    background-image: url("/src/common/social_icons/images/heart.png");
+}
+
+.mainLink {
+    background-image: url("/src/common/social_icons/images/linkedin.png");
 }
 
 .twitter {
     background-image: url("/src/common/social_icons/images/twitter_bird.png");
-    background-color: transparent;
-    background-size: cover;
-    border: none;
-    box-shadow: none;
-    display: inline-block;
-    width: 25px;
-    height: 25px;
 }
 
-.twitter:hover {
-    opacity: 0.7;
+.website {
+    background-image: url("/src/common/social_icons/images/share_this.png");
 }
 
-.facebook {
-    background-image: url("/src/common/social_icons/images/facebook.png");
-    background-color: transparent;
-    background-size: cover;
-    border: none;
-    box-shadow: none;
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-}
-
-
-.github {
-
+.youtube {
+    background-image: url("/src/common/social_icons/images/youtube.png");
 }
