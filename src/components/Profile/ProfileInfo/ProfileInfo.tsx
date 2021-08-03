@@ -7,12 +7,14 @@ export const ProfileInfo = ({profile}: ProfileContainerType) => {
     console.log(profile)
     return (
         <>
-            <div>
-                <img className={s.imgProfileInfo}
-                     src="https://static.tildacdn.com/tild3466-6664-4830-b233-653431393864/photo.jpg" alt=""/>
-            </div>
-            <div>
-                {profile.aboutMe}
+
+            <div className={s.aboutMeWrapper}>
+                <div className={s.aboutMeDescription}>
+                    <img className={s.ava} src={profile.photos.large} alt={profile.fullName}/>
+                    <h3>{profile.fullName}</h3>
+                    <em>{profile.aboutMe}</em>
+                </div>
+
 
             </div>
         </>

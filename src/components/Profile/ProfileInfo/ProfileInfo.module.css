@@ -1,4 +1,17 @@
-.imgProfileInfo{
-    width: 100%;
-    height: 270px;
+.aboutMeWrapper {
+    margin: 0 auto;
+}
+
+.aboutMeDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ava {
+    /*margin-bottom: 5px;*/
+    width: 150px;
+    height: 150px;
+    background-color: green;
+    border-radius: 50%;
 }

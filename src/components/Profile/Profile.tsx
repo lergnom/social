@@ -8,8 +8,13 @@ export const Profile = (props: ProfileContainerType) => {
 
     return (
         <div className={s.content}>
-            <ProfileInfo {...props}/>
-            <MyPostsContainer/>
+            <img className={s.imgProfileInfo}
+                 src="https://static.tildacdn.com/tild3466-6664-4830-b233-653431393864/photo.jpg" alt=""/>
+            <div className={s.profileContainer}>
+                <ProfileInfo {...props}/>
+                <MyPostsContainer/>
+            </div>
+
         </div>
     )
 }

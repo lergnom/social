@@ -17,7 +17,7 @@ export function MyPosts(props: MyPostsPorps) {
     })
 
     return (
-        <div>
+        <div className='posts-containers'>
             <div>
                 <NewPost
                     addPost={props.addPost}
