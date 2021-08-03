@@ -34,7 +34,7 @@ let initialState: ProfilePageType = {
         contacts: {
             github: 'lergnom',
             facebook: 'lergnom',
-            instagram: 'null',
+            instagram: null,
             vk: 'lergnom',
             mainLink: 'null',
             twitter: 'null',
@@ -45,7 +45,7 @@ let initialState: ProfilePageType = {
             small: 'https://media-exp1.licdn.com/dms/image/C4D03AQHXUqbwn1857g/profile-displayphoto-shrink_200_200/0/1588873529425?e=1628726400&v=beta&t=c39J43oUkrS9PBdTzqktUE6484BtVdFZASKxReCJTfU',
             large: 'https://media-exp1.licdn.com/dms/image/C4D03AQHXUqbwn1857g/profile-displayphoto-shrink_200_200/0/1588873529425?e=1628726400&v=beta&t=c39J43oUkrS9PBdTzqktUE6484BtVdFZASKxReCJTfU',
         },
-        lookingForAJob: true,
+        lookingForAJob: false,
         lookingForAJobDescription: 'Интересную работу с достойной оплатой',
         userId: 4,
         fullName: 'Антон Асмоловский'
