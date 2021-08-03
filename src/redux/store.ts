@@ -1,5 +1,5 @@
 import {dialogsReducer} from "./dialogs-reducer";
-import {profileReducer} from "./profile-reducer";
+import {DispatSetUserProfileType, profileReducer} from "./profile-reducer";
 
 export type DialogsType = {
     id: number
@@ -47,6 +47,7 @@ export type DispatchProps =
     | DispatchAddMessageProps
     | DispatchChangePostProps
     | DispatchCangeMessageProps
+    | DispatSetUserProfileType
 
 
 export type DispatchAddPostProps = {

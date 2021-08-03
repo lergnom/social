@@ -5,10 +5,11 @@ import {
     PostsType,
     ProfilePageType,
     RootStateType
-} from "./store";
+} from './store';
 
 const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST = "UPDATE-NEW-POST-TEXT"
+const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState: ProfilePageType = {
     messageForNewPost: "",
@@ -42,6 +43,8 @@ export const profileReducer = (state = initialState, action: DispatchProps) => {
             return {...state, messageForNewPost: '', posts: [...state.posts, newPost]}
         case UPDATE_NEW_POST:
             return {...state, messageForNewPost: action.newText}
+        case SET_USER_PROFILE:
+            return {...state}
         default:
             return state
     }
@@ -55,3 +58,10 @@ export const updateNewPostTextActionCreator = (text: string): DispatchChangePost
     return {type: UPDATE_NEW_POST, newText: text} as const
 }
 
+export type DispatSetUserProfileType = {
+    type: 'SET_USER_PROFILE'
+    id: number
+}
+
+
+export const setUserProfile = (id: number): DispatSetUserProfileType => ({type: SET_USER_PROFILE, id})
