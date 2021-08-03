@@ -28,7 +28,29 @@ let initialState: ProfilePageType = {
             img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
         },
         {id: 4, message: 'Oki doki', likesCount: 8, img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'},
-    ]
+    ],
+    profile: {
+        aboutMe: 'Обычный человек, каких много но со своими тараканами в голове.',
+        contacts: {
+            github: 'lergnom',
+            facebook: 'lergnom',
+            instagram: null,
+            vk: 'lergnom',
+            mainLink: null,
+            twitter: null,
+            website: 'lergnom',
+            youtube: null,
+        },
+        photos: {
+            small: 'https://media-exp1.licdn.com/dms/image/C4D03AQHXUqbwn1857g/profile-displayphoto-shrink_200_200/0/1588873529425?e=1628726400&v=beta&t=c39J43oUkrS9PBdTzqktUE6484BtVdFZASKxReCJTfU',
+            large: 'https://media-exp1.licdn.com/dms/image/C4D03AQHXUqbwn1857g/profile-displayphoto-shrink_200_200/0/1588873529425?e=1628726400&v=beta&t=c39J43oUkrS9PBdTzqktUE6484BtVdFZASKxReCJTfU',
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription: 'Интересную работу с достойной оплатой',
+        userId: 4,
+        fullName: 'Антон Асмоловский'
+
+    }
 }
 
 export const profileReducer = (state = initialState, action: DispatchProps) => {

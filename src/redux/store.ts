@@ -25,9 +25,55 @@ export type DialogsPageType = {
     contacts: Array<ContactsType>
 }
 
+// {
+//     "aboutMe": "я круто чувак 1001%",
+//     "contacts": {
+//     "facebook": "facebook.com",
+//         "website": null,
+//         "vk": "vk.com/dimych",
+//         "twitter": "https://twitter.com/@sdf",
+//         "instagram": "instagra.com/sds",
+//         "youtube": null,
+//         "github": "github.com",
+//         "mainLink": null
+// },
+//     "lookingForAJob": true,
+//     "lookingForAJobDescription": "не ищу, а дурачусь",
+//     "fullName": "samurai dimych",
+//     "userId": 2,
+//     "photos": {
+//     "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
+//         "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+// }
+// }
+
+type ProfileType = {
+    aboutMe: string,
+    contacts: {
+        facebook: string | null,
+        website: string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube: string | null
+        github: string | null
+        mainLink: string | null
+    },
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string | null,
+    fullName: string,
+    userId: number,
+    photos: {
+        small: string,
+        large: string
+    }
+}
+
+
 export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostsType>
+    profile: ProfileType
 
 }
 export type ContactsType = {
