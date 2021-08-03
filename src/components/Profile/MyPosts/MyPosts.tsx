@@ -2,6 +2,7 @@ import React from "react";
 import {Post} from "./Posts/Post";
 import {PostsType} from "../../../redux/store";
 import {NewPost} from "./Posts/NewPost";
+import s from './MyPosts.module.css'
 
 type MyPostsPorps = {
     posts: Array<PostsType>
@@ -17,7 +18,7 @@ export function MyPosts(props: MyPostsPorps) {
     })
 
     return (
-        <div className='posts-containers'>
+        <div className={s.postsContainer}>
             <div>
                 <NewPost
                     addPost={props.addPost}

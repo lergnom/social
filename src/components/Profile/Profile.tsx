@@ -6,6 +6,7 @@ import {ProfileContainerType} from "./ProfileContainer";
 
 export const Profile = (props: ProfileContainerType) => {
 
+
     return (
         <div className={s.content}>
             <img className={s.imgProfileInfo}

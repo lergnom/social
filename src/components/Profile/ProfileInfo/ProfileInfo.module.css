@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .ava {
@@ -14,4 +15,55 @@
     height: 150px;
     background-color: green;
     border-radius: 50%;
+}
+
+.information {
+    display: flex;
+    justify-content: space-between;
+}
+
+.workDescription {
+
+}
+
+.socialIcon {
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    box-shadow: none;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+
+}
+
+.twitter {
+    background-image: url("/src/common/social_icons/images/twitter_bird.png");
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    box-shadow: none;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
+
+.twitter:hover {
+    opacity: 0.7;
+}
+
+.facebook {
+    background-image: url("/src/common/social_icons/images/facebook.png");
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    box-shadow: none;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
+
+
+.github {
+
 }
