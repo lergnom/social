@@ -58,7 +58,7 @@ export type ProfileType = {
         // youtube: string,
         // github: string,
         // mainLink: string,
-        [key: string]: string | null
+        [key: string]: string | undefined
     },
     lookingForAJob: boolean,
     lookingForAJobDescription: string | null,

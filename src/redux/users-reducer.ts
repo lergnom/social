@@ -74,7 +74,7 @@ export type UserProps = {
 
 const initialState: UserProps = {
     users: [],
-    pageSize: 5,
+    pageSize: 100,
     totalUserCount: 0,
     currentPage: 1,
     isFetching: false,

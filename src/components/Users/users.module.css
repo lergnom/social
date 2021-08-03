@@ -4,14 +4,32 @@
 }
 
 .pagination {
+    display: flex;
+    flex-wrap: wrap;
     cursor: pointer;
+    margin-bottom: 15px;
 }
 
 .pagination span {
-    margin-right: 2px;
+    margin-right: 5px;
 }
 
 .selectedPage {
     font-weight: bold;
     cursor: pointer;
+}
+
+.usersWrapper {
+    display: flex;
+
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.userContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
 }

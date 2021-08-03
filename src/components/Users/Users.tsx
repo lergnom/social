@@ -41,8 +41,9 @@ export const Users = (props: UserPropsTypes) => {
             })
             }
         </div>
-        {
-            props.users.map(user => <div key={user.id}>
+        <div className={s.usersWrapper}>
+            {
+                props.users.map(user => <div className={s.userContainer} key={user.id}>
                     <span>
                         <NavLink to={'profile/' + user.id}>
                         <img className={s.avatarWrapper}
@@ -56,14 +57,16 @@ export const Users = (props: UserPropsTypes) => {
                             <button onClick={() => {
                                 props.follow(user.id)
                             }}>Follow</button>} </div></span>
-                <span>
+                    <span>
                     <div>{user.name}</div>
-                    <div>{user.status}</div>
+                    {/*<div>{user.status}</div>*/}
                     </span>
-                <span>
+                    <span>
                     </span>
-            </div>)
-        }
+                </div>)
+            }
+        </div>
+
     </>
 
 }
