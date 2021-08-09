@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from './users.module.css'
@@ -51,15 +52,38 @@ export const Users = (props: UserPropsTypes) => {
                         </NavLink>
                         <div> {user.followed ?
                             <button onClick={() => {
-                                props.unfollow(user.id)
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "b018a2e7-a067-422d-aa3e-08e12df481c7"
+                                    },
+                                })
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(user.id)
+                                        }
+                                    })
 
                             }}>UnFollow</button> :
                             <button onClick={() => {
+
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "b018a2e7-a067-422d-aa3e-08e12df481c7"
+                                    },
+                                })
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(user.id)
+                                        }
+                                    })
+
                                 props.follow(user.id)
                             }}>Follow</button>} </div></span>
                     <span>
                     <div>{user.name}</div>
-                    {/*<div>{user.status}</div>*/}
+                        {/*<div>{user.status}</div>*/}
                     </span>
                     <span>
                     </span>

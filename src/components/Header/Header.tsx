@@ -31,7 +31,7 @@ export function Header(props: any) {
                     </div>
                 </div>
                 {props.isAuth ?
-                    <div className={s.menuBlock}><span className={s.menuBlockActive}>{props.login}</span></div> :
+                    <div className={s.menuBlock}>{props.login}</div> :
                     <NavLink className={s.logButton} to={"/login"}>LOGIN</NavLink>}
 
 
