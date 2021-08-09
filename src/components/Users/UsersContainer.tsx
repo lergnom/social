@@ -10,6 +10,7 @@ import {
 } from '../../redux/users-reducer';
 import axios from 'axios';
 import {Preloader} from '../../common/Preloader/Preloader';
+import {UserApi} from "../../api/api";
 
 type UserComponentType = {
     users: Array<ExampleUserType>
@@ -28,23 +29,21 @@ type UserComponentType = {
 export class UsersComponent extends React.Component<UserComponentType> {
     componentDidMount() {
         this.props.setPreloader(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        }).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUserCount(response.data.totalCount)
-            this.props.setPreloader(false)
+       UserApi.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(data => {
+                this.props.setUsers(data.items)
+                this.props.setTotalUserCount(data.totalCount)
+                this.props.setPreloader(false)
 
-        })
+            })
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.setPreloader(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        }).then(response => {
-            this.props.setUsers(response.data.items)
+
+        UserApi.getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items)
         })
         //Имитация загрузки данных
         setInterval(() => {
@@ -52,16 +51,6 @@ export class UsersComponent extends React.Component<UserComponentType> {
 
         }, 2000)
 
-    }
-
-    getUsers = () => {
-        if (this.props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users', {
-                withCredentials: true
-            }).then(response => {
-                this.props.setUsers(response.data.items)
-            })
-        }
     }
 
     render() {
