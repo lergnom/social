@@ -34,7 +34,7 @@ let initialState: ProfilePageType = {
         contacts: {
             github: 'lergnom',
             facebook: 'lergnom',
-            instagram: null,
+            instagram: 'das',
             vk: 'lergnom',
             mainLink: 'null',
             twitter: 'null',
@@ -87,4 +87,4 @@ export type DispatSetUserProfileType = {
 }
 
 
-export const setUserProfile = (profile:ProfileType): DispatSetUserProfileType => ({type: SET_USER_PROFILE, profile})
+export const setUserProfile = (profile: ProfileType): DispatSetUserProfileType => ({type: SET_USER_PROFILE, profile})

@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import s from './Header.module.css'
 
-export function Header() {
+export function Header(props: any) {
     return (
         <header className={s.header}>
             <div className={s.headerWrapper}>
@@ -30,7 +30,10 @@ export function Header() {
                         <NavLink to={"/settings"} activeClassName={s.menuBlockActive}>Settings</NavLink>
                     </div>
                 </div>
-                <div className={s.logButton}>LOGIN</div>
+                {props.isAuth ?
+                    <div className={s.menuBlock}><span className={s.menuBlockActive}>{props.login}</span></div> :
+                    <NavLink className={s.logButton} to={"/login"}>LOGIN</NavLink>}
+
 
             </div>
 
