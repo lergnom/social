@@ -8,6 +8,7 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USER = 'SET_TOTAL_USER'
 const SET_PRELOADER_ACTIVE = 'SET_PRELOADER_ACTIVE'
+const ADD_USER_FOR_FOLLOW_LIST = 'ADD_USER_FOR_FOLLOW_LIST'
 
 type UsersDispatchProps =
     DispatchFollowProps
@@ -16,6 +17,7 @@ type UsersDispatchProps =
     | DispatchSetCurrentPage
     | DispatchSetTotalUser
     | DispatchSetPreloaderType
+    | DispatchAddUserFollowListType
 
 
 type DispatchFollowProps = {
@@ -69,6 +71,7 @@ export type UserProps = {
     totalUserCount: number,
     currentPage: number,
     isFetching: boolean,
+    isArrFolUnFolUsers: Array<number>
 }
 
 
@@ -78,6 +81,7 @@ const initialState: UserProps = {
     totalUserCount: 0,
     currentPage: 1,
     isFetching: false,
+    isArrFolUnFolUsers: []
 }
 
 export const usersReducer = (state = initialState, action: UsersDispatchProps) => {
@@ -108,6 +112,12 @@ export const usersReducer = (state = initialState, action: UsersDispatchProps) =
             return {...state, totalUserCount: action.totalCount}
         case SET_PRELOADER_ACTIVE:
             return {...state, isFetching: action.isFetching}
+        case ADD_USER_FOR_FOLLOW_LIST:
+            return {
+                ...state, isArrFolUnFolUsers: action.isFetching ?
+                    [...state.isArrFolUnFolUsers, action.id]
+                    : state.isArrFolUnFolUsers.filter(id => id !== action.id)
+            }
         default:
             return state
     }
@@ -126,5 +136,18 @@ export const setCurrentPage = (currentPage: number): DispatchSetCurrentPage => (
 export const setTotalUserCount = (totalCount: number): DispatchSetTotalUser => ({type: SET_TOTAL_USER, totalCount})
 export const setPreloader = (isFetching: boolean): DispatchSetPreloaderType => ({
     type: SET_PRELOADER_ACTIVE,
+    isFetching
+})
+
+
+type DispatchAddUserFollowListType = {
+    type: 'ADD_USER_FOR_FOLLOW_LIST',
+    id: number,
+    isFetching: boolean
+}
+
+export const addUserFollowList = (id: number, isFetching: boolean): DispatchAddUserFollowListType => ({
+    type: 'ADD_USER_FOR_FOLLOW_LIST',
+    id,
     isFetching
 })

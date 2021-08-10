@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {ExampleUserType, Users} from './Users';
 import {
+    addUserFollowList,
     follow,
     setCurrentPage, setPreloader,
     setTotalUserCount,
@@ -17,18 +18,20 @@ type UserComponentType = {
     totalUserCount: number
     currentPage: number
     isFetching: boolean
+    isArrFolUnFolUsers: Array<number>
     follow: (id: number) => void
     unFollow: (id: number) => void
     setUsers: (users: Array<ExampleUserType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUserCount: (totalCount: number) => void
     setPreloader: (isFetching: boolean) => void
+    addUserFollowList: (id: number, isFetching:boolean) => void
 }
 
 export class UsersComponent extends React.Component<UserComponentType> {
     componentDidMount() {
         this.props.setPreloader(true)
-       UserApi.getUsers(this.props.currentPage, this.props.pageSize)
+        UserApi.getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.setUsers(data.items)
                 this.props.setTotalUserCount(data.totalCount)
@@ -58,7 +61,9 @@ export class UsersComponent extends React.Component<UserComponentType> {
             {!this.props.isFetching &&
             <Users users={this.props.users} pageSize={this.props.pageSize} totalUserCount={this.props.totalUserCount}
                    currentPage={this.props.currentPage} follow={this.props.follow} unfollow={this.props.unFollow}
-                   onPageChanged={this.onPageChanged}/>}
+                   onPageChanged={this.onPageChanged} isArrFolUnFolUsers={this.props.isArrFolUnFolUsers}
+                   isFetching={this.props.isFetching} addUserFollowList={this.props.addUserFollowList}
+            setPreloader={this.props.setPreloader}/>}
         </>
 
     }
@@ -71,7 +76,8 @@ const mapStateToProps = (state: any) => {
         pageSize: state.usersPage.pageSize,
         totalUserCount: state.usersPage.totalUserCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        isArrFolUnFolUsers: state.usersPage.isArrFolUnFolUsers
     }
 }
 
@@ -105,4 +111,5 @@ export const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUserCount,
     setPreloader,
+    addUserFollowList,
 })(UsersComponent)

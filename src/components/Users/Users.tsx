@@ -22,7 +22,13 @@ export type UserPropsTypes = {
     currentPage: number
     follow: (id: number) => void
     unfollow: (id: number) => void
-    onPageChanged: (p: number) => void
+    onPageChanged: (p: number) => void,
+    isArrFolUnFolUsers: Array<number>
+    isFetching: boolean
+    addUserFollowList: (id: number, isFetching:boolean) => void
+    setPreloader: (isFetching: boolean) => void
+
+
 }
 
 export const Users = (props: UserPropsTypes) => {
@@ -51,20 +57,28 @@ export const Users = (props: UserPropsTypes) => {
                              src={user.photos.small !== null ? user.photos.small : 'https://yt3.ggpht.com/a/AATXAJxAUfyJiZI71TSYapo526ubX0cPcs2ZUUhOA-5B=s900-c-k-c0xffffffff-no-rj-mo'}/>
                         </NavLink>
                         <div> {user.followed ?
-                            <button onClick={() => {
+                            <button disabled={props.isArrFolUnFolUsers.some(id => id === user.id)} onClick={() => {
+                                props.addUserFollowList(user.id,true)
                                 UserApi.unFollow(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         props.unfollow(user.id)
                                     }
+                                    props.addUserFollowList(user.id,false)
                                 })
+
                             }}>UnFollow</button> :
-                            <button onClick={() => {
+                            <button disabled={props.isArrFolUnFolUsers.some(id => id === user.id)} onClick={() => {
+                                props.addUserFollowList(user.id,true)
+                                console.log(props.isFetching)
                                 UserApi.follow(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         props.follow(user.id)
                                     }
+                                    props.addUserFollowList(user.id,false)
+
                                 })
-                                props.follow(user.id)
+
+
                             }}>Follow</button>} </div></span>
                     <span>
                     <div>{user.name}</div>
