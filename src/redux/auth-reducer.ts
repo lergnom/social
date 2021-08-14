@@ -1,3 +1,6 @@
+import {UserApi} from "../api/api";
+import {Dispatch} from "redux";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 type AuthReducerType = {
@@ -8,10 +11,10 @@ type AuthReducerType = {
 }
 
 let initialState: AuthReducerType = {
-    id: null,
-    login: null,
-    email: null,
-    isAuth: false
+    id: 666,
+    login: 'Agent007',
+    email: 'agent@007.com',
+    isAuth: true
 }
 
 type DispatchSetUserData = {
@@ -26,7 +29,8 @@ export const setAuthUserData = (id: number, login: string, email: string): Dispa
 
 type AuthDispatchProps = DispatchSetUserData
 
-export const authReducer = (state = initialState, action: AuthDispatchProps) => {
+
+export const authReducer = (state: AuthReducerType = initialState, action: AuthDispatchProps): AuthReducerType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {...state, ...action.data, isAuth: true}
@@ -35,3 +39,15 @@ export const authReducer = (state = initialState, action: AuthDispatchProps) => 
     }
 }
 
+export const autorizeMe = () => {
+    return (dispatch: Dispatch<AuthDispatchProps>) => {
+        UserApi.autorized()
+            .then(response => {
+                    if (response.resultCode === 0) {
+                        let {id, login, email} = response.data
+                        dispatch(setAuthUserData(id, login, email))
+                    }
+                }
+            )
+    }
+}
