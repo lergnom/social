@@ -25,7 +25,10 @@ export const UserApi = {
     autorized() {
         return instance.get(`auth/me`)
             .then(response => response.data)
-    }
+    },
+    getProfile(id: number) {
+        return instance.get(`profile/${id}`).then(response => response.data)
+    },
 }
 
 

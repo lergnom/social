@@ -6,6 +6,8 @@ import {
     ProfilePageType, ProfileType,
     RootStateType
 } from './store';
+import {UserApi} from "../api/api";
+import {Dispatch} from "redux";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT'
@@ -53,7 +55,7 @@ let initialState: ProfilePageType = {
     }
 }
 
-export const profileReducer = (state = initialState, action: DispatchProps) => {
+export const profileReducer = (state = initialState, action: DispatchPropsType) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostsType = {
@@ -86,5 +88,15 @@ export type DispatSetUserProfileType = {
     profile: ProfileType
 }
 
+export type DispatchPropsType = DispatchAddPostProps | DispatchChangePostProps | DispatSetUserProfileType
 
 export const setUserProfile = (profile: ProfileType): DispatSetUserProfileType => ({type: SET_USER_PROFILE, profile})
+
+export const getUserProfile = (id: number) => {
+    return (dispatch: Dispatch<DispatchPropsType>) => {
+        UserApi.getProfile(id)
+            .then(data => {
+                dispatch(setUserProfile(data))
+            })
+    }
+}

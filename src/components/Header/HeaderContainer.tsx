@@ -1,9 +1,7 @@
 import React from "react";
 import {Header} from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
-import {autorizeMe, setAuthUserData} from "../../redux/auth-reducer";
-import {UserApi} from "../../api/api";
+import {autorizeMe} from "../../redux/auth-reducer";
 
 type HeaderComponentType = {
     autorizeMe: () => void

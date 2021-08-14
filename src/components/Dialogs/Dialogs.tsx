@@ -1,8 +1,8 @@
-import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
+import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ContactsType, DialogsPageType, DialogsType, DispatchProps, MessageType, PostsType} from "../../redux/store";
+import {ContactsType, DialogsType, MessageType} from "../../redux/store";
 import {BestFriends} from "./BestFriends/BestFriends";
 
 type DialogsPropsTypes = {

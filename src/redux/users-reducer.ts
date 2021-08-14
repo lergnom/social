@@ -1,5 +1,3 @@
-import {stat} from "fs";
-import {DispatchProps, ProfilePageType} from "./store";
 import {ExampleUserType} from "../components/Users/Users";
 import {UserApi} from "../api/api";
 import {Dispatch} from "redux";

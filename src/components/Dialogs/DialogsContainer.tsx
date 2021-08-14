@@ -1,7 +1,5 @@
-import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
+import React from "react";
 import {Dialogs} from "./Dialogs";
-import {store} from "../../redux/redux-store";
-// import StoreContext from "../../StoreContext";
 import {connect} from "react-redux";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
 

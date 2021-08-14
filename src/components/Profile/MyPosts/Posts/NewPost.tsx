@@ -1,14 +1,4 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
-import {
-    addPostActionCreator,
-     updateNewPostTextActionCreator
-} from "../../../../redux/profile-reducer";
-
-import {
-    DispatchAddPostProps,
-    DispatchChangePostProps,
-    DispatchProps
-} from "../../../../redux/store";
 
 /**
  * PostProfileComponent - add new message {} into state
