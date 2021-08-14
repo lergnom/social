@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ExampleUserType, Users} from './Users';
 import {
     addUserFollowList,
-    follow,
+    follow, getUsers,
     setCurrentPage, setPreloader,
     setTotalUserCount,
     setUsers,
@@ -30,14 +30,15 @@ type UserComponentType = {
 
 export class UsersComponent extends React.Component<UserComponentType> {
     componentDidMount() {
-        this.props.setPreloader(true)
-        UserApi.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items)
-                this.props.setTotalUserCount(data.totalCount)
-                this.props.setPreloader(false)
-
-            })
+        // this.props.setPreloader(true)
+        // UserApi.getUsers(this.props.currentPage, this.props.pageSize)
+        //     .then(data => {
+        //         this.props.setUsers(data.items)
+        //         this.props.setTotalUserCount(data.totalCount)
+        //         this.props.setPreloader(false)
+        //
+        //     })
+        getUsers(this.props.currentPage,this.props.pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {

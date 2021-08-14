@@ -1,6 +1,8 @@
 import {stat} from "fs";
 import {DispatchProps, ProfilePageType} from "./store";
 import {ExampleUserType} from "../components/Users/Users";
+import {UserApi} from "../api/api";
+import {Dispatch} from "redux";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -22,16 +24,16 @@ type UsersDispatchProps =
 
 type DispatchFollowProps = {
     type: 'FOLLOW'
-    userId: string
+    userId: number
 }
 type DispatchUnFollowProps = {
     type: 'UNFOLLOW'
-    userId: string
+    userId: number
 }
 
 type DispatchSetUsers = {
     type: 'SET_USERS'
-    users: Array<UserProps>
+    users: Array<ExampleUserType>
 }
 
 type DispatchSetCurrentPage = {
@@ -56,7 +58,7 @@ type LocationPropsType = {
 }
 
 export type UsersPropsType = {
-    id: string
+    id: number
     ava: string
     fullName: string
     status: string
@@ -127,9 +129,9 @@ export const follow = (userId: number) => {
     return {type: FOLLOW, userId} as const
 }
 
-export const unFollow = (userId: number) => ({type: UNFOLLOW, userId})
+export const unFollow = (userId: number): DispatchUnFollowProps => ({type: UNFOLLOW, userId})
 
-export const setUsers = (users: Array<ExampleUserType>) => ({type: SET_USERS, users})
+export const setUsers = (users: Array<ExampleUserType>): DispatchSetUsers => ({type: SET_USERS, users})
 
 export const setCurrentPage = (currentPage: number): DispatchSetCurrentPage => ({type: SET_CURRENT_PAGE, currentPage})
 
@@ -151,3 +153,20 @@ export const addUserFollowList = (id: number, isFetching: boolean): DispatchAddU
     id,
     isFetching
 })
+
+//Так выглядит санка thunk
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch<UsersDispatchProps>) => {
+        dispatch(setPreloader(true))
+        UserApi.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUserCount(data.totalCount))
+                dispatch(setPreloader(false))
+
+            })
+    }
+}
+
+
+
