@@ -15,7 +15,7 @@ export const ProfileInfo = ({profile}: ProfileContainerType) => {
         }
         return (
             <>
-                <a key={profile.contacts[el]} className={`${s.socialIcon} ${s[el]}`} href={profile.contacts[el]}> </a>
+                <a className={`${s.socialIcon} ${s[el]}`} href={profile.contacts[el]}> </a>
             </>
         )
     })
