@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ExampleUserType, Users} from './Users';
 import {
     addUserFollowList,
-    follow, getUsers,
+    follow, getUsersThunkCreator,
     setCurrentPage, setPreloader,
     setTotalUserCount,
     setUsers,
@@ -25,35 +25,17 @@ type UserComponentType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUserCount: (totalCount: number) => void
     setPreloader: (isFetching: boolean) => void
-    addUserFollowList: (id: number, isFetching:boolean) => void
+    addUserFollowList: (id: number, isFetching: boolean) => void
+    getUsers: (currentPage: number, pageSize: number) => void
 }
 
 export class UsersComponent extends React.Component<UserComponentType> {
     componentDidMount() {
-        // this.props.setPreloader(true)
-        // UserApi.getUsers(this.props.currentPage, this.props.pageSize)
-        //     .then(data => {
-        //         this.props.setUsers(data.items)
-        //         this.props.setTotalUserCount(data.totalCount)
-        //         this.props.setPreloader(false)
-        //
-        //     })
-        getUsers(this.props.currentPage,this.props.pageSize);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setPreloader(true)
-        this.props.setCurrentPage(pageNumber)
-
-        UserApi.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-        })
-        //Имитация загрузки данных
-        setInterval(() => {
-            this.props.setPreloader(false)
-
-        }, 2000)
-
+        this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
@@ -64,7 +46,7 @@ export class UsersComponent extends React.Component<UserComponentType> {
                    currentPage={this.props.currentPage} follow={this.props.follow} unfollow={this.props.unFollow}
                    onPageChanged={this.onPageChanged} isArrFolUnFolUsers={this.props.isArrFolUnFolUsers}
                    isFetching={this.props.isFetching} addUserFollowList={this.props.addUserFollowList}
-            setPreloader={this.props.setPreloader}/>}
+                   setPreloader={this.props.setPreloader}/>}
         </>
 
     }
@@ -113,4 +95,5 @@ export const UsersContainer = connect(mapStateToProps, {
     setTotalUserCount,
     setPreloader,
     addUserFollowList,
+    getUsers: getUsersThunkCreator,
 })(UsersComponent)

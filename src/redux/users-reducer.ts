@@ -155,7 +155,7 @@ export const addUserFollowList = (id: number, isFetching: boolean): DispatchAddU
 })
 
 //Так выглядит санка thunk
-export const getUsers = (currentPage: number, pageSize: number) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch<UsersDispatchProps>) => {
         dispatch(setPreloader(true))
         UserApi.getUsers(currentPage, pageSize)
