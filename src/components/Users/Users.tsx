@@ -1,7 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from './users.module.css'
-import {UserApi} from "../../api/api";
 
 export type ExampleUserType = {
     id: number
@@ -20,13 +19,11 @@ export type UserPropsTypes = {
     pageSize: number
     totalUserCount: number
     currentPage: number
-    follow: (id: number) => void
-    unfollow: (id: number) => void
     onPageChanged: (p: number) => void,
     isArrFolUnFolUsers: Array<number>
     isFetching: boolean
-    addUserFollowList: (id: number, isFetching:boolean) => void
-    setPreloader: (isFetching: boolean) => void
+    setFollow: (id: number) => void
+    setUnFollow: (id: number) => void
 
 
 }
@@ -43,7 +40,6 @@ export const Users = (props: UserPropsTypes) => {
             {pages.map(p => {
                 return <span onClick={() => {
                     props.onPageChanged(p)
-
                 }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>
             })
             }
@@ -58,27 +54,10 @@ export const Users = (props: UserPropsTypes) => {
                         </NavLink>
                         <div> {user.followed ?
                             <button disabled={props.isArrFolUnFolUsers.some(id => id === user.id)} onClick={() => {
-                                props.addUserFollowList(user.id,true)
-                                UserApi.unFollow(user.id).then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.unfollow(user.id)
-                                    }
-                                    props.addUserFollowList(user.id,false)
-                                })
-
+                                props.setUnFollow(user.id)
                             }}>UnFollow</button> :
                             <button disabled={props.isArrFolUnFolUsers.some(id => id === user.id)} onClick={() => {
-                                props.addUserFollowList(user.id,true)
-                                console.log(props.isFetching)
-                                UserApi.follow(user.id).then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.follow(user.id)
-                                    }
-                                    props.addUserFollowList(user.id,false)
-
-                                })
-
-
+                                props.setFollow(user.id)
                             }}>Follow</button>} </div></span>
                     <span>
                     <div>{user.name}</div>

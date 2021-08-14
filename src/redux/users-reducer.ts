@@ -155,7 +155,7 @@ export const addUserFollowList = (id: number, isFetching: boolean): DispatchAddU
 })
 
 //Так выглядит санка thunk
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch<UsersDispatchProps>) => {
         dispatch(setPreloader(true))
         UserApi.getUsers(currentPage, pageSize)
@@ -168,5 +168,28 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     }
 }
 
+export const setFollow = (userId: number) => {
+    return (dispatch: Dispatch<UsersDispatchProps>) => {
+        dispatch(addUserFollowList(userId, true))
+        UserApi.follow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(follow(userId))
+            }
+            dispatch(addUserFollowList(userId, false))
 
+        })
+    }
+}
+
+export const setUnFollow = (userId: number) => {
+    return (dispatch: Dispatch<UsersDispatchProps>) => {
+        dispatch(addUserFollowList(userId, true))
+        UserApi.unFollow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unFollow(userId))
+            }
+            dispatch(addUserFollowList(userId, false))
+        })
+    }
+}
 

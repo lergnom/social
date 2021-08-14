@@ -2,15 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {ExampleUserType, Users} from './Users';
 import {
-    addUserFollowList,
-    follow, getUsersThunkCreator,
-    setCurrentPage, setPreloader,
-    setTotalUserCount,
-    setUsers,
-    unFollow,
+    getUsers,
+    setCurrentPage, setFollow,
+    setTotalUserCount, setUnFollow,
 } from '../../redux/users-reducer';
 import {Preloader} from '../../common/Preloader/Preloader';
-import {UserApi} from "../../api/api";
 
 type UserComponentType = {
     users: Array<ExampleUserType>
@@ -19,14 +15,11 @@ type UserComponentType = {
     currentPage: number
     isFetching: boolean
     isArrFolUnFolUsers: Array<number>
-    follow: (id: number) => void
-    unFollow: (id: number) => void
-    setUsers: (users: Array<ExampleUserType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUserCount: (totalCount: number) => void
-    setPreloader: (isFetching: boolean) => void
-    addUserFollowList: (id: number, isFetching: boolean) => void
     getUsers: (currentPage: number, pageSize: number) => void
+    setFollow: (id: number) => void
+    setUnFollow: (id: number) => void
 }
 
 export class UsersComponent extends React.Component<UserComponentType> {
@@ -36,6 +29,7 @@ export class UsersComponent extends React.Component<UserComponentType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.setCurrentPage(pageNumber)
     }
 
     render() {
@@ -43,10 +37,11 @@ export class UsersComponent extends React.Component<UserComponentType> {
             {this.props.isFetching && <Preloader/>}
             {!this.props.isFetching &&
             <Users users={this.props.users} pageSize={this.props.pageSize} totalUserCount={this.props.totalUserCount}
-                   currentPage={this.props.currentPage} follow={this.props.follow} unfollow={this.props.unFollow}
+                   currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged} isArrFolUnFolUsers={this.props.isArrFolUnFolUsers}
-                   isFetching={this.props.isFetching} addUserFollowList={this.props.addUserFollowList}
-                   setPreloader={this.props.setPreloader}/>}
+                   isFetching={this.props.isFetching}
+                   setFollow={this.props.setFollow}
+                   setUnFollow={this.props.setUnFollow}/>}
         </>
 
     }
@@ -60,7 +55,7 @@ const mapStateToProps = (state: any) => {
         totalUserCount: state.usersPage.totalUserCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        isArrFolUnFolUsers: state.usersPage.isArrFolUnFolUsers
+        isArrFolUnFolUsers: state.usersPage.isArrFolUnFolUsers,
     }
 }
 
@@ -88,12 +83,9 @@ const mapStateToProps = (state: any) => {
 // }
 
 export const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setUsers,
     setCurrentPage,
     setTotalUserCount,
-    setPreloader,
-    addUserFollowList,
-    getUsers: getUsersThunkCreator,
+    getUsers,
+    setFollow,
+    setUnFollow,
 })(UsersComponent)
