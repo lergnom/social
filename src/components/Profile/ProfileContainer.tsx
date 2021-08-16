@@ -25,8 +25,11 @@ export type ProfileContainerType = RouteComponentProps<PathParamType> & OwnProps
 
 class ProfileContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
-        const userId = this.props.match.params.userId
-        userId && this.props.getUserProfile(+userId)
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = '2'
+        }
+        this.props.getUserProfile(+userId)
 
         // userId && UserApi.getProfile(+userId).then(data => {
         //     this.props.setUserProfile(data)
