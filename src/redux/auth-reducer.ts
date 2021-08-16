@@ -14,7 +14,7 @@ let initialState: AuthReducerType = {
     id: 666,
     login: 'Agent007',
     email: 'agent@007.com',
-    isAuth: true
+    isAuth: false
 }
 
 type DispatchSetUserData = {

@@ -50,14 +50,6 @@ export type DialogsPageType = {
 export type ProfileType = {
     aboutMe: string,
     contacts: {
-        // facebook: string,
-        // website: string,
-        // vk: string,
-        // twitter: string,
-        // instagram: string,
-        // youtube: string,
-        // github: string,
-        // mainLink: string,
         [key: string]: string | undefined
     },
     lookingForAJob: boolean,

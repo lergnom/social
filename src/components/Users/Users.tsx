@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import s from './users.module.css'
 
 export type ExampleUserType = {
@@ -24,17 +24,23 @@ export type UserPropsTypes = {
     isFetching: boolean
     setFollow: (id: number) => void
     setUnFollow: (id: number) => void
+    isAuth: boolean
 
 
 }
 
 export const Users = (props: UserPropsTypes) => {
 
+
     let pageCount: number = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i)
     }
+    if (!props.isAuth) {
+        return <Redirect to={"/login"}/>
+    }
+
     return <>
         <div className={s.pagination}>
             {pages.map(p => {

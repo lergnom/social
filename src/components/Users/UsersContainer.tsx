@@ -20,6 +20,7 @@ type UserComponentType = {
     getUsers: (currentPage: number, pageSize: number) => void
     setFollow: (id: number) => void
     setUnFollow: (id: number) => void
+    isAuth: boolean
 }
 
 export class UsersComponent extends React.Component<UserComponentType> {
@@ -41,7 +42,7 @@ export class UsersComponent extends React.Component<UserComponentType> {
                    onPageChanged={this.onPageChanged} isArrFolUnFolUsers={this.props.isArrFolUnFolUsers}
                    isFetching={this.props.isFetching}
                    setFollow={this.props.setFollow}
-                   setUnFollow={this.props.setUnFollow}/>}
+                   setUnFollow={this.props.setUnFollow} isAuth={this.props.isAuth}/>}
         </>
 
     }
@@ -56,6 +57,7 @@ const mapStateToProps = (state: any) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         isArrFolUnFolUsers: state.usersPage.isArrFolUnFolUsers,
+        isAuth: state.auth.isAuth,
     }
 }
 
