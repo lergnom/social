@@ -1,12 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {ExampleUserType, Users} from './Users';
-import {
-    getUsers,
-    setCurrentPage, setFollow,
-    setTotalUserCount, setUnFollow,
-} from '../../redux/users-reducer';
+import {getUsers, setCurrentPage, setFollow, setTotalUserCount, setUnFollow,} from '../../redux/users-reducer';
 import {Preloader} from '../../common/Preloader/Preloader';
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type UserComponentType = {
     users: Array<ExampleUserType>
@@ -20,7 +17,6 @@ type UserComponentType = {
     getUsers: (currentPage: number, pageSize: number) => void
     setFollow: (id: number) => void
     setUnFollow: (id: number) => void
-    isAuth: boolean
 }
 
 export class UsersComponent extends React.Component<UserComponentType> {
@@ -42,7 +38,7 @@ export class UsersComponent extends React.Component<UserComponentType> {
                    onPageChanged={this.onPageChanged} isArrFolUnFolUsers={this.props.isArrFolUnFolUsers}
                    isFetching={this.props.isFetching}
                    setFollow={this.props.setFollow}
-                   setUnFollow={this.props.setUnFollow} isAuth={this.props.isAuth}/>}
+                   setUnFollow={this.props.setUnFollow}/>}
         </>
 
     }
@@ -57,7 +53,6 @@ const mapStateToProps = (state: any) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         isArrFolUnFolUsers: state.usersPage.isArrFolUnFolUsers,
-        isAuth: state.auth.isAuth,
     }
 }
 
@@ -84,10 +79,12 @@ const mapStateToProps = (state: any) => {
 //     }
 // }
 
+const withAuthRedirectComponent = withAuthRedirect(UsersComponent);
+
 export const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUserCount,
     getUsers,
     setFollow,
     setUnFollow,
-})(UsersComponent)
+})(withAuthRedirectComponent)

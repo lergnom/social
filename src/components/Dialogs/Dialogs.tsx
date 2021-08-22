@@ -4,7 +4,6 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {ContactsType, DialogsType, MessageType} from "../../redux/store";
 import {BestFriends} from "./BestFriends/BestFriends";
-import {Redirect} from "react-router-dom";
 
 type DialogsPropsTypes = {
     dialogs: Array<DialogsType>
@@ -13,7 +12,6 @@ type DialogsPropsTypes = {
     onClickHandler: () => void
     onChangeHandler: (value: string) => void
     newMessage: string
-    isAuth: boolean
 }
 
 export const Dialogs = (props: DialogsPropsTypes) => {
@@ -34,9 +32,7 @@ export const Dialogs = (props: DialogsPropsTypes) => {
     const onClickHandler = () => {
         props.onClickHandler()
     }
-    if (!props.isAuth) {
-        return <Redirect to={"/login"}/>
-    }
+
     return (
         <>
             {bestFriends()}

@@ -24,7 +24,6 @@ export type UserPropsTypes = {
     isFetching: boolean
     setFollow: (id: number) => void
     setUnFollow: (id: number) => void
-    isAuth: boolean
 
 
 }
@@ -36,9 +35,6 @@ export const Users = (props: UserPropsTypes) => {
     let pages = []
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i)
-    }
-    if (!props.isAuth) {
-        return <Redirect to={"/login"}/>
     }
 
     return <>
