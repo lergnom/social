@@ -29,7 +29,9 @@ export const ProfileInfo = ({profile}: ProfileContainerType) => {
                     <img className={s.ava} src={profile.photos.large} alt={profile.fullName}/>
                     <h3>{profile.fullName}</h3>
                     <em>{profile.aboutMe}</em>
-                    <ProfileStatus/>
+
+                    {/*//Компонента отображения и изменения статуса*/}
+                    <ProfileStatus status={profile.aboutMe}/>
                 </div>
                 <div className={s.information}>
                     {profile.lookingForAJob && <div className={s.workDescription}>
