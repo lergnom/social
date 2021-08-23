@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileContainerType} from '../ProfileContainer';
 import {Preloader} from "../../../common/Preloader/Preloader";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 
 export const ProfileInfo = ({profile}: ProfileContainerType) => {
@@ -28,6 +29,7 @@ export const ProfileInfo = ({profile}: ProfileContainerType) => {
                     <img className={s.ava} src={profile.photos.large} alt={profile.fullName}/>
                     <h3>{profile.fullName}</h3>
                     <em>{profile.aboutMe}</em>
+                    <ProfileStatus/>
                 </div>
                 <div className={s.information}>
                     {profile.lookingForAJob && <div className={s.workDescription}>
