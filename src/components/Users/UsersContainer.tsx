@@ -90,7 +90,6 @@ const mapStateToProps = (state: any) => {
 //     setUnFollow,
 // })(withAuthRedirectComponent)
 
-
 export const UsersContainer = compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps, {
     setCurrentPage,
     setTotalUserCount,
