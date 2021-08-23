@@ -4,6 +4,7 @@ import {ExampleUserType, Users} from './Users';
 import {getUsers, setCurrentPage, setFollow, setTotalUserCount, setUnFollow,} from '../../redux/users-reducer';
 import {Preloader} from '../../common/Preloader/Preloader';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from 'redux';
 
 type UserComponentType = {
     users: Array<ExampleUserType>
@@ -79,12 +80,21 @@ const mapStateToProps = (state: any) => {
 //     }
 // }
 
-const withAuthRedirectComponent = withAuthRedirect(UsersComponent);
+// const withAuthRedirectComponent = withAuthRedirect(UsersComponent);
+//
+// export const UsersContainer = connect(mapStateToProps, {
+//     setCurrentPage,
+//     setTotalUserCount,
+//     getUsers,
+//     setFollow,
+//     setUnFollow,
+// })(withAuthRedirectComponent)
 
-export const UsersContainer = connect(mapStateToProps, {
+
+export const UsersContainer = compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps, {
     setCurrentPage,
     setTotalUserCount,
     getUsers,
     setFollow,
     setUnFollow,
-})(withAuthRedirectComponent)
+}))(UsersComponent)
