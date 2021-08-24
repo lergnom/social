@@ -29,6 +29,12 @@ export const UserApi = {
     getProfile(id: number) {
         return instance.get(`profile/${id}`).then(response => response.data)
     },
+    getStatus(userId: number) {
+
+    },
+    updateStatus(status: string) {
+
+    }
 }
 
 
