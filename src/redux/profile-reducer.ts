@@ -1,17 +1,11 @@
-import {
-    DispatchAddPostProps,
-    DispatchChangePostProps,
-    DispatchProps,
-    PostsType,
-    ProfilePageType, ProfileType,
-    RootStateType
-} from './store';
+import {DispatchAddPostProps, DispatchChangePostProps, PostsType, ProfilePageType, ProfileType} from './store';
 import {UserApi} from "../api/api";
 import {Dispatch} from "redux";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const GET_STATUS = 'GET_STATUS'
 
 let initialState: ProfilePageType = {
     messageForNewPost: "",
@@ -68,7 +62,6 @@ export const profileReducer = (state = initialState, action: DispatchPropsType) 
         case UPDATE_NEW_POST:
             return {...state, messageForNewPost: action.newText}
         case SET_USER_PROFILE:
-
             return {...state, profile: action.profile}
         default:
             return state
@@ -88,7 +81,11 @@ export type DispatSetUserProfileType = {
     profile: ProfileType
 }
 
-export type DispatchPropsType = DispatchAddPostProps | DispatchChangePostProps | DispatSetUserProfileType
+export type DispatchPropsType =
+    DispatchAddPostProps
+    | DispatchChangePostProps
+    | DispatSetUserProfileType
+    | DispatchGetUserStatusType
 
 export const setUserProfile = (profile: ProfileType): DispatSetUserProfileType => ({type: SET_USER_PROFILE, profile})
 
@@ -97,6 +94,23 @@ export const getUserProfile = (id: number) => {
         UserApi.getProfile(id)
             .then(data => {
                 dispatch(setUserProfile(data))
+            })
+    }
+}
+export type DispatchGetUserStatusType = {
+    type: 'GET_STATUS'
+    status: string
+}
+
+const getStatus = (status: string): DispatchGetUserStatusType => ({type: GET_STATUS, status})
+
+
+export const getUserStatus = (userId: number) => {
+    return (dispatch: Dispatch<DispatchPropsType>) => {
+        UserApi.getStatus(userId)
+            .then(data => {
+                console.log("STATUS ", data.data.status)
+                dispatch(getStatus(data.data.status))
             })
     }
 }

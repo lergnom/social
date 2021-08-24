@@ -30,7 +30,7 @@ export const UserApi = {
         return instance.get(`profile/${id}`).then(response => response.data)
     },
     getStatus(userId: number) {
-
+        return instance.get(`profile/status/${userId}`);
     },
     updateStatus(status: string) {
 
