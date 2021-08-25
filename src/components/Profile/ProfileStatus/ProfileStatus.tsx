@@ -3,12 +3,14 @@ import React from "react";
 
 type ProfileStatusType = {
     status: string;
+    updateUserStatus: (text: string) => void
 }
 
 class ProfileStatus extends React.Component<ProfileStatusType> {
 
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     };
 
     toggleStateStatus() {
@@ -19,11 +21,22 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
 
     //на стрелочную функцию
     toggleStateStatusArrow = (value: boolean) => {
+        value && this.props.updateUserStatus(this.state.status);
         this.setState({
             editMode: value
         });
     };
 
+    changeStatusText = (newText: String) => {
+        this.setState({
+            status: newText
+        })
+    }
+    onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
 
     render() {
         return <>
@@ -31,9 +44,10 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
                 <span
                     onDoubleClick={() => {
                         this.toggleStateStatusArrow(true)
-                    }}>{this.props.status}</span> :
-                <input autoFocus={true} onBlur={this.toggleStateStatus.bind(this, false)} name={'editStatus'}
-                       value={this.props.status}/>}
+                    }}>Статус: {this.props.status || 'no status'}</span> :
+                <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.toggleStateStatus.bind(this, false)}
+                       name={'editStatus'}
+                       value={this.state.status}/>}
         </>
     };
 }

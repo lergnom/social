@@ -5,11 +5,10 @@ import {Preloader} from "../../../common/Preloader/Preloader";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 
-export const ProfileInfo = ({profile}: ProfileContainerType) => {
+export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
     if (!profile) {
         return <Preloader/>
     }
-
     const socialIcons = Object.keys(profile.contacts).map(el => {
         if (profile.contacts[el] === null) {
             return <></>
@@ -21,6 +20,7 @@ export const ProfileInfo = ({profile}: ProfileContainerType) => {
         )
     })
 
+
     return (
         <>
 
@@ -31,7 +31,7 @@ export const ProfileInfo = ({profile}: ProfileContainerType) => {
                     <em>{profile.aboutMe}</em>
 
                     {/*//Компонента отображения и изменения статуса*/}
-                    <ProfileStatus status={profile.aboutMe}/>
+                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
                 </div>
                 <div className={s.information}>
                     {profile.lookingForAJob && <div className={s.workDescription}>

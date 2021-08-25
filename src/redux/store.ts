@@ -67,6 +67,7 @@ export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostsType>
     profile: ProfileType
+    status:string
 
 }
 export type ContactsType = {

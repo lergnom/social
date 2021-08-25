@@ -46,7 +46,8 @@ let initialState: ProfilePageType = {
         userId: 4,
         fullName: 'Антон Асмоловский'
 
-    }
+    },
+    status: 'Статус'
 }
 
 export const profileReducer = (state = initialState, action: DispatchPropsType) => {
@@ -63,6 +64,8 @@ export const profileReducer = (state = initialState, action: DispatchPropsType) 
             return {...state, messageForNewPost: action.newText}
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
+        case GET_STATUS:
+            return {...state, status: action.status}
         default:
             return state
     }
@@ -108,9 +111,19 @@ const getStatus = (status: string): DispatchGetUserStatusType => ({type: GET_STA
 export const getUserStatus = (userId: number) => {
     return (dispatch: Dispatch<DispatchPropsType>) => {
         UserApi.getStatus(userId)
-            .then(data => {
-                console.log("STATUS ", data.data.status)
-                dispatch(getStatus(data.data.status))
+            .then(response => {
+                dispatch(getStatus(response.data))
+            })
+    }
+}
+
+export const updateUserStatus = (status: string) => {
+    return (dispatch: Dispatch<DispatchPropsType>) => {
+        UserApi.updateStatus(status)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(getStatus(status))
+                }
             })
     }
 }
