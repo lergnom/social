@@ -34,7 +34,10 @@ export const UserApi = {
     },
     updateStatus(status: string) {
         return instance.put(`profile/status/`, {status})
-    }
+    },
+    login(dataForLogin: object) {
+        return instance.post(`auth/login`, {dataForLogin})
+    },
 }
 
 
