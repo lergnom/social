@@ -19,7 +19,6 @@ export type PostsType = {
 }
 
 export type DialogsPageType = {
-    newText: string
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     contacts: Array<ContactsType>

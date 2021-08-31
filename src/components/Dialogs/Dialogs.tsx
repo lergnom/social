@@ -26,15 +26,7 @@ export const Dialogs = (props: DialogsPropsTypes) => {
         } else return
     }
 
-    // const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //     props.onChangeHandler(e.currentTarget.value)
-    // }
-
-    // const onClickHandler = () => {
-    //     props.onClickHandler()
-    // }
-
-    const addNewMessage = (object: AddMessageType) => {
+     const addNewMessage = (object: AddMessageType) => {
         props.onClickHandler(object.newMessage)
     }
 
