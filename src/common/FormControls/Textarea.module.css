@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.wrapper span {
+    margin-left: 10px;
+    color: red;
+}
+
+.error {
+    border: 1px solid red;
+}
