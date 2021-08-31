@@ -1,16 +1,18 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {ContactsType, DialogsType, MessageType} from "../../redux/store";
 import {BestFriends} from "./BestFriends/BestFriends";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Textarea} from "../../common/FormControls/Textarea";
+import {maxLengthCreator, requireField} from "../../common/utils/validators";
 
 type DialogsPropsTypes = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     contacts: Array<ContactsType>
-    onClickHandler: (newMessage:string) => void
+    onClickHandler: (newMessage: string) => void
     onChangeHandler: (value: string) => void
     newMessage: string
 }
@@ -26,7 +28,7 @@ export const Dialogs = (props: DialogsPropsTypes) => {
         } else return
     }
 
-     const addNewMessage = (object: AddMessageType) => {
+    const addNewMessage = (object: AddMessageType) => {
         props.onClickHandler(object.newMessage)
     }
 
@@ -52,11 +54,15 @@ export const Dialogs = (props: DialogsPropsTypes) => {
 type AddMessageType = {
     newMessage: string
 }
+const maxLength50 = maxLengthCreator(50);
+
 
 const AddMessageForm = (props: InjectedFormProps<AddMessageType>) => {
+
     return (
         <form className={s.textBlock} onSubmit={props.handleSubmit}>
-            <Field component="textarea" name='newMessage' placeholder="input your message"/>
+            <Field component={Textarea} name='newMessage' placeholder="input your message"
+                   validate={[requireField, maxLength50]} typeField={'Textarea'}/>
             <button>send</button>
         </form>
     )

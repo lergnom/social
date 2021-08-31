@@ -50,6 +50,4 @@
 
 .textBlock {
     margin-left: 25px;
-    display: flex;
-    flex-direction: column;
 }
