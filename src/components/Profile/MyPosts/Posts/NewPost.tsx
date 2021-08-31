@@ -1,5 +1,6 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {requireField} from "../../../../common/utils/validators";
 
 /**
  * PostProfileComponent - add new message {} into state
@@ -28,7 +29,7 @@ export const NewPost = (props: NewPostProps) => {
 const newPost = (props: InjectedFormProps<NewPostReduxFormType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component='textarea' name='postText'/>
+            <Field component='textarea' name='postText' validate={[requireField]}/>
             <div>
                 <button>add</button>
             </div>
