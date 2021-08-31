@@ -14,6 +14,21 @@ export const Textarea = ({input, meta, typeField, ...props}: any) => {
     )
 }
 
+export const FieldControl = ({input, meta, FieldChange, ...props}: any) => {
+    const hasTouched = meta.touched && meta.error;
+    return (
+        <div className={s.wrapper}>
+            <FieldChange {...input}{...props} className={hasTouched && s.error}/>
+            {hasTouched && <span>{meta.error}</span>}
+        </div>
+    )
+}
+
+export const MyField = ({fieldChange,...props}: any) => {
+
+    return <FieldControl {...props} FieldChange={fieldChange}/>
+}
+
 // const FormControl = ({input,meta,Formtype ...props}:any) => {
 //     const hasError = meta.touched && meta.error;
 //     return (
