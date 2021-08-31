@@ -8,28 +8,10 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 export type NewPostProps = {
     addPost: (name: string) => void
-    messageForNewPost: string
-    changeNewText: (s: string) => void
-    // dispatch: (props: DispatchChangePostProps | DispatchAddPostProps) => void
 }
 
 
 export const NewPost = (props: NewPostProps) => {
-    // const addNewMessage = () => {
-    //     props.addPost(props.messageForNewPost)
-    //     // props.dispatch(addPostActionCreator())
-    // }
-    // const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //     // let text = e.currentTarget.value
-    //     props.changeNewText(e.currentTarget.value)
-    //     // props.dispatch(updateNewPostTextActionCreator(text))
-    // }
-    //
-    // const onKeyPressMessage = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    //     if (e.ctrlKey && e.key === "Enter") {
-    //         addNewMessage()
-    //     }
-    // }
     const addPost = (object: NewPostReduxFormType) => {
         console.log(object.postText);
         props.addPost(object.postText);

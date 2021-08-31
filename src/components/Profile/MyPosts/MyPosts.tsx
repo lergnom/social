@@ -7,8 +7,6 @@ import s from './MyPosts.module.css'
 type MyPostsPorps = {
     posts: Array<PostsType>
     addPost: (name: string) => void
-    messageForNewPost: string
-    changeNewText: (s: string) => void
 }
 
 export function MyPosts(props: MyPostsPorps) {
@@ -21,9 +19,7 @@ export function MyPosts(props: MyPostsPorps) {
         <div className={s.postsContainer}>
             <div>
                 <NewPost
-                    addPost={props.addPost}
-                    messageForNewPost={props.messageForNewPost}
-                    changeNewText={props.changeNewText}/>
+                    addPost={props.addPost}/>
             </div>
             <div>
                 {postsElements}

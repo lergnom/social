@@ -8,7 +8,6 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const GET_STATUS = 'GET_STATUS'
 
 let initialState: ProfilePageType = {
-    messageForNewPost: "",
     posts: [
         {id: 1, message: 'Hi', likesCount: 12, img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'},
         {
@@ -75,9 +74,6 @@ export const addPostActionCreator = (text: string): DispatchAddPostProps => {
     return {type: ADD_POST, text} as const
 }
 
-export const updateNewPostTextActionCreator = (text: string): DispatchChangePostProps => {
-    return {type: UPDATE_NEW_POST, newText: text} as const
-}
 
 export type DispatSetUserProfileType = {
     type: 'SET_USER_PROFILE'
