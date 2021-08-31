@@ -1,8 +1,9 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {UserApi} from "../../api/api";
 import {MyField} from "../../common/FormControls/Textarea";
 import {requireField} from "../../common/utils/validators";
+import {loginTC} from "../../redux/auth-reducer";
+import {useDispatch} from "react-redux";
 
 type LoginFormDataType = {
     login: string,
@@ -22,7 +23,7 @@ const LoginForm = (props: InjectedFormProps<LoginFormDataType>) => {
                        validate={[requireField]} fieldChange="Input"/>
             </div>
             <label>
-                <Field component={MyField} name={'remeberMe'} type="checkbox" fieldChange="Input" /> remeberMe
+                <Field component={MyField} name={'remeberMe'} type="checkbox" fieldChange="Input"/> remeberMe
             </label>
             <div>
                 <button>LogIn</button>
@@ -34,16 +35,14 @@ const LoginReduxForm = reduxForm<LoginFormDataType>({
     form: 'loginForm'
 })(LoginForm)
 
-export const Login = () => {
-    const onSubmit = (formData: LoginFormDataType) => {
-        UserApi.login(formData)
-            .then(res => {
-                if (res.data.resultCode === 1) {
-                    console.log(res.data)
 
-                }
-            })
+export const Login = () => {
+    const dispatch = useDispatch();
+
+    const onSubmit = (props: LoginFormDataType) => {
+        dispatch(loginTC(props.login, props.password, props.remeberMe));
     }
+
     return <>
         <h1>Login Form</h1>
         <LoginReduxForm onSubmit={onSubmit}/>

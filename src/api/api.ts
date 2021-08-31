@@ -20,23 +20,26 @@ export const UserApi = {
     },
     unFollow(id: number) {
         return instance.delete(`follow/${id}`)
-            .then(response => response.data)
+            .then(response => response.data);
     },
     autorized() {
         return instance.get(`auth/me`)
-            .then(response => response.data)
+            .then(response => response.data);
     },
     getProfile(id: number) {
-        return instance.get(`profile/${id}`).then(response => response.data)
+        return instance.get(`profile/${id}`).then(response => response.data);
     },
     getStatus(userId: number) {
         return instance.get(`profile/status/${userId}`);
     },
     updateStatus(status: string) {
-        return instance.put(`profile/status/`, {status})
+        return instance.put(`profile/status/`, {status});
     },
-    login(dataForLogin: object) {
-        return instance.post(`auth/login`, {dataForLogin})
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post(`auth/login`, {email, password, rememberMe});
+    },
+    logout() {
+        return instance.delete(`auth/login`);
     },
 }
 
