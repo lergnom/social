@@ -55,7 +55,7 @@ export const profileReducer = (state = initialState, action: DispatchPropsType) 
         case ADD_POST:
             const newPost: PostsType = {
                 id: new Date().getTime(),
-                message: state.messageForNewPost,
+                message: action.text,
                 likesCount: 0,
                 img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
             }
@@ -71,8 +71,8 @@ export const profileReducer = (state = initialState, action: DispatchPropsType) 
     }
 }
 
-export const addPostActionCreator = (): DispatchAddPostProps => {
-    return {type: ADD_POST} as const
+export const addPostActionCreator = (text: string): DispatchAddPostProps => {
+    return {type: ADD_POST, text} as const
 }
 
 export const updateNewPostTextActionCreator = (text: string): DispatchChangePostProps => {

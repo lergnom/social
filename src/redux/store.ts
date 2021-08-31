@@ -1,5 +1,4 @@
-import {dialogsReducer} from "./dialogs-reducer";
-import {DispatSetUserProfileType, profileReducer} from "./profile-reducer";
+import {DispatSetUserProfileType} from "./profile-reducer";
 
 export type DialogsType = {
     id: number
@@ -66,7 +65,7 @@ export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostsType>
     profile: ProfileType
-    status:string
+    status: string
 
 }
 export type ContactsType = {
@@ -91,6 +90,7 @@ export type DispatchProps =
 
 export type DispatchAddPostProps = {
     type: 'ADD-POST'
+    text: string
 }
 
 export type DispatchAddMessageProps = {
