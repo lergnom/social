@@ -1,12 +1,4 @@
-import {
-    DialogsPageType,
-    DialogsType, DispatchAddMessageProps, DispatchCangeMessageProps,
-    DispatchChangePostProps,
-    DispatchProps,
-    MessageType,
-    PostsType,
-    RootStateType
-} from "./store";
+import {DialogsPageType, DispatchAddMessageProps, DispatchCangeMessageProps, DispatchProps, MessageType} from "./store";
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
@@ -58,18 +50,18 @@ export const dialogsReducer = (state = initialState, action: DispatchProps) => {
         case ADD_MESSAGE:
             const newMessage: MessageType = {
                 id: new Date().getTime(),
-                message: state.newText
+                message: action.newMessage
             }
-           return {...state, newText: "", messages: [...state.messages, newMessage]}
+            return {...state, newText: "", messages: [...state.messages, newMessage]}
 
         case UPDATE_NEW_MESSAGE_BODY:
-           return {...state, newText: action.text}
-            default:
+            return {...state, newText: action.text}
+        default:
             return state
     }
 }
-export const addMessageActionCreator = (): DispatchAddMessageProps => {
-    return {type: ADD_MESSAGE}
+export const addMessageActionCreator = (newMessage: string): DispatchAddMessageProps => {
+    return {type: ADD_MESSAGE, newMessage}
 }
 
 export const updateNewMessageTextActionCreator = (text: string): DispatchCangeMessageProps => {

@@ -17,8 +17,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onClickHandler: () => {
-            dispatch(addMessageActionCreator())
+        onClickHandler: (newMessage: string) => {
+            dispatch(addMessageActionCreator(newMessage))
         },
         onChangeHandler: (text: string) => {
             dispatch(updateNewMessageTextActionCreator(text))

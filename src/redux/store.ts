@@ -96,6 +96,7 @@ export type DispatchAddPostProps = {
 
 export type DispatchAddMessageProps = {
     type: 'ADD-MESSAGE'
+    newMessage: string
     // text: string
 }
 
