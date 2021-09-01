@@ -2,8 +2,9 @@ import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {MyField} from "../../common/FormControls/Textarea";
 import {requireField} from "../../common/utils/validators";
+// import {loginTC} from "../../redux/auth-reducer";
+import {connect, useDispatch} from "react-redux";
 import {loginTC} from "../../redux/auth-reducer";
-import {useDispatch} from "react-redux";
 
 type LoginFormDataType = {
     login: string,
@@ -36,11 +37,12 @@ const LoginReduxForm = reduxForm<LoginFormDataType>({
 })(LoginForm)
 
 
-export const Login = () => {
+const Login = (props: any) => {
     const dispatch = useDispatch();
-
+    const loginFunc = props.loginTC;
     const onSubmit = (props: LoginFormDataType) => {
-        dispatch(loginTC(props.login, props.password, props.remeberMe));
+        loginFunc(props.login, props.password, props.remeberMe);
+        // dispatch(loginTC(props.login, props.password, props.remeberMe));
     }
 
     return <>
@@ -49,3 +51,5 @@ export const Login = () => {
     </>
 
 }
+
+export default connect(null, {loginTC})(Login)
