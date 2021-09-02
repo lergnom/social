@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {loginTC} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
+import s from './../../common/FormControls/Textarea.module.css'
 
 type LoginFormDataType = {
     login: string,
@@ -28,6 +29,12 @@ const LoginForm = (props: InjectedFormProps<LoginFormDataType>) => {
                 <Field component={MyField} name={'remeberMe'} type="checkbox" fieldChange="Input"/> remeberMe
             </label>
             <div>
+                {props.error && <div className={s.error}>{props.error}</div>}
+
+            </div>
+            <div>
+
+
                 <button>LogIn</button>
             </div>
         </form>
