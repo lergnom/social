@@ -2,9 +2,10 @@ import React from "react";
 import {MyPosts} from "./MyPosts";
 import {addPostActionCreator} from "../../../redux/profile-reducer";
 import {connect} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
 
 
-export const mapStateToProps = (state: any) => {
+export const mapStateToProps = (state: AppStateType) => {
     return {
         posts: state.profilePage.posts,
     }
@@ -12,7 +13,7 @@ export const mapStateToProps = (state: any) => {
 
 export const mapDispatchToProps = (dispatch: any) => {
     return {
-        addPost: (text:string) => {
+        addPost: (text: string) => {
             dispatch(addPostActionCreator(text))
         }
     }
