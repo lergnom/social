@@ -4,14 +4,14 @@ import {connect} from "react-redux";
 import {addMessageActionCreator} from "../../redux/dialogs-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {AppStateType} from "../../redux/redux-store";
 
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
         contacts: state.dialogsPage.contacts,
-        newMessage: state.dialogsPage.newText,
     }
 }
 
