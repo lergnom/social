@@ -75,10 +75,12 @@ export const addPostActionCreator = (text: string): DispatchAddPostProps => {
 }
 
 
-export type DispatSetUserProfileType = {
-    type: 'SET_USER_PROFILE'
-    profile: ProfileType
-}
+// export type DispatSetUserProfileType = {
+//     type: 'SET_USER_PROFILE'
+//     profile: ProfileType
+// }
+
+export type DispatSetUserProfileType = ReturnType<typeof setUserProfile>
 
 export type DispatchPropsType =
     DispatchAddPostProps
@@ -86,7 +88,7 @@ export type DispatchPropsType =
     | DispatSetUserProfileType
     | DispatchGetUserStatusType
 
-export const setUserProfile = (profile: ProfileType): DispatSetUserProfileType => ({type: SET_USER_PROFILE, profile})
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile}) as const
 
 export const getUserProfile = (id: number) => {
     return (dispatch: Dispatch<DispatchPropsType>) => {
@@ -96,12 +98,14 @@ export const getUserProfile = (id: number) => {
             })
     }
 }
-export type DispatchGetUserStatusType = {
-    type: 'GET_STATUS'
-    status: string
-}
+// export type DispatchGetUserStatusType = {
+//     type: 'GET_STATUS'
+//     status: string
+// }
 
-const getStatus = (status: string): DispatchGetUserStatusType => ({type: GET_STATUS, status})
+export type DispatchGetUserStatusType = ReturnType<typeof getStatus>
+
+const getStatus = (status: string) => ({type: GET_STATUS, status}) as const
 
 
 export const getUserStatus = (userId: number) => {

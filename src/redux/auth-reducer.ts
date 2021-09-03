@@ -18,15 +18,17 @@ let initialState: AuthReducerType = {
     isAuth: false
 }
 
-type DispatchSetUserData = {
-    type: 'SET_USER_DATA'
-    payload: { id: number, login: string, email: string, isAuth: boolean }
-}
+// type DispatchSetUserData = {
+//     type: 'SET_USER_DATA'
+//     payload: { id: number, login: string, email: string, isAuth: boolean }
+// }
 
-export const setAuthUserData = (id: number, login: string, email: string, isAuth: boolean): DispatchSetUserData => ({
+type  DispatchSetUserData = ReturnType<typeof setAuthUserData>;
+
+export const setAuthUserData = (id: number, login: string, email: string, isAuth: boolean) => ({
     type: SET_USER_DATA,
     payload: {id, login, email, isAuth}
-})
+});
 
 type AuthDispatchProps = DispatchSetUserData
 
@@ -34,9 +36,9 @@ type AuthDispatchProps = DispatchSetUserData
 export const authReducer = (state: AuthReducerType = initialState, action: AuthDispatchProps): AuthReducerType => {
     switch (action.type) {
         case SET_USER_DATA:
-            return {...state, ...action.payload}
+            return {...state, ...action.payload};
         default:
-            return {...state}
+            return {...state};
     }
 }
 
@@ -70,7 +72,6 @@ export const logoutTc = () => (dispatch: Dispatch) => {
     UserApi.logout()
         .then(res => {
             if (res.data.resultCode === 0) {
-                console.log("go out");
                 dispatch(setAuthUserData(7, '', '', false));
             }
         })
