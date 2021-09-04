@@ -18,10 +18,7 @@ let initialState: AuthReducerType = {
     isAuth: false
 }
 
-// type DispatchSetUserData = {
-//     type: 'SET_USER_DATA'
-//     payload: { id: number, login: string, email: string, isAuth: boolean }
-// }
+
 
 type  DispatchSetUserData = ReturnType<typeof setAuthUserData>;
 
