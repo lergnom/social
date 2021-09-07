@@ -1,16 +1,9 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {autorizeMe} from "../../redux/auth-reducer";
 
-type HeaderComponentType = {
-    autorizeMe: () => void
-}
 
-export class HeaderComponent extends React.Component<HeaderComponentType> {
-    componentDidMount() {
-        this.props.autorizeMe()
-    }
+export class HeaderComponent extends React.Component {
 
     render() {
         return <Header {...this.props}/>
@@ -24,6 +17,4 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-export const HeaderContainer = connect(mapStateToProps, {
-    autorizeMe
-})(HeaderComponent)
+export const HeaderContainer = connect(mapStateToProps, {})(HeaderComponent)

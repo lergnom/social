@@ -9,34 +9,48 @@ import {UsersContainer} from './components/Users/UsersContainer';
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import {connect} from "react-redux";
+import {autorizeMe} from "./redux/auth-reducer";
 
-function App() {
-
-
-    return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                {/*<Navbar/>*/}
-                <div className='app-wrapper-content'>
-                    <Route path={"/dialogs"}
-                           render={() => <DialogsContainer/>
-                           }/>
-                    <Route path={"/profile/:userId?"}
-                           render={() => <ProfileContainer/>
-                           }/>
-                    <Route path={"/users"}
-                           render={() => <UsersContainer/>}/>
-                    <Route path={"/news"} render={() => <News/>}/>
-                    <Route path={"/music"} render={() => <Music/>}/>
-                    <Route path={"/settings"} render={() => <Settings/>}/>
-                    <Route path={"/login"} render={() => <Login/>}/>
-
-                </div>
-            </div>
-        </BrowserRouter>
-
-    );
+type AppComponentType = {
+    autorizeMe: () => void
 }
 
-export default App;
+class App extends React.Component<AppComponentType> {
+    componentDidMount() {
+        this.props.autorizeMe()
+    }
+
+    render() {
+
+
+        return (
+            <BrowserRouter>
+                <div className='app-wrapper'>
+                    <HeaderContainer/>
+                    {/*<Navbar/>*/}
+                    <div className='app-wrapper-content'>
+                        <Route path={"/dialogs"}
+                               render={() => <DialogsContainer/>
+                               }/>
+                        <Route path={"/profile/:userId?"}
+                               render={() => <ProfileContainer/>
+                               }/>
+                        <Route path={"/users"}
+                               render={() => <UsersContainer/>}/>
+                        <Route path={"/news"} render={() => <News/>}/>
+                        <Route path={"/music"} render={() => <Music/>}/>
+                        <Route path={"/settings"} render={() => <Settings/>}/>
+                        <Route path={"/login"} render={() => <Login/>}/>
+
+                    </div>
+                </div>
+            </BrowserRouter>
+
+        );
+    }
+}
+
+export default connect(null, {
+    autorizeMe
+})(App)
