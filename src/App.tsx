@@ -10,18 +10,25 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
-import {autorizeMe} from "./redux/auth-reducer";
+import {initializeApp} from "./redux/app-reducer";
+import {AppStateType} from "./redux/redux-store";
+import {Preloader} from "./common/Preloader/Preloader";
 
 type AppComponentType = {
-    autorizeMe: () => void
+    initializeApp: () => void
+    initialized: boolean
 }
 
 class App extends React.Component<AppComponentType> {
     componentDidMount() {
-        this.props.autorizeMe()
+        this.props.initializeApp()
     }
 
     render() {
+
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
 
 
         return (
@@ -51,6 +58,10 @@ class App extends React.Component<AppComponentType> {
     }
 }
 
-export default connect(null, {
-    autorizeMe
+const mapStateToProps = (state: AppStateType) => ({
+    initialized: state.app.initialized,
+})
+
+export default connect(mapStateToProps, {
+    initializeApp
 })(App)

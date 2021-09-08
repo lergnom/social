@@ -19,7 +19,6 @@ let initialState: AuthReducerType = {
 }
 
 
-
 type  DispatchSetUserData = ReturnType<typeof setAuthUserData>;
 
 export const setAuthUserData = (id: number, login: string, email: string, isAuth: boolean) => ({
@@ -39,18 +38,16 @@ export const authReducer = (state: AuthReducerType = initialState, action: AuthD
     }
 }
 
-export const autorizeMe = () => {
-    return (dispatch: Dispatch) => {
-        UserApi.autorized()
-            .then(response => {
-                    if (response.resultCode === 0) {
-                        let {id, login, email} = response.data
-                        dispatch(setAuthUserData(id, login, email, true))
-                    }
-                }
-            )
-    }
+export const autorizeMe = () => (dispatch: Dispatch) => {
+   return UserApi.autorized()
+        .then(response => {
+            if (response.resultCode === 0) {
+                let {id, login, email} = response.data
+                dispatch(setAuthUserData(id, login, email, true))
+            }
+        });
 }
+
 
 export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch<any>) => {
 
