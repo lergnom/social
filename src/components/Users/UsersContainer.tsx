@@ -5,6 +5,14 @@ import {getUsers, setCurrentPage, setFollow, setTotalUserCount, setUnFollow,} fr
 import {Preloader} from '../../common/Preloader/Preloader';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from 'redux';
+import {
+    getCurrentPage,
+    getIsArrFolUnFolUsers,
+    getIsFetching,
+    getPageSize,
+    getTotalUserCount,
+    getUsersState
+} from "../../redux/users-selectors";
 
 type UserComponentType = {
     users: Array<ExampleUserType>
@@ -46,16 +54,28 @@ export class UsersComponent extends React.Component<UserComponentType> {
 }
 
 
+// const mapStateToProps = (state: any) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUserCount: state.usersPage.totalUserCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         isArrFolUnFolUsers: state.usersPage.isArrFolUnFolUsers,
+//     }
+// }
+
 const mapStateToProps = (state: any) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUserCount: state.usersPage.totalUserCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        isArrFolUnFolUsers: state.usersPage.isArrFolUnFolUsers,
+        users: getUsersState(state),
+        pageSize: getPageSize(state),
+        totalUserCount: getTotalUserCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        isArrFolUnFolUsers: getIsArrFolUnFolUsers(state),
     }
 }
+
 
 // const mapDispatchToProps = (dispatch: any) => {
 //     return {
