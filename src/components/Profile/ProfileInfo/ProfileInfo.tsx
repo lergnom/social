@@ -2,23 +2,23 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileContainerType} from '../ProfileContainer';
 import {Preloader} from "../../../common/Preloader/Preloader";
-import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import ProfileStatusWithHook from "../ProfileStatus/ProfileStatusWithHook";
 
 
 export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
     if (!profile) {
-        return <Preloader/>
+        return <Preloader/>;
     }
     const socialIcons = Object.keys(profile.contacts).map(el => {
         if (profile.contacts[el] === null) {
-            return <></>
+            return <></>;
         }
         return (
             <>
                 <a className={`${s.socialIcon} ${s[el]}`} href={profile.contacts[el]}> </a>
             </>
-        )
-    })
+        );
+    });
 
 
     return (
@@ -31,7 +31,7 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
                     <em>{profile.aboutMe}</em>
 
                     {/*//Компонента отображения и изменения статуса*/}
-                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                    <ProfileStatusWithHook status={props.status} updateUserStatus={props.updateUserStatus}/>
                 </div>
                 <div className={s.information}>
                     {profile.lookingForAJob && <div className={s.workDescription}>
@@ -51,5 +51,5 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
 
             </div>
         </>
-    )
-}
+    );
+};
