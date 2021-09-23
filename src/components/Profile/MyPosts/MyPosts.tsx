@@ -2,18 +2,19 @@ import React from "react";
 import {Post} from "./Posts/Post";
 import {PostsType} from "../../../redux/store";
 import {NewPost} from "./Posts/NewPost";
-import s from './MyPosts.module.css'
+import s from './MyPosts.module.css';
 
 type MyPostsPorps = {
     posts: Array<PostsType>
     addPost: (name: string) => void
 }
 
-export function MyPosts(props: MyPostsPorps) {
 
+const MyPosts = (props: MyPostsPorps) => {
+    console.log('My post component');
     const postsElements = props.posts.map(post => {
-        return <Post key={post.id} message={post.message} likeCounts={post.likesCount} img={post.img}/>
-    })
+        return <Post key={post.id} message={post.message} likeCounts={post.likesCount} img={post.img}/>;
+    });
 
     return (
         <div className={s.postsContainer}>
@@ -25,5 +26,6 @@ export function MyPosts(props: MyPostsPorps) {
                 {postsElements}
             </div>
         </div>
-    )
-}
+    );
+};
+export default React.memo(MyPosts);
