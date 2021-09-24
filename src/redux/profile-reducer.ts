@@ -2,10 +2,10 @@ import {DispatchAddPostProps, DispatchChangePostProps, PostsType, ProfilePageTyp
 import {UserApi} from "../api/api";
 import {Dispatch} from "redux";
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
-const GET_STATUS = 'GET_STATUS'
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const GET_STATUS = 'GET_STATUS';
 
 let initialState: ProfilePageType = {
     posts: [
@@ -47,7 +47,7 @@ let initialState: ProfilePageType = {
 
     },
     status: 'Статус'
-}
+};
 
 export const profileReducer = (state = initialState, action: DispatchPropsType) => {
     switch (action.type) {
@@ -57,28 +57,22 @@ export const profileReducer = (state = initialState, action: DispatchPropsType) 
                 message: action.text,
                 likesCount: 0,
                 img: 'https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg'
-            }
-            return {...state, messageForNewPost: '', posts: [...state.posts, newPost]}
+            };
+            return {...state, messageForNewPost: '', posts: [...state.posts, newPost]};
         case UPDATE_NEW_POST:
-            return {...state, messageForNewPost: action.newText}
+            return {...state, messageForNewPost: action.newText};
         case SET_USER_PROFILE:
-            return {...state, profile: action.profile}
+            return {...state, profile: action.profile};
         case GET_STATUS:
-            return {...state, status: action.status}
+            return {...state, status: action.status};
         default:
-            return state
+            return state;
     }
-}
+};
 
 export const addPostActionCreator = (text: string): DispatchAddPostProps => {
-    return {type: ADD_POST, text} as const
-}
-
-
-// export type DispatSetUserProfileType = {
-//     type: 'SET_USER_PROFILE'
-//     profile: ProfileType
-// }
+    return {type: ADD_POST, text} as const;
+};
 
 export type DispatSetUserProfileType = ReturnType<typeof setUserProfile>
 
@@ -88,42 +82,30 @@ export type DispatchPropsType =
     | DispatSetUserProfileType
     | DispatchGetUserStatusType
 
-export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile}) as const
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile}) as const;
 
 export const getUserProfile = (id: number) => {
     return (dispatch: Dispatch<DispatchPropsType>) => {
         UserApi.getProfile(id)
             .then(data => {
-                dispatch(setUserProfile(data))
-            })
-    }
-}
-// export type DispatchGetUserStatusType = {
-//     type: 'GET_STATUS'
-//     status: string
-// }
+                dispatch(setUserProfile(data));
+            });
+    };
+};
 
 export type DispatchGetUserStatusType = ReturnType<typeof getStatus>
 
-const getStatus = (status: string) => ({type: GET_STATUS, status}) as const
+const getStatus = (status: string) => ({type: GET_STATUS, status}) as const;
 
 
-export const getUserStatus = (userId: number) => {
-    return (dispatch: Dispatch<DispatchPropsType>) => {
-        UserApi.getStatus(userId)
-            .then(response => {
-                dispatch(getStatus(response.data))
-            })
+export const getUserStatus = (userId: number) => async (dispatch: Dispatch<DispatchPropsType>) => {
+    const response = await UserApi.getStatus(userId);
+    dispatch(getStatus(response.data));
+};
+
+export const updateUserStatus = (status: string) => async (dispatch: Dispatch<DispatchPropsType>) => {
+    const response = await UserApi.updateStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(getStatus(status));
     }
-}
-
-export const updateUserStatus = (status: string) => {
-    return (dispatch: Dispatch<DispatchPropsType>) => {
-        UserApi.updateStatus(status)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(getStatus(status))
-                }
-            })
-    }
-}
+};
