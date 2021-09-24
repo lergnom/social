@@ -1,6 +1,7 @@
 import {ExampleUserType} from "../components/Users/Users";
 import {UserApi} from "../api/api";
 import {Dispatch} from "redux";
+import {updateObjectinArray} from "../common/utils/items-helper";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -87,14 +88,19 @@ const initialState: UserProps = {
 export const usersReducer = (state = initialState, action: UsersDispatchProps) => {
     switch (action.type) {
         case FOLLOW:
-            return {
-                ...state, users: state.users.map(user => {
-                    if (user.id === action.userId) {
-                        return {...user, followed: true};
-                    }
-                    return user;
-                })
-            };
+            // return {
+            //     ...state,
+            //      users:updateObjectinArray(state.users, action.userId, 'id', {followed: true})
+            // };
+        return {
+            ...state, users:
+            state.users.map(user => {
+                if (user.id === action.userId) {
+                    return {...user, followed: true};
+                }
+                return user;
+            })
+        };
         case UNFOLLOW:
             return {
                 ...state, users: state.users.map(user => {

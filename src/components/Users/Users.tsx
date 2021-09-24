@@ -1,6 +1,6 @@
 import React from "react";
-import {NavLink, Redirect} from "react-router-dom";
-import s from './users.module.css'
+import {NavLink} from "react-router-dom";
+import s from './users.module.css';
 
 export type ExampleUserType = {
     id: number
@@ -31,22 +31,23 @@ export type UserPropsTypes = {
 export const Users = (props: UserPropsTypes) => {
 
 
-    let pageCount: number = Math.ceil(props.totalUserCount / props.pageSize)
-    let pages = []
+    let pageCount: number = Math.ceil(props.totalUserCount / props.pageSize);
+    let pages = [];
     for (let i = 1; i <= pageCount; i++) {
-        pages.push(i)
+        pages.push(i);
     }
 
     return <>
         <div className={s.pagination}>
             {pages.map(p => {
                 return <span onClick={() => {
-                    props.onPageChanged(p)
-                }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>
+                    props.onPageChanged(p);
+                }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>;
             })
             }
         </div>
         <div className={s.usersWrapper}>
+            {console.log('asd', props.users)}
             {
                 props.users.map(user => <div className={s.userContainer} key={user.id}>
                     <span>
@@ -56,10 +57,10 @@ export const Users = (props: UserPropsTypes) => {
                         </NavLink>
                         <div> {user.followed ?
                             <button disabled={props.isArrFolUnFolUsers.some(id => id === user.id)} onClick={() => {
-                                props.setUnFollow(user.id)
+                                props.setUnFollow(user.id);
                             }}>UnFollow</button> :
                             <button disabled={props.isArrFolUnFolUsers.some(id => id === user.id)} onClick={() => {
-                                props.setFollow(user.id)
+                                props.setFollow(user.id);
                             }}>Follow</button>} </div></span>
                     <span>
                     <div>{user.name}</div>
@@ -71,6 +72,6 @@ export const Users = (props: UserPropsTypes) => {
             }
         </div>
 
-    </>
+    </>;
 
-}
+};
