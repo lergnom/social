@@ -16,7 +16,6 @@ import {withSuspense} from "./hoc/withSuspense";
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 
-
 type AppComponentType = {
     initializeApp: () => void
     initialized: boolean
@@ -28,11 +27,9 @@ class App extends React.Component<AppComponentType> {
     }
 
     render() {
-
         if (!this.props.initialized) {
             return <Preloader/>;
         }
-
 
         return (
             <BrowserRouter>
@@ -46,7 +43,7 @@ class App extends React.Component<AppComponentType> {
                                render={withSuspense(ProfileContainer)}/>
                         <Route path={"/users"}
                                render={withSuspense(UsersContainer)}/>
-                        <Route path={"/news"} render={() => <News/>}/>
+                        <Route path={"/news"} render={withSuspense(News)}/>
                         <Route path={"/music"} render={() => <Music/>}/>
                         <Route path={"/settings"} render={() => <Settings/>}/>
                         <Route path={"/login"} render={() => <Login/>}/>
