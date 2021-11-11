@@ -32,7 +32,7 @@ class App extends React.Component<AppComponentType> {
         }
 
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div className="app-wrapper">
                     <HeaderContainer/>
                     {/*<Navbar/>*/}
