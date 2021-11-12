@@ -6,6 +6,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const GET_STATUS = 'GET_STATUS';
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 let initialState: ProfilePageType = {
     posts: [
@@ -65,6 +66,9 @@ export const profileReducer = (state = initialState, action: DispatchPropsType) 
             return {...state, profile: action.profile};
         case GET_STATUS:
             return {...state, status: action.status};
+        case SAVE_PHOTO_SUCCESS:
+            // return {...state, profile: {...state.profile, photos:action.photos}};
+            return state;
         default:
             return state;
     }
@@ -81,6 +85,7 @@ export type DispatchPropsType =
     | DispatchChangePostProps
     | DispatSetUserProfileType
     | DispatchGetUserStatusType
+    | ReturnType<typeof savePhotoSuccess>
 
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile}) as const;
 
@@ -107,5 +112,13 @@ export const updateUserStatus = (status: string) => async (dispatch: Dispatch<Di
     const response = await UserApi.updateStatus(status);
     if (response.data.resultCode === 0) {
         dispatch(getStatus(status));
+    }
+};
+export const savePhotoSuccess = (photos: string) => ({type: SAVE_PHOTO_SUCCESS, photos}) as const;
+
+export const savePhoto = (file: any) => async (dispatch: Dispatch<DispatchPropsType>) => {
+    const response = await UserApi.savePhoto(file);
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos));
     }
 };

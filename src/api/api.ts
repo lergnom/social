@@ -7,16 +7,16 @@ const instance = axios.create({
         "API-KEY": "b018a2e7-a067-422d-aa3e-08e12df481c7"
     },
 
-})
+});
 
 export const UserApi = {
     getUsers(pageNumber = 1, pageSize = 10) {
         return instance.get(`users?page=${pageNumber}&count=${pageSize}`)
-            .then(response => response.data)
+            .then(response => response.data);
     },
     follow(id: number) {
         return instance.post(`follow/${id}`)
-            .then(response => response.data)
+            .then(response => response.data);
     },
     unFollow(id: number) {
         return instance.delete(`follow/${id}`)
@@ -41,6 +41,11 @@ export const UserApi = {
     logout() {
         return instance.delete(`auth/login`);
     },
-}
+    savePhoto(photoFile: any) {
+        const formData = new FormData();
+        formData.append("image", photoFile);
+        return instance.put(`profile/photo/`, formData, {headers: {'Content-type': 'multipart/form-data'}});
+    },
+};
 
 
