@@ -3,6 +3,8 @@ import s from './ProfileInfo.module.css';
 import {ProfileContainerType} from '../ProfileContainer';
 import {Preloader} from "../../../common/Preloader/Preloader";
 import ProfileStatusWithHook from "../ProfileStatus/ProfileStatusWithHook";
+// import userPhoto from "../../../assets/images/Gubka_Bob.jpg";
+import userPhoto from "../../../assets/images/unnamed.jpg";
 
 
 export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
@@ -26,7 +28,7 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
 
             <div className={s.aboutMeWrapper}>
                 <div className={s.aboutMeDescription}>
-                    <img className={s.ava} src={profile.photos.large} alt={profile.fullName}/>
+                    <img className={s.ava} src={profile.photos.large || userPhoto} alt={profile.fullName}/>
                     <h3>{profile.fullName}</h3>
                     <em>{profile.aboutMe}</em>
 
