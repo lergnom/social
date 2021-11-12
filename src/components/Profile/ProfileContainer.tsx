@@ -24,7 +24,8 @@ type MapDispatchPropsType = {
     updateUserStatus: (status: string) => void,
 
 }
-type OwnProps = MapStatePropsType & MapDispatchPropsType
+
+type OwnProps = MapStatePropsType & MapDispatchPropsType & { isOwner: boolean }
 
 export type ProfileContainerType = RouteComponentProps<PathParamType> & OwnProps
 
@@ -51,11 +52,14 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
     }
 
     componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>) {
-        this.profileRefresh();
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.profileRefresh();
+
+        }
     }
 
     render() {
-        return <Profile {...this.props} />;
+        return <Profile {...this.props} isOwner={!this.props.match.params.userId} />;
     }
 }
 

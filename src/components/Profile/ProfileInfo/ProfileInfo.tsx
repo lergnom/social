@@ -22,13 +22,19 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
         );
     });
 
-
+    const onMainPhotoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length) {
+            alert("file choose");
+            // props.savePhoto(e.target.files[0])
+        }
+    };
     return (
         <>
 
             <div className={s.aboutMeWrapper}>
                 <div className={s.aboutMeDescription}>
                     <img className={s.ava} src={profile.photos.large || userPhoto} alt={profile.fullName}/>
+                    {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                     <h3>{profile.fullName}</h3>
                     <em>{profile.aboutMe}</em>
 

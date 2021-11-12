@@ -11,10 +11,11 @@ export const Profile = (props: ProfileContainerType) => {
     const logoutClick = () => {
         dispatch(logoutTc())
     }
-    return (
+        return (
         <div className={s.content}>
             <img className={s.imgProfileInfo}
                  src="https://static.tildacdn.com/tild3466-6664-4830-b233-653431393864/photo.jpg" alt=""/>
+
             <div className={s.profileContainer}>
                 <ProfileInfo {...props}/>
                 <MyPostsContainer/>
