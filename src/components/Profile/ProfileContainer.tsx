@@ -41,11 +41,6 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
         }
         this.props.getUserStatus(+userId);
         this.props.getUserProfile(+userId);
-
-
-        // userId && UserApi.getProfile(+userId).then(data => {
-        //     this.props.setUserProfile(data)
-        // })
     }
 
     componentDidMount() {
@@ -58,7 +53,6 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
 
         }
     }
-
     render() {
         return <Profile {...this.props} isOwner={!this.props.match.params.userId} savePhoto={this.props.savePhoto}/>;
     }
@@ -70,14 +64,6 @@ const mapStateToprops = (state: AppStateType): MapStatePropsType => {
         status: state.profilePage.status
     };
 };
-
-// const withAuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
-// const ProfileRouter = withRouter<any, any>(ProfileContainer)
-
-// export default connect(mapStateToprops, {setUserProfile, getUserProfile})(ProfileRouter)
-
-// const ProfileRouter = withRouter(connect(mapStateToprops, {setUserProfile, getUserProfile})(withAuthRedirectComponent))
 
 export default compose<React.ComponentType>(connect(mapStateToprops, {
         setUserProfile,
