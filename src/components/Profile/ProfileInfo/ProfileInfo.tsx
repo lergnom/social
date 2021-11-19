@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileContainerType} from '../ProfileContainer';
 import {Preloader} from "../../../common/Preloader/Preloader";
@@ -8,9 +8,11 @@ import userPhoto from "../../../assets/images/unnamed.jpg";
 
 
 export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
+    const [editMode, setEditMode] = useState<boolean>(false);
     if (!profile) {
         return <Preloader/>;
     }
+
     const socialIcons = Object.keys(profile.contacts).map(el => {
         if (profile.contacts[el] === null) {
             return <></>;
@@ -25,7 +27,7 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
     const onMainPhotoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
             alert("file choose");
-            props.savePhoto(e.target.files[0])
+            props.savePhoto(e.target.files[0]);
         }
     };
     return (
@@ -37,24 +39,24 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
                     {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                     <h3>{profile.fullName}</h3>
                     <em>{profile.aboutMe}</em>
-
                     {/*//Компонента отображения и изменения статуса*/}
                     <ProfileStatusWithHook status={props.status} updateUserStatus={props.updateUserStatus}/>
+
                 </div>
-                <div className={s.information}>
-                    {profile.lookingForAJob && <div className={s.workDescription}>
-                        <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
-                        <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
+                {props.isOwner && <button onClick={() => {
+                    setEditMode(true);
+                }}>Редактировать профиль</button>}
+                {editMode ? "bla-bla" :
+                    <div className={s.information}>
+                        {profile.lookingForAJob && <div className={s.workDescription}>
+                            <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
+                            <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
+                        </div>}
+                        <div>
+                            <h4>Контакты</h4>
+                            {socialIcons}
+                        </div>
                     </div>}
-                    {/*<div className={s.workDescription}>*/}
-                    {/*    <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>*/}
-                    {/*    <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>*/}
-                    {/*</div>*/}
-                    <div>
-                        <h4>Контакты</h4>
-                        {socialIcons}
-                    </div>
-                </div>
 
 
             </div>
