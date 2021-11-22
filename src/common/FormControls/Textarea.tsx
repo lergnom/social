@@ -2,9 +2,6 @@ import React from "react";
 import s from './Textarea.module.css'
 
 export const Textarea = ({input, meta, typeField, ...props}: any) => {
-    console.log(input);
-    console.log(meta);
-    console.log(typeField);
     const hasTouched = meta.touched && meta.error;
     return (
         <div className={s.wrapper}>

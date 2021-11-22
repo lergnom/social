@@ -21,7 +21,6 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
 
     //на стрелочную функцию
     toggleStateStatusArrow = (value: boolean) => {
-        console.log(this.state.status)
         this.setState({
             editMode: value
         });
@@ -43,7 +42,6 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
     componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>, snapshot?: any) {
         if (prevProps.status !== this.props.status) {
 
-            console.log('UPDATE STATUS')
             this.setState({
                 status: this.props.status
             });

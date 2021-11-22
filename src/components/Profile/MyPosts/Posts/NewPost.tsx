@@ -15,7 +15,6 @@ export type NewPostProps = {
 
 export const NewPost = (props: NewPostProps) => {
     const addPost = (object: NewPostReduxFormType) => {
-        console.log(object.postText);
         props.addPost(object.postText);
     }
 

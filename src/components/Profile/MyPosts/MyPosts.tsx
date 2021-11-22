@@ -11,7 +11,6 @@ type MyPostsPorps = {
 
 
 const MyPosts = (props: MyPostsPorps) => {
-    console.log('My post component');
     const postsElements = props.posts.map(post => {
         return <Post key={post.id} message={post.message} likeCounts={post.likesCount} img={post.img}/>;
     });
