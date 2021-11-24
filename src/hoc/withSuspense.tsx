@@ -1,10 +1,5 @@
 import React, {ComponentType} from "react";
 import {Preloader} from "../common/Preloader/Preloader";
-//
-//
-// export function withSuspense<T>(Component: ComponentType<T>) {
-//
-// }
 
 export const withSuspense = <T extends any>(Component: ComponentType<T>) => {
     return (props: any) => {

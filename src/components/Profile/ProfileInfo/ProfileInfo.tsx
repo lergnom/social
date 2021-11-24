@@ -3,7 +3,6 @@ import s from './ProfileInfo.module.css';
 import {ProfileContainerType} from '../ProfileContainer';
 import {Preloader} from "../../../common/Preloader/Preloader";
 import ProfileStatusWithHook from "../ProfileStatus/ProfileStatusWithHook";
-// import userPhoto from "../../../assets/images/Gubka_Bob.jpg";
 import userPhoto from "../../../assets/images/unnamed.jpg";
 
 

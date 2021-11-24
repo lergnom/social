@@ -74,7 +74,6 @@ export type DispatchAddPostProps = {
 export type DispatchAddMessageProps = {
     type: 'ADD-MESSAGE'
     newMessage: string
-    // text: string
 }
 
 
@@ -90,8 +89,6 @@ export type DispatchCangeMessageProps = {
 
 export type StoreType = {
     _state: RootStateType
-    // changeNewText: (s: string) => void
-    // addPost: (postText: string) => void
     _renderTree: (state: RootStateType) => void
     subscriber: (callback: () => void) => void
     getState: () => RootStateType
