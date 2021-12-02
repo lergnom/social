@@ -58,7 +58,26 @@ const ProfileData = (profile: ProfileType) => {
         </div>}
         <div>
             <h4>Контакты</h4>
-            {/*{socialIcons}*/}
+            <SocialIcons userId={profile.userId} aboutMe={profile.aboutMe} fullName={profile.fullName}
+                         contacts={profile.contacts} lookingForAJob={profile.lookingForAJob}
+                         lookingForAJobDescription={profile.lookingForAJobDescription}
+                         photos={profile.photos}/>
         </div>
     </div>;
 };
+
+
+const SocialIcons = ({contacts,...props}: ProfileType) => {
+    const result = Object.keys(contacts).map(el => {
+        if (contacts[el] === null) {
+            return <></>;
+        }
+        return (
+            <>
+                <a className={`${s.socialIcon} ${s[el]}`} href={contacts[el]}> </a>
+            </>
+        );
+    });
+    return <>{result}</>;
+};
+
