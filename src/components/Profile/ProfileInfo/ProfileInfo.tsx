@@ -4,6 +4,7 @@ import {ProfileContainerType} from '../ProfileContainer';
 import {Preloader} from "../../../common/Preloader/Preloader";
 import ProfileStatusWithHook from "../ProfileStatus/ProfileStatusWithHook";
 import userPhoto from "../../../assets/images/unnamed.jpg";
+import {ProfileType} from "../../../redux/store";
 
 
 export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
@@ -12,16 +13,6 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
         return <Preloader/>;
     }
 
-    const socialIcons = Object.keys(profile.contacts).map(el => {
-        if (profile.contacts[el] === null) {
-            return <></>;
-        }
-        return (
-            <>
-                <a className={`${s.socialIcon} ${s[el]}`} href={profile.contacts[el]}> </a>
-            </>
-        );
-    });
 
     const onMainPhotoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
@@ -46,17 +37,10 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
                     setEditMode(true);
                 }}>Редактировать профиль</button>}
                 {editMode ? "bla-bla" :
-
-                    <div className={s.information}>
-                        {profile.lookingForAJob && <div className={s.workDescription}>
-                            <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
-                            <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
-                        </div>}
-                        <div>
-                            <h4>Контакты</h4>
-                            {socialIcons}
-                        </div>
-                    </div>}
+                    <ProfileData userId={profile.userId} aboutMe={profile.aboutMe} fullName={profile.fullName}
+                                 contacts={profile.contacts} lookingForAJob={profile.lookingForAJob}
+                                 lookingForAJobDescription={profile.lookingForAJobDescription}
+                                 photos={profile.photos}/>}
 
 
             </div>
@@ -64,3 +48,17 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
     );
 };
 
+
+const ProfileData = (profile: ProfileType) => {
+    return <div className={s.information}>
+
+        {profile.lookingForAJob && <div className={s.workDescription}>
+            <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
+            <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
+        </div>}
+        <div>
+            <h4>Контакты</h4>
+            {/*{socialIcons}*/}
+        </div>
+    </div>;
+};
