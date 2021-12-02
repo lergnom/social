@@ -35,7 +35,7 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
             <div className={s.aboutMeWrapper}>
                 <div className={s.aboutMeDescription}>
                     <img className={s.ava} src={profile.photos.large || userPhoto} alt={profile.fullName}/>
-                    {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                    {props.isOwner && editMode && <input type={"file"} onChange={onMainPhotoSelected}/>}
                     <h3>{profile.fullName}</h3>
                     <em>{profile.aboutMe}</em>
                     {/*//Компонента отображения и изменения статуса*/}
@@ -46,6 +46,7 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
                     setEditMode(true);
                 }}>Редактировать профиль</button>}
                 {editMode ? "bla-bla" :
+
                     <div className={s.information}>
                         {profile.lookingForAJob && <div className={s.workDescription}>
                             <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
@@ -62,3 +63,4 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
         </>
     );
 };
+
