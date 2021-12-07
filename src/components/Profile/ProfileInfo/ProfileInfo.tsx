@@ -4,6 +4,7 @@ import {ProfileContainerType} from '../ProfileContainer';
 import {Preloader} from "../../../common/Preloader/Preloader";
 import ProfileStatusWithHook from "../ProfileStatus/ProfileStatusWithHook";
 import userPhoto from "../../../assets/images/unnamed.jpg";
+import {ProfileForm} from "./ProfileForm";
 import {ProfileType} from "../../../redux/store";
 
 
@@ -13,6 +14,10 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
         return <Preloader/>;
     }
 
+
+    const gotoEditMode = () => {
+        setEditMode(true);
+    };
 
     const onMainPhotoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
@@ -32,22 +37,25 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
                     <ProfileStatusWithHook status={props.status} updateUserStatus={props.updateUserStatus}/>
 
                 </div>
-                {props.isOwner && <button onClick={() => {
-                    setEditMode(true);
-                }}>Редактировать профиль</button>}
+
                 {editMode ? <ProfileForm/> :
-                    <ProfileData userId={profile.userId} aboutMe={profile.aboutMe} fullName={profile.fullName}
-                                 contacts={profile.contacts} lookingForAJob={profile.lookingForAJob}
-                                 lookingForAJobDescription={profile.lookingForAJobDescription}
-                                 photos={profile.photos}/>}
+                    <ProfileData profile={profile} gotoEditMode={gotoEditMode}
+                                 isOwner={props.isOwner}/>}
             </div>
         </>
     );
 };
 
 
-const ProfileData = (profile: ProfileType) => {
+type ProfileDataType = {
+    profile: ProfileType
+    isOwner: boolean
+    gotoEditMode: () => void
+}
+
+const ProfileData = ({profile, isOwner, gotoEditMode}: ProfileDataType) => {
     return <div className={s.information}>
+        {isOwner && <button onClick={gotoEditMode}>Редактировать профиль</button>}
         {profile.lookingForAJob && <div className={s.workDescription}>
             <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
             <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
@@ -60,10 +68,6 @@ const ProfileData = (profile: ProfileType) => {
                          photos={profile.photos}/>
         </div>
     </div>;
-};
-
-const ProfileForm = () => {
-    return <div> Форма редактирования</div>;
 };
 
 
