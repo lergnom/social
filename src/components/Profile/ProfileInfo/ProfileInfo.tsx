@@ -28,19 +28,19 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
     return (
         <>
             <div className={s.aboutMeWrapper}>
-                <div className={s.aboutMeDescription}>
+                <div className={s.aboutMeDescription} style={{position: "relative"}}>
                     <img className={s.ava} src={profile.photos.large || userPhoto} alt={profile.fullName}/>
-                    {props.isOwner && editMode && <input type={"file"} onChange={onMainPhotoSelected}/>}
-                    <h3>{profile.fullName}</h3>
-                    <em>{profile.aboutMe}</em>
+                    {props.isOwner && editMode &&
+                        <input type={"file"}
+                               style={{color: "transparent", position: "absolute", top: "112px", left: "50px"}}
+                               onChange={onMainPhotoSelected}/>}
                     {/*//Компонента отображения и изменения статуса*/}
-                    <ProfileStatusWithHook status={props.status} updateUserStatus={props.updateUserStatus}/>
+
 
                 </div>
-
                 {editMode ? <ProfileForm/> :
                     <ProfileData profile={profile} gotoEditMode={gotoEditMode}
-                                 isOwner={props.isOwner}/>}
+                                 isOwner={props.isOwner} status={props.status} updateStatus={props.updateUserStatus}/>}
             </div>
         </>
     );
@@ -51,23 +51,33 @@ type ProfileDataType = {
     profile: ProfileType
     isOwner: boolean
     gotoEditMode: () => void
+    status: string
+    updateStatus: (text: string) => void
 }
 
-const ProfileData = ({profile, isOwner, gotoEditMode}: ProfileDataType) => {
-    return <div className={s.information}>
-        {isOwner && <button onClick={gotoEditMode}>Редактировать профиль</button>}
-        {profile.lookingForAJob && <div className={s.workDescription}>
-            <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
-            <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
-        </div>}
-        <div>
-            <h4>Контакты</h4>
-            <SocialIcons userId={profile.userId} aboutMe={profile.aboutMe} fullName={profile.fullName}
-                         contacts={profile.contacts} lookingForAJob={profile.lookingForAJob}
-                         lookingForAJobDescription={profile.lookingForAJobDescription}
-                         photos={profile.photos}/>
+const ProfileData = ({profile, isOwner, gotoEditMode, status, updateStatus}: ProfileDataType) => {
+    return <>
+        <div className={s.aboutMeDescription}>
+            <h3>{profile.fullName}</h3>
+            <em>{profile.aboutMe}</em>
+            <ProfileStatusWithHook status={status} updateUserStatus={updateStatus}/>
         </div>
-    </div>;
+        {isOwner && <button onClick={gotoEditMode}>Редактировать профиль</button>}
+        <div className={s.information}>
+            {profile.lookingForAJob && <div className={s.workDescription}>
+                <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
+                <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
+            </div>}
+            <div>
+                <h4>Контакты</h4>
+                <SocialIcons userId={profile.userId} aboutMe={profile.aboutMe} fullName={profile.fullName}
+                             contacts={profile.contacts} lookingForAJob={profile.lookingForAJob}
+                             lookingForAJobDescription={profile.lookingForAJobDescription}
+                             photos={profile.photos}/>
+            </div>
+        </div>
+
+    </>;
 };
 
 

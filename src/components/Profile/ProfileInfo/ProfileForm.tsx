@@ -3,7 +3,12 @@ import {MyField} from "../../../common/FormControls/Textarea";
 import {Field, reduxForm} from "redux-form";
 
 const ProfileFormCont = () => {
-    return <form> Форма редактирования
+    return <form>
+        <button onClick={() => {
+            alert("update");
+        }}>Обновить профиль
+        </button>
+
         <label style={{
             display: "flex",
             flexDirection: "column-reverse"
