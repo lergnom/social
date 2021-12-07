@@ -22,7 +22,6 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
     };
     return (
         <>
-
             <div className={s.aboutMeWrapper}>
                 <div className={s.aboutMeDescription}>
                     <img className={s.ava} src={profile.photos.large || userPhoto} alt={profile.fullName}/>
@@ -36,13 +35,11 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
                 {props.isOwner && <button onClick={() => {
                     setEditMode(true);
                 }}>Редактировать профиль</button>}
-                {editMode ? "bla-bla" :
+                {editMode ? <ProfileForm/> :
                     <ProfileData userId={profile.userId} aboutMe={profile.aboutMe} fullName={profile.fullName}
                                  contacts={profile.contacts} lookingForAJob={profile.lookingForAJob}
                                  lookingForAJobDescription={profile.lookingForAJobDescription}
                                  photos={profile.photos}/>}
-
-
             </div>
         </>
     );
@@ -51,7 +48,6 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
 
 const ProfileData = (profile: ProfileType) => {
     return <div className={s.information}>
-
         {profile.lookingForAJob && <div className={s.workDescription}>
             <h4>Ищу работу: {profile.lookingForAJob ? 'да' : 'нет'}</h4>
             <span>{profile.lookingForAJob && profile.lookingForAJobDescription}</span>
@@ -66,8 +62,12 @@ const ProfileData = (profile: ProfileType) => {
     </div>;
 };
 
+const ProfileForm = () => {
+    return <div> Форма редактирования</div>;
+};
 
-const SocialIcons = ({contacts,...props}: ProfileType) => {
+
+const SocialIcons = ({contacts, ...props}: ProfileType) => {
     const result = Object.keys(contacts).map(el => {
         if (contacts[el] === null) {
             return <></>;
