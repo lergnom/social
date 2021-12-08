@@ -7,7 +7,6 @@ import userPhoto from "../../../assets/images/unnamed.jpg";
 import {ProfileForm} from "./ProfileForm";
 import {ProfileType} from "../../../redux/store";
 
-
 export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
     const [editMode, setEditMode] = useState<boolean>(false);
     if (!profile) {
@@ -25,6 +24,10 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
             props.savePhoto(e.target.files[0]);
         }
     };
+
+    const onSubmit = (formData: any) => {
+        props.saveProfile(formData);
+    };
     return (
         <>
             <div className={s.aboutMeWrapper}>
@@ -38,7 +41,7 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
 
 
                 </div>
-                {editMode ? <ProfileForm/> :
+                {editMode ? <ProfileForm onSubmit={onSubmit}/> :
                     <ProfileData profile={profile} gotoEditMode={gotoEditMode}
                                  isOwner={props.isOwner} status={props.status} updateStatus={props.updateUserStatus}/>}
             </div>
