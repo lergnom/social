@@ -27,6 +27,7 @@ export const ProfileInfo = ({profile, ...props}: ProfileContainerType) => {
 
     const onSubmit = (formData: any) => {
         props.saveProfile(formData);
+        setEditMode(false);
     };
     return (
         <>
