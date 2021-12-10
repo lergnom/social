@@ -6,7 +6,6 @@ const ProfileFormCont = (props: InjectedFormProps) => {
     return <form onSubmit={props.handleSubmit}>
         <button>Обновить профиль
         </button>
-
         <label style={{
             display: "flex",
             flexDirection: "column-reverse"
